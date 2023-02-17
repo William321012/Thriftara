@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.9.1.min.js"></script>
+</head>
+<body>
+
+<form id="reg">
+    username: <input type="text" name="username" id="username"><br>
+    password: <input type="password" name="password" id="password"><br>
+    confirm: <input type="password" name="confirm" id="confirm"><br>
+    <input type="button" value="registration" id="registration"/>
+
+</form>
+
+
+
+<script>
+    $("#registration").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            url:"/customers/reg",
+            type:"post",
+            data:"username="+username+"&password="+password,
+            dataType:"json",
+            success:function (json) {
+                if(json.state == 200){
+                    alert("registration success")
+                }else{
+                    alert("registration fail")
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
