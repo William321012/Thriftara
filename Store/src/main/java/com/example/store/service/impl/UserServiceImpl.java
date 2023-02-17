@@ -44,7 +44,8 @@ public class UserServiceImpl implements IUserService {
         customer.setModifiedTime(date);
 
         Integer count = customerMapper.createUser(customer);
-
+        
+        //test
 
         if(count!=1){
             throw new InsertException("unknown error during insertion ");
