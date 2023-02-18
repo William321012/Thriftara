@@ -19,4 +19,12 @@ public class UserServiceTest {
         customer.setPassword("sb2");
         userService.registration(customer);
     }
+
+    @Test
+    public void login1(){
+        Customer customer = new Customer();
+        customer.setUsername("sb2");
+        customer.setPassword("sb2");
+        userService.login(customer);
+    }
 }

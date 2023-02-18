@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="../jquery-1.9.1.min.js"></script>
 </head>
 <body>
 login
 
-<form action="/" method="post">
-  username: <input type="text" name="username" id="username">
+<form >
+  username: <input type="text" name="username" id="username"><br>
   password: <input type="text" name="password" id="password">
-  <input type="submit" value="login">
+  <input type="button" value="login" id="loginSubmit">
 </form>
 <br>
 <a href="registration.html">registration</a>
 
 
 <script>
+    $("#loginSubmit").click(function() {
+        var username = $("#username").val();
+        var password = $("#password").val();
 
+        $.ajax({
+            url:"/customers/log",
+            type:"POST",
+            data:"username="+username+"&password="+password,
+            dataType:"JSON",
+
+            success:function (json){
+                if(json.state == 200){
+                    alert("login success")
+                     location.href="index.html";
+                }else{
+                    alert("login fail")
+                }
+            },
+            error:function (xhr){
+                alert(xhr.message)
+            }
+
+        })
+
+    })
 </script>
 </body>
 </html>

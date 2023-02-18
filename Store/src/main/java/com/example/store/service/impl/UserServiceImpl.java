@@ -55,15 +55,23 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void login(Customer customer) {
+    public Customer login(Customer customer) {
         Customer customer1 = customerMapper.checkCustomerByUserName(customer.getUsername());
-        if(customer1==null){
+        if(customer1==null || customer1.getIsDelete()==1){
             throw new UserNotExistException("User does not exist");
         }
 
-        if(customer.getPassword()!=customer1.getPassword()){
+        String salt = customer1.getSalt();
+
+        String md5 = getMD5(customer.getPassword(),salt);
+
+        if(!md5.equals(customer1.getPassword())){
             throw new PasswordNotMatchException("password does not match");
         }
+
+        return customer1;
+
+
 
     }
 

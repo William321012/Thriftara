@@ -32,5 +32,15 @@ public class UserController extends BaseController {
         return result;
     }
 
+    @RequestMapping("/log")
+    public JsonResult<Customer> login(Customer customer){
+        JsonResult<Customer> result = new JsonResult<>();
+        Customer customer1 = userService.login(customer);
+        result.setState(200);
+        result.setMessage("success");
+        result.setDate(customer1);
+        return result;
+    }
+
 
 }
