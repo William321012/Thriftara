@@ -19,7 +19,7 @@ public class BaseController {
             result.setMessage("username already exist");
         }
 
-        return  result;
+        return result;
     }
 
 }

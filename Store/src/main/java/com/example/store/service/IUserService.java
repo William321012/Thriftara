@@ -6,5 +6,7 @@ public interface IUserService {
 
     void registration(Customer customer);
 
+    void login(Customer customer);
+
 
 }
