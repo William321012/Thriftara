@@ -82,7 +82,6 @@ public class UserServiceImpl implements IUserService {
             throw new UserNotExistException("user does not exists");
         }
 
-
         String salt =customer.getSalt();
         String oldMd5 = getMD5(oldPassword, salt);
 
