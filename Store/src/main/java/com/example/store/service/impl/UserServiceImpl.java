@@ -3,12 +3,10 @@ package com.example.store.service.impl;
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Customer;
 import com.example.store.service.IUserService;
-import com.example.store.service.exception.InsertException;
-import com.example.store.service.exception.PasswordNotMatchException;
-import com.example.store.service.exception.UserNotExistException;
-import com.example.store.service.exception.UsernameDuplicatedException;
+import com.example.store.service.exception.*;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
@@ -21,6 +19,7 @@ public class UserServiceImpl implements IUserService {
     private CustomerMapper customerMapper;
     
     @Override
+    @Transactional
     public void registration(Customer customer) {
 
         Customer customerVerification = customerMapper.checkCustomerByUserName(customer.getUsername());
@@ -55,6 +54,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public Customer login(Customer customer) {
         Customer customer1 = customerMapper.checkCustomerByUserName(customer.getUsername());
         if(customer1==null || customer1.getIsDelete()==1){
@@ -71,7 +71,35 @@ public class UserServiceImpl implements IUserService {
 
         return customer1;
 
+    }
 
+    @Transactional
+    public void changePassword(String oldPassword, String newPassword, String confirm, String username){
+
+        Customer customer = customerMapper.checkCustomerByUserName(username);
+
+        if(customer.getIsDelete()==1 || customer==null){
+            throw new UserNotExistException("user does not exists");
+        }
+
+
+        String salt =customer.getSalt();
+        String oldMd5 = getMD5(oldPassword, salt);
+
+        if(!newPassword.equals(confirm)){throw new PasswordNotMatchException("password does not match");}
+
+        if(!oldMd5.equals(customer.getPassword())){
+            throw new PasswordNotMatchException("password does not match");
+        }
+
+        Integer cid = customer.getCid();
+
+        String newMd5 = getMD5(newPassword, salt);
+
+        Integer count = customerMapper.updateCustomerPassword(cid,newMd5,username,new Date());
+        if(count!=1){
+            throw new PasswordUpdateFailedException("password update failed");
+        }
 
     }
 

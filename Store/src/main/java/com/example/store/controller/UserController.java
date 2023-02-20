@@ -7,6 +7,8 @@ import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.UsernameDuplicatedException;
 import com.example.store.util.JsonResult;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +35,34 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/log")
-    public JsonResult<Customer> login(Customer customer){
+    public JsonResult<Customer> login(Customer customer, HttpSession httpSession){
         JsonResult<Customer> result = new JsonResult<>();
         Customer customer1 = userService.login(customer);
+
+        httpSession.setAttribute("customer",customer1);
+        httpSession.setAttribute("cid",customer1.getCid());
+        httpSession.setAttribute("username",customer1.getUsername());
+
         result.setState(200);
         result.setMessage("success");
         result.setDate(customer1);
         return result;
     }
 
+    @RequestMapping("/password")
+    public JsonResult<Void> password(String oldPassword, String newPassword, String confirm, HttpSession httpSession){
+        System.out.println(oldPassword);
+        System.out.println(newPassword);
+        System.out.println(confirm);
 
+        JsonResult<Void> result = new JsonResult<>();
+        String username =(String)httpSession.getAttribute("username");
+
+        userService.changePassword(oldPassword, newPassword, confirm, username);
+
+        result.setState(200);
+        result.setMessage("success");
+
+        return result;
+    }
 }

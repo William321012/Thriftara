@@ -8,5 +8,7 @@ public interface IUserService {
 
     Customer login(Customer customer);
 
+    void changePassword(String oldPassword, String newPassword, String confirm, String username);
+
 
 }

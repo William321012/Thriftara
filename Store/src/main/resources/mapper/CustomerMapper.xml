@@ -23,6 +23,12 @@
         values (#{username},#{password},#{salt},#{phone},#{email},#{gender},#{avatar},#{isDelete},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
     </insert>
 
+    <update id="updateCustomerPassword">
+        update t_customer set password =#{password}, modified_user=#{modifiedUser}, modified_time=#{modifiedTime} where c_id  = #{cid}
+    </update>
+
+
+
 
 
 

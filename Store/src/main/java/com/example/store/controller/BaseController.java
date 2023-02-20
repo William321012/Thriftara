@@ -2,6 +2,7 @@ package com.example.store.controller;
 
 import com.example.store.service.exception.*;
 import com.example.store.util.JsonResult;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 public class BaseController {
@@ -21,9 +22,22 @@ public class BaseController {
         }else if(e instanceof PasswordNotMatchException){
             result.setState(5002);
             result.setMessage("password does not match");
+        }else if(e instanceof PasswordUpdateFailedException) {
+            result.setState(5003);
+            result.setMessage("password update failed");
         }
-
         return result;
     }
+
+    protected final Integer getIdFromSession(HttpSession httpSession){
+        Integer cid = (Integer)httpSession.getAttribute("cid");
+        return cid;
+    }
+
+    protected final String getUsernameFromSession(HttpSession httpSession){
+        String username = (String)httpSession.getAttribute("username");
+        return username;
+    }
+
 
 }
