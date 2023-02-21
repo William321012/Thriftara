@@ -27,11 +27,16 @@
         update t_customer set password =#{password}, modified_user=#{modifiedUser}, modified_time=#{modifiedTime} where c_id  = #{cid}
     </update>
 
+    <select id="checkCustomerById" resultMap="resultMapCustomer">
+        select * from t_customer where c_id  = #{cid}
+    </select>
 
+    <update id="updateCustomerInfo">
+        update t_customer set email =#{email}, phone=#{phone}, gender=#{gender}, modified_user=#{modifiedUser}, modified_time=#{modifiedTime}  where c_id  = #{cid}
+    </update>
 
-
-
-
-
+    <update id="updateAvatar">
+        update t_customer set avatar = #{avatar}, modified_user=#{modifiedUser},  modified_time=#{modifiedTime} where c_id  = #{cid}
+    </update>
 
 </mapper>

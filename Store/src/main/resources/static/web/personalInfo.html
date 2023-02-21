@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+<form>
+    username: <input type="text" name="username" id="username" readonly>
+    phone: <input type="text" name="phone" id="phone">
+    gmail: <input type="text" name="email" id="email">
+<!--    1 = male 2 = female-->
+    gender: <input type="radio" name="gender" id="genderM" value="1">M <input type="radio" name="gender" id="genderF" value="2">F
+    <input type="button" value="save" id="save">
+</form>
+
+
+<script>
+    $("#save").click(function () {
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var gender =$('input:radio:checked').val();
+
+        alert(gender)
+        $.ajax({
+            url:"/customers/updateInfo",
+            type:"POST",
+            data:"phone="+phone+"&email="+email+"&gender="+gender,
+            dataType:"JSON",
+
+            success:function (json) {
+                if(json.state == 200){
+                    alert("update info success")
+                    location.href="personalInfo.html"
+                }else{
+                    alert("update info failed")
+                }
+            }
+        })
+    })
+
+
+
+
+    $(document).ready(function(){
+        $.ajax({
+            url:"/customers/getPersonalInfo",
+            type:"get",
+            dataType:"JSON",
+
+            success:function (json) {
+                if(json.state == 200){
+                    $("#phone").val(json.data.phone);
+                    $("#username").val(json.data.username);
+                    $("#email").val(json.data.email);
+                    var radio = json.data.gender==1 ? $("#genderM") : $("#genderF")
+                    radio.prop("checked","checked")
+                }else{
+                    alert("get info failed")
+                }
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

@@ -15,4 +15,15 @@ public interface CustomerMapper {
     Customer checkCustomerByUserName(@Param("username") String username);
 
     Integer updateCustomerPassword(@Param("cid")Integer id,@Param("password")String newPassword,@Param("modifiedUser")String modifiedUser, @Param("modifiedTime") Date modifiedTime);
+
+
+    Customer checkCustomerById(Integer cid);
+
+//    Integer updateCustomerInfo(@Param("cid")Integer cid, Customer customer);
+
+    Integer updateCustomerInfo (Customer customer);
+
+    Integer updateAvatar(Customer customer);
 }
+
+

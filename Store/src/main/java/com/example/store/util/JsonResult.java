@@ -6,7 +6,7 @@ public class JsonResult<E> implements Serializable {
 
     private Integer state;
     private String message;
-    private E date;
+    private E data;
 
     public JsonResult() {
     }
@@ -21,7 +21,7 @@ public class JsonResult<E> implements Serializable {
 
     public JsonResult(Integer state, E date) {
         this.state = state;
-        this.date = date;
+        this.data = data;
     }
 
     public Integer getState() {
@@ -40,11 +40,11 @@ public class JsonResult<E> implements Serializable {
         this.message = message;
     }
 
-    public E getDate() {
-        return date;
+    public E getData() {
+        return data;
     }
 
-    public void setDate(E date) {
-        this.date = date;
+    public void setData(E date) {
+        this.data = date;
     }
 }

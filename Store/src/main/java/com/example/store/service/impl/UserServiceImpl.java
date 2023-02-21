@@ -5,6 +5,8 @@ import com.example.store.pojo.Customer;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.*;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -45,8 +47,6 @@ public class UserServiceImpl implements IUserService {
         customer.setModifiedTime(date);
 
         Integer count = customerMapper.createUser(customer);
-
-        //test
 
         if(count!=1){
             throw new InsertException("unknown error during insertion ");
@@ -101,6 +101,42 @@ public class UserServiceImpl implements IUserService {
         }
 
     }
+
+    @Override
+    public Customer getCustomerInfoById(Integer cid) {
+
+        Customer customer = customerMapper.checkCustomerById(cid);
+
+        if(customer.getIsDelete()==1 || customer==null){
+            throw new UserNotExistException("user does not exists");
+        }
+
+        Customer customer1 = new Customer();
+        customer1.setEmail(customer.getEmail());
+        customer1.setPhone(customer.getPhone());
+        customer1.setGender(customer.getGender());
+        customer1.setUsername(customer.getUsername());
+        System.out.println(customer1);
+
+        return customer1;
+
+    }
+
+    //the customer's object only have the data of email, phone and gender
+    @Override
+    public void updateCustomerInformation(Integer cid, String username, Customer customer) {
+
+        System.out.println(customer);
+        customer.setModifiedTime(new Date());
+        customer.setModifiedUser(username);
+        customer.setCid(cid);
+
+        Integer count = customerMapper.updateCustomerInfo(customer);
+        if (count!=1){
+            throw new UpdateInforException("update personal info failed");
+        }
+    }
+
 
     private String getMD5(String old, String salt){
         for(int i =0; i<3; i++){

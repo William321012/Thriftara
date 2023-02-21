@@ -35,7 +35,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/log")
-    public JsonResult<Customer> login(Customer customer, HttpSession httpSession){
+    public JsonResult<Customer> log(Customer customer, HttpSession httpSession){
         JsonResult<Customer> result = new JsonResult<>();
         Customer customer1 = userService.login(customer);
 
@@ -45,7 +45,7 @@ public class UserController extends BaseController {
 
         result.setState(200);
         result.setMessage("success");
-        result.setDate(customer1);
+        result.setData(customer1);
         return result;
     }
 
@@ -64,5 +64,42 @@ public class UserController extends BaseController {
         result.setMessage("success");
 
         return result;
+    }
+
+    @RequestMapping("/getPersonalInfo")
+    public JsonResult<Customer> getPersonalInfo(HttpServletRequest request){
+        JsonResult<Customer> result = new JsonResult<>();
+
+        Integer cid = (Integer)request.getSession().getAttribute("cid");
+
+        Customer customerInfoById = userService.getCustomerInfoById(cid);
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(customerInfoById);
+
+        System.out.println(result);
+
+        return result;
+
+    }
+
+    @RequestMapping("/updateInfo")
+    public JsonResult<Void> updateInfo(Customer customer,HttpServletRequest request){
+        JsonResult<Void> result = new JsonResult<>();
+
+        Integer cid= (Integer) request.getSession().getAttribute("cid");
+        customer.setCid(cid);
+        System.out.println(customer);
+
+        String username = (String)request.getSession().getAttribute("username");
+
+        userService.updateCustomerInformation(cid,username,customer);
+
+        result.setState(200);
+        result.setMessage("success");
+
+        return result;
+
     }
 }

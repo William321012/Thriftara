@@ -25,6 +25,9 @@ public class BaseController {
         }else if(e instanceof PasswordUpdateFailedException) {
             result.setState(5003);
             result.setMessage("password update failed");
+        }else if(e instanceof UpdateInforException) {
+            result.setState(5004);
+            result.setMessage("personal information update failed");
         }
         return result;
     }
