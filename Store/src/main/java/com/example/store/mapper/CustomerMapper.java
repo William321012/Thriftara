@@ -23,7 +23,7 @@ public interface CustomerMapper {
 
     Integer updateCustomerInfo (Customer customer);
 
-    Integer updateAvatar(Customer customer);
+    Integer updateAvatar(Integer cid, String avatar, String modifiedUser, Date modifiedTime);
 }
 
 

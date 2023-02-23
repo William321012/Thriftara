@@ -27,4 +27,9 @@ public class UserServiceTest {
         customer.setPassword("sb2");
         userService.login(customer);
     }
+
+    @Test
+    public void avatar(){
+        userService.updateAvatar(4,"/sb.png","sb2");
+    }
 }

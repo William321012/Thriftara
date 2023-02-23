@@ -1,13 +1,16 @@
 package com.example.store.controller;
 
+import com.example.store.controller.exception.*;
 import com.example.store.service.exception.*;
 import com.example.store.util.JsonResult;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.io.File;
+
 public class BaseController {
 
-    @ExceptionHandler(ServiceException.class)
+    @ExceptionHandler({ServiceException.class, FileUploadException.class})
     public JsonResult<Void> handlerException(Exception e){
         JsonResult<Void> result = new JsonResult<>();
         if(e instanceof InsertException){
@@ -28,6 +31,21 @@ public class BaseController {
         }else if(e instanceof UpdateInforException) {
             result.setState(5004);
             result.setMessage("personal information update failed");
+        }else if(e instanceof FileEmptyException) {
+            result.setState(6000);
+            result.setMessage("can not upload empty");
+        }else if(e instanceof FileIOException) {
+            result.setState(6001);
+            result.setMessage("unknown error during read or write");
+        }else if(e instanceof FileSizeException) {
+            result.setState(6002);
+            result.setMessage("File size does not meet the requirement");
+        }else if(e instanceof FileStateException) {
+            result.setState(6003);
+            result.setMessage("File is not in the normal state");
+        }else if(e instanceof FileTypeException) {
+            result.setState(6004);
+            result.setMessage("File type does not meet the requirement");
         }
         return result;
     }

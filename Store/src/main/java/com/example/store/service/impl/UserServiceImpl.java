@@ -74,6 +74,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Transactional
+    @Override
     public void changePassword(String oldPassword, String newPassword, String confirm, String username){
 
         Customer customer = customerMapper.checkCustomerByUserName(username);
@@ -103,6 +104,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public Customer getCustomerInfoById(Integer cid) {
 
         Customer customer = customerMapper.checkCustomerById(cid);
@@ -124,6 +126,7 @@ public class UserServiceImpl implements IUserService {
 
     //the customer's object only have the data of email, phone and gender
     @Override
+    @Transactional
     public void updateCustomerInformation(Integer cid, String username, Customer customer) {
 
         System.out.println(customer);
@@ -135,6 +138,21 @@ public class UserServiceImpl implements IUserService {
         if (count!=1){
             throw new UpdateInforException("update personal info failed");
         }
+    }
+
+    @Override
+    public void updateAvatar(Integer cid, String avatar, String username) {
+        Customer customer = customerMapper.checkCustomerById(cid);
+
+        if(customer.getIsDelete()==1 || customer==null){
+            throw new UserNotExistException("user does not exists");
+        }
+
+        Integer count = customerMapper.updateAvatar(cid, avatar, username, new Date());
+        if (count!=1){
+            throw new UpdateInforException("update personal info failed");
+        }
+
     }
 
 
