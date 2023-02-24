@@ -1,0 +1,26 @@
+.footer-container {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.footer-logo {
+    width: 20vw;
+    display: flex;
+    justify-content: left;
+}
+
+.customer-support {
+    width: 20vw;
+}
+
+.faq {
+    width: 20vw;
+}
+
+.newsletter {
+    width: 20vw;
+}

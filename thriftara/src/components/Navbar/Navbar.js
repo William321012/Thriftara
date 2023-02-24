@@ -9,14 +9,14 @@ function Navbar() {
         <Link to='/' className='nav-logo'>Logo</Link>
         <div className='search-bar'>
           <form>
-            <input type="text" placeholder='Search...' />
-            <button type='submit'>Search</button>
+            <input type="text" placeholder='Search...' className='search-text'/>
+            <button type='submit' className='search-btn'>Search</button>
           </form>
         </div>
         <ul>
-          <li><Link to='/sellnow'>SellNow</Link></li>
-          <li><Link to='/login'>Mens</Link></li>
-          <li><Link to='/signuo'>login</Link></li>
+          <li><Link to='/sellnow'>Sell Now</Link></li>
+          <li><Link to='/login'>Login</Link></li>
+          <li><Link to='/signup'>Sign Up</Link></li>
           <li><Link to='/cart'>Cart</Link></li>
         </ul>
       </div>
