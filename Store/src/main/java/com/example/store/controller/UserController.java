@@ -206,7 +206,7 @@ public class UserController extends BaseController {
         Integer cid = customer.getCid();
 
         String avatar = userService.getAvatar(cid);
-        
+
         result.setState(200);
         result.setMessage("success");
         result.setData(avatar);
