@@ -4,6 +4,7 @@ import com.example.store.Interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
@@ -29,4 +30,13 @@ public class MyConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**").excludePathPatterns(exclude);
     }
+
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        registry.addResourceHandler("/images").addResourceLocations("file:"+System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images");
+    }
+
+
 }

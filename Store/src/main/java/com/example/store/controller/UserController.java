@@ -2,6 +2,7 @@ package com.example.store.controller;
 
 
 import com.example.store.controller.exception.*;
+import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Customer;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.InsertException;
@@ -35,9 +36,9 @@ public class UserController extends BaseController {
     public JsonResult<Void> reg(Customer customer){
         JsonResult<Void> result = new JsonResult<>();
 
-            userService.registration(customer);
-            result.setState(200);
-            result.setMessage("success");
+        userService.registration(customer);
+        result.setState(200);
+        result.setMessage("success");
 
         return result;
     }
@@ -119,7 +120,7 @@ public class UserController extends BaseController {
         AVATAR_TYPE.add("image/gif");
     }
     @RequestMapping("/updateAvatar")
-    public JsonResult<String> updateAvatar(HttpServletRequest request, MultipartFile file){
+    public String updateAvatar(HttpServletRequest request, MultipartFile file){
         JsonResult<String> result = new JsonResult<>();
 
         if(file.isEmpty()){throw new FileEmptyException("file is empty");}
@@ -134,7 +135,9 @@ public class UserController extends BaseController {
 
         //Specifies that uploaded files must be under this directory ../upload/xxx.jpg
         //create the directory for storing the avatar first ../upload
-        String upload = "D:/store/upload";
+//        String upload =  request.getSession().getServletContext().getRealPath("/upload");
+        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+
         System.out.println(upload);
 
         File dir = new File(upload);
@@ -179,7 +182,8 @@ public class UserController extends BaseController {
         //return the path of the file for displaying
         //storing the path of the avatar to the db
 
-        String avatar="/upload/"+newFile;
+        //String avatar="/upload/"+newFile;
+        String avatar="/images/"+newFile;
         userService.updateAvatar(cid, avatar, username);
 
         result.setState(200);
@@ -187,6 +191,26 @@ public class UserController extends BaseController {
         result.setData(avatar);
 
         //return the path of avatar to front end
-        return result;
+        return avatar;
     }
+
+    @Resource
+    private CustomerMapper customerMapper;
+
+
+//    @RequestMapping("/getAvatarInfo")
+//    public String getAvatar(HttpServletRequest request) {
+//        JsonResult<String> result = new JsonResult<>();
+//
+//        Customer customer =(Customer) request.getSession().getAttribute("customer");
+//        Integer cid = customer.getCid();
+//        Customer customer1 = customerMapper.checkCustomerById(cid);
+//        String avatar1 = customer1.getAvatar();
+//
+//
+//        String avatar = customer.getAvatar();
+//        result.setData(avatar1);
+//        return avatar;
+//    }
+
 }

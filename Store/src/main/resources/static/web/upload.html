@@ -3,12 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="../jquery-1.9.1.min.js"></script>
 </head>
 <body>
-<form action="/customers/updateAvatar" method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="upload">
+<div><img src="" alt="" id="img_avatar"></div>
+
+<form id="form11">
+    <input type="file" name="file" id="file">
+    <input type="button" value="upload" id="uploadAvatar">
 
 </form>
+
+<script>
+
+    $("#uploadAvatar").click(function () {
+        alert("updating avatar")
+        $.ajax({
+            url:"/customers/updateAvatar",
+            type:"post",
+            data:new FormData($("#form11")[0]),
+            processData:false,
+            contentType:false,
+            dataType:"String",
+
+            success:function (json){
+                // if(json.state == 200) {
+                    alert(json);
+                    var address=json
+
+                    $("#img_avatar").attr("src", json);
+                // }
+            }
+
+        })
+    })
+
+
+
+    $(document).ready(function(){
+        alert("upload.html")
+        $.ajax({
+            url:"/customers/getAvatarInfo",
+            type:"get",
+            dataType:"String",
+            success:function (json) {
+                // if(json.state == 200){
+                    alert("avatar upload success！");
+                    $("#img_avatar").attr("src", json);
+                // }else{
+                //     alert("get info failed")
+                // }
+            }
+        })
+    })
+
+</script>
 </body>
 </html>

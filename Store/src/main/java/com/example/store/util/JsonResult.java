@@ -11,6 +11,8 @@ public class JsonResult<E> implements Serializable {
     public JsonResult() {
     }
 
+
+
     public JsonResult(Integer state) {
         this.state = state;
     }
