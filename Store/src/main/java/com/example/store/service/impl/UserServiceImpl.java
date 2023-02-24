@@ -155,6 +155,19 @@ public class UserServiceImpl implements IUserService {
 
     }
 
+    @Override
+    public String getAvatar(Integer cid) {
+        Customer customer = customerMapper.checkCustomerById(cid);
+
+        if(customer.getIsDelete()==1 || customer==null){
+            throw new UserNotExistException("user does not exists");
+        }
+
+        String avatar = customer.getAvatar();
+        return avatar;
+
+    }
+
 
     private String getMD5(String old, String salt){
         for(int i =0; i<3; i++){

@@ -32,11 +32,11 @@ public class MyConfig implements WebMvcConfigurer {
     }
 
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/images").addResourceLocations("file:"+System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//
+//        registry.addResourceHandler("/images").addResourceLocations("file:"+System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images");
+//    }
 
 
 }

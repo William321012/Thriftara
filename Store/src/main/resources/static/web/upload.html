@@ -24,15 +24,13 @@
             data:new FormData($("#form11")[0]),
             processData:false,
             contentType:false,
-            dataType:"String",
+            dataType:"json",
 
             success:function (json){
-                // if(json.state == 200) {
-                    alert(json);
-                    var address=json
-
-                    $("#img_avatar").attr("src", json);
-                // }
+                if(json.state == 200) {
+                    alert(json.data);
+                    $("#img_avatar").attr("src", json.data);
+                }
             }
 
         })
@@ -44,15 +42,15 @@
         alert("upload.html")
         $.ajax({
             url:"/customers/getAvatarInfo",
-            type:"get",
-            dataType:"String",
+            type:"post",
+            dataType:"json",
             success:function (json) {
-                // if(json.state == 200){
+                if(json.state == 200){
                     alert("avatar upload success！");
-                    $("#img_avatar").attr("src", json);
-                // }else{
-                //     alert("get info failed")
-                // }
+                    $("#img_avatar").attr("src", json.data);
+                }else{
+                    alert("get info failed")
+                }
             }
         })
     })

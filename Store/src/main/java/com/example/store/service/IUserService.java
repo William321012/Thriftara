@@ -18,4 +18,6 @@ public interface IUserService {
     void updateCustomerInformation(Integer cid, String username, Customer customer);
 
     void updateAvatar(Integer cid, String avatar, String username);
+
+    String getAvatar(Integer cid);
 }

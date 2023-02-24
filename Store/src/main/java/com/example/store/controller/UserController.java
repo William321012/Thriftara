@@ -120,7 +120,7 @@ public class UserController extends BaseController {
         AVATAR_TYPE.add("image/gif");
     }
     @RequestMapping("/updateAvatar")
-    public String updateAvatar(HttpServletRequest request, MultipartFile file){
+    public JsonResult<String> updateAvatar(HttpServletRequest request, MultipartFile file){
         JsonResult<String> result = new JsonResult<>();
 
         if(file.isEmpty()){throw new FileEmptyException("file is empty");}
@@ -135,8 +135,8 @@ public class UserController extends BaseController {
 
         //Specifies that uploaded files must be under this directory ../upload/xxx.jpg
         //create the directory for storing the avatar first ../upload
-//        String upload =  request.getSession().getServletContext().getRealPath("/upload");
-        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+        String upload =  request.getSession().getServletContext().getRealPath("/upload");
+//        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
 
         System.out.println(upload);
 
@@ -182,8 +182,8 @@ public class UserController extends BaseController {
         //return the path of the file for displaying
         //storing the path of the avatar to the db
 
-        //String avatar="/upload/"+newFile;
-        String avatar="/images/"+newFile;
+        String avatar="/upload/"+newFile;
+//        String avatar="/images/"+newFile;
         userService.updateAvatar(cid, avatar, username);
 
         result.setState(200);
@@ -191,26 +191,26 @@ public class UserController extends BaseController {
         result.setData(avatar);
 
         //return the path of avatar to front end
-        return avatar;
+        return result;
     }
 
-    @Resource
-    private CustomerMapper customerMapper;
+//    @Resource
+//    private CustomerMapper customerMapper;
 
 
-//    @RequestMapping("/getAvatarInfo")
-//    public String getAvatar(HttpServletRequest request) {
-//        JsonResult<String> result = new JsonResult<>();
-//
-//        Customer customer =(Customer) request.getSession().getAttribute("customer");
-//        Integer cid = customer.getCid();
-//        Customer customer1 = customerMapper.checkCustomerById(cid);
-//        String avatar1 = customer1.getAvatar();
-//
-//
-//        String avatar = customer.getAvatar();
-//        result.setData(avatar1);
-//        return avatar;
-//    }
+    @RequestMapping("/getAvatarInfo")
+    public JsonResult<String> getAvatar(HttpServletRequest request) {
+        JsonResult<String> result = new JsonResult<>();
+
+        Customer customer =(Customer) request.getSession().getAttribute("customer");
+        Integer cid = customer.getCid();
+
+        String avatar = userService.getAvatar(cid);
+        
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(avatar);
+        return result;
+    }
 
 }
