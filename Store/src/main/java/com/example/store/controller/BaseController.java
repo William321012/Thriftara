@@ -46,6 +46,9 @@ public class BaseController {
         }else if(e instanceof FileTypeException) {
             result.setState(6004);
             result.setMessage("File type does not meet the requirement");
+        }else if(e instanceof AddressCountLimitException) {
+            result.setState(7001);
+            result.setMessage("the number of address exceed the requirement ");
         }
         return result;
     }

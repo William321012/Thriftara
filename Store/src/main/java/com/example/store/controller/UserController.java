@@ -97,6 +97,7 @@ public class UserController extends BaseController {
     public JsonResult<Void> updateInfo(Customer customer,HttpServletRequest request){
         JsonResult<Void> result = new JsonResult<>();
 
+//        Integer cid = getIdFromSession(request.getSession());
         Integer cid= (Integer) request.getSession().getAttribute("cid");
         customer.setCid(cid);
         System.out.println(customer);
@@ -206,6 +207,7 @@ public class UserController extends BaseController {
         Integer cid = customer.getCid();
 
         String avatar = userService.getAvatar(cid);
+
 
         result.setState(200);
         result.setMessage("success");

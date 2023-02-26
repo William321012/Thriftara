@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Customer extends BaseEntity implements Serializable {
-
     private Integer cid;
     private String username;
     private String password;

@@ -20,4 +20,6 @@ public interface IUserService {
     void updateAvatar(Integer cid, String avatar, String username);
 
     String getAvatar(Integer cid);
+
+
 }

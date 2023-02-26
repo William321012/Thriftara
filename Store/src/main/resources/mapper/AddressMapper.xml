@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.AddressMapper">
+
+    <resultMap id="resultMapAddress" type="com.example.store.pojo.Address">
+        <id property="aid" column="a_id"></id>
+        <result property="cid" column="c_id"></result>
+        <result property="isDefault" column="is_default"></result>
+        <result property="createdUser" column="created_user"></result>
+        <result property="createTime" column="created_time"></result>
+        <result property="modifiedUser" column="modified_user"></result>
+        <result property="modifiedTime" column="modified_time"></result>
+    </resultMap>
+
+    <resultMap id="resultMapState" type="com.example.store.pojo.State">
+        <id property="sid" column="s_id"></id>
+        <result property="code" column="code"></result>
+        <result property="name" column="name"></result>
+    </resultMap>
+
+    <resultMap id="resultMapCity" type="com.example.store.pojo.City">
+        <id property="cid" column="c_id"></id>
+        <result property="state" column="state_code"></result>
+        <result property="cityName" column="city"></result>
+    </resultMap>
+
+    <select id="countAllAddress" resultType="java.lang.Integer">
+        select count(*) from t_address where c_id=#{cid}
+    </select>
+
+    <insert id="insertAddress" useGeneratedKeys="true" keyProperty="aid" >
+        insert into t_address (c_id,name,city,state,zip,address,phone,apartment,is_default,created_user, created_time,modified_user,modified_time)
+        values(
+        #{cid},#{name},#{city},#{state},#{zip},#{address},#{phone},#{apartment},
+        #{isDefault},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime}
+        )
+    </insert>
+
+    <select id="selectAllState" resultMap="resultMapState">
+        select name from state;
+    </select>
+
+    <select id="selectCitiesBaseOnState" resultMap="resultMapCity">
+        select city from city where state_code = #{stateCode} order by city
+    </select>
+
+</mapper>

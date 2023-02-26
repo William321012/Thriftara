@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+
+<form>
+    recipients:<input type="text" name="name" id="name"><br>
+    state:<select name="state" id="state"></select><br>
+    city:<select name="city" id="city"></select><br>
+    address: <input type="text" name="address" id="address"><br>
+    apartment: <input type="text" name="apartment" id="apartment"><br>
+    zip:<input type="text" name="zip" id="zip"><br>
+    phone: <input type="text" name="phone" id="phone">
+
+    <input type="button" value="add" id="add">
+    <input type="button" value="reset" id="reset">
+</form>
+
+<script>
+    $("#add").click(function () {
+        var name = $("#name").val();
+        // var state = $("#state").val();
+        // var city = $("#city").val();
+        var address = $("#address").val();
+        var apartment = $("#apartment").val();
+        var zip = $("#zip").val();
+        var phone = $("#phone").val();
+
+        $.ajax({
+            url:"/address/addNewAddress",
+            type:"post",
+            data:"name="+name+"&address="+address+"&apartment="+apartment+"&zip="+zip+"&phone="+phone,
+            dataType:"JSON",
+            success:function (json) {
+                if(json.state==200){
+                    alert("adding success")
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
