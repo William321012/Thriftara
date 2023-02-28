@@ -13,6 +13,10 @@
     justify-content: left;
 }
 
+.FooterLogo {
+    height: 7rem;
+}
+
 .customer-support {
     width: 20vw;
 }
