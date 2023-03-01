@@ -50,4 +50,13 @@ public class City {
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "cid=" + cid +
+                ", cityName='" + cityName + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

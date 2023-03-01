@@ -21,6 +21,7 @@ public class AddressController extends BaseController{
 
     @RequestMapping("/addNewAddress")
     public JsonResult<Void> insert(HttpServletRequest request,Address address){
+        System.out.println(address);
         JsonResult<Void> result = new JsonResult<>();
         Integer cid =(Integer) request.getSession().getAttribute("cid");
         String username =(String) request.getSession().getAttribute("username");
@@ -39,16 +40,53 @@ public class AddressController extends BaseController{
         result.setMessage("success");
         result.setData(states);
 
-        return  result;
+        return result;
     }
 
     @RequestMapping("/selectCitiesBaseOnState")
-    public JsonResult<List<City>> selectCitiesBaseOnState(HttpServletRequest request,String state){
+    public JsonResult<List<City>> selectCitiesBaseOnState(HttpServletRequest request, String code){
         JsonResult<List<City>> result = new JsonResult<>();
-        List<City> cities = addressService.selectCitiesBaseOnState(state);
+        List<City> cities = addressService.selectCitiesBaseOnState(code);
         result.setState(200);
         result.setMessage("success");
         result.setData(cities);
+        for (City c:cities){System.out.println(c.toString());}
+
+        return result;
+    }
+
+    @RequestMapping("/getAllAddressByCid")
+    public JsonResult<List<Address>> getAllAddressByCid (HttpServletRequest request){
+        JsonResult<List<Address>> result = new JsonResult<>();
+        Integer cid =(Integer)request.getSession().getAttribute("cid");
+        List<Address> addresses = addressService.selectAllAddressByCid(cid);   result.setState(200);
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(addresses);
+
+        return result;
+    }
+
+    @RequestMapping("/setDefault")
+    public JsonResult<Void> setDefault (HttpServletRequest request, Integer aid){
+        JsonResult<Void> result = new JsonResult<>();
+        Integer cid =(Integer)request.getSession().getAttribute("cid");
+        String username =(String)request.getSession().getAttribute("username");
+        addressService.setAddressDefaultOne(aid, username, cid);
+        result.setState(200);
+        result.setMessage("success");
+
+        return result;
+    }
+
+    @RequestMapping("/delete")
+    public JsonResult<Void> delete (HttpServletRequest request, Integer aid){
+        JsonResult<Void> result = new JsonResult<>();
+        Integer cid =(Integer)request.getSession().getAttribute("cid");
+        String username =(String)request.getSession().getAttribute("username");
+        addressService.deleteAddressByAid(aid,cid,username);
+        result.setState(200);
+        result.setMessage("success");
 
         return result;
     }

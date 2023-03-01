@@ -15,5 +15,11 @@ public interface IAddressService {
 
     List<City> selectCitiesBaseOnState(String state);
 
+    List<Address> selectAllAddressByCid(Integer cid);
+
+    void setAddressDefaultOne(Integer aid, String username, Integer cid);
+
+    void deleteAddressByAid(Integer aid, Integer cid, String username);
+
 
 }

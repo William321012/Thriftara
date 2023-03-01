@@ -22,10 +22,65 @@
 </form>
 
 <script>
+    let defaultOption="<option value='-1'>---select---</option>";
+
+
+    $(document).ready(function () {
+        displayState();
+        //set up the default option
+        $("#state").append(defaultOption);
+        $("#city").append(defaultOption);
+    })
+
+    function displayState(){
+        $.ajax({
+            url:"/address/selectAllStates",
+            type:"get",
+            dataType:"json",
+            success:function (json) {
+                if(json.state==200){
+                    var list =json.data
+                    for (var i=0; i<list.length;i++){
+
+                        var opt="<option value='"+list[i].code+"'>"+list[i].name+"</option>"
+                        $("#state").append(opt)
+                    }
+                }
+            }
+        })
+    }
+    // --------------------------------------------------------------------------------
+
+    $("#state").change(function () {
+        $("#city").empty()
+        var code = $("#state").val();
+        alert(code)
+
+        $.ajax({
+            url:"/address/selectCitiesBaseOnState",
+            type:"post",
+            data:"code="+code,
+            dataType:"JSON",
+            success:function (json) {
+                if(json.state==200){
+                    var list =json.data
+                    for (var i=0; i<list.length;i++){
+                        var opt="<option value='"+list[i].cityName+"'>"+list[i].cityName+"</option>"
+                        $("#city").append(opt)
+                    }
+                }
+            }
+        })
+    })
+
+
+
+
+
     $("#add").click(function () {
         var name = $("#name").val();
-        // var state = $("#state").val();
-        // var city = $("#city").val();
+        var state = $("#state").val();
+        var city = $("#city").val();
         var address = $("#address").val();
         var apartment = $("#apartment").val();
         var zip = $("#zip").val();
@@ -34,7 +89,7 @@
         $.ajax({
             url:"/address/addNewAddress",
             type:"post",
-            data:"name="+name+"&address="+address+"&apartment="+apartment+"&zip="+zip+"&phone="+phone,
+            data:"name="+name+"&address="+address+"&apartment="+apartment+"&zip="+zip+"&phone="+phone+"&state="+state+"&city="+city,
             dataType:"JSON",
             success:function (json) {
                 if(json.state==200){

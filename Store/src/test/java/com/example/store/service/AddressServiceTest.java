@@ -25,4 +25,20 @@ public class AddressServiceTest {
     public void selectCities(){
         List<City> ny = addressService.selectCitiesBaseOnState("NB");
     }
+    
+    @Test
+    public void selectAllAddressByCid(){
+        List<Address> addresses = addressService.selectAllAddressByCid(4);
+    }
+
+    @Test
+    public void setDefault(){
+        addressService.setAddressDefaultOne(10 ,"admin",4);
+
+    }
+
+    @Test
+    public void deleteAndSetNewAddress(){
+        addressService.deleteAddressByAid(1,4,"admin");
+    }
 }

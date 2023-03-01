@@ -6,8 +6,6 @@ import com.example.store.util.JsonResult;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.io.File;
-
 public class BaseController {
 
     @ExceptionHandler({ServiceException.class, FileUploadException.class})
@@ -49,7 +47,17 @@ public class BaseController {
         }else if(e instanceof AddressCountLimitException) {
             result.setState(7001);
             result.setMessage("the number of address exceed the requirement ");
+        }else if(e instanceof AddressNotFoundException) {
+            result.setState(7002);
+            result.setMessage("address can not be found");
+        }else if(e instanceof AddressSetDefaultFailedException) {
+            result.setState(7003);
+            result.setMessage("Default setting failure");
+        }else if(e instanceof AddressDeleteException) {
+            result.setState(7004);
+            result.setMessage("Default deleting failure");
         }
+
         return result;
     }
 

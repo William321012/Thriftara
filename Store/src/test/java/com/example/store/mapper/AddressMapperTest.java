@@ -7,6 +7,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -43,5 +44,37 @@ public class AddressMapperTest {
         List<City> ny = addressMapper.selectCitiesBaseOnState("NC");
         System.out.println(ny);
 
+    }
+
+    @Test
+    public void selectAllAddress(){
+        List<Address> addresses = addressMapper.selectAllAddress(4);
+
+    }
+
+    @Test
+    public void selectAddByAid(){
+        Address address = addressMapper.selectAddressByAid(10);
+    }
+    
+    
+    @Test
+    public void SetAddressZero(){
+        Integer integer = addressMapper.setAllAddressDefaultZero(4);
+    }
+
+    @Test
+    public void setAddressOne(){
+        addressMapper.setAddressDefaultOne(10,"admin",new Date());
+    }
+
+    @Test
+    public void deleteByAid(){
+        addressMapper.deleteAddressByAid(6);
+    }
+
+    @Test
+    public void selectAddressOrderByTime(){
+        Address oneUserAddressOrderByModifiedTime = addressMapper.findLastModifiedAddress(1);
     }
 }

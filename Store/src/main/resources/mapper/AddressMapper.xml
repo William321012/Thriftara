@@ -34,17 +34,40 @@
     <insert id="insertAddress" useGeneratedKeys="true" keyProperty="aid" >
         insert into t_address (c_id,name,city,state,zip,address,phone,apartment,is_default,created_user, created_time,modified_user,modified_time)
         values(
-        #{cid},#{name},#{city},#{state},#{zip},#{address},#{phone},#{apartment},
-        #{isDefault},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime}
-        )
+                  #{cid},#{name},#{city},#{state},#{zip},#{address},#{phone},#{apartment},
+                  #{isDefault},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime}
+              )
     </insert>
 
     <select id="selectAllState" resultMap="resultMapState">
-        select name from state;
+        select * from state;
     </select>
 
     <select id="selectCitiesBaseOnState" resultMap="resultMapCity">
-        select city from city where state_code = #{stateCode} order by city
+        select * from city where state_code = #{stateCode} order by city
     </select>
 
+    <select id="selectAllAddress" resultMap="resultMapAddress">
+        select * from t_address where c_id=#{cid} order by is_default desc, created_time desc
+    </select>
+
+    <select id="selectAddressByAid" resultMap="resultMapAddress">
+        select * from t_address where a_id=#{aid}
+    </select>
+
+    <update id="setAllAddressDefaultZero">
+        update t_address set is_default = 0 where c_id=#{cid}
+    </update>
+
+    <update id="setAddressDefaultOne">
+        update t_address set is_default = 1, modified_user= #{modifiedUser}, modified_time= #{modifiedTime} where a_id=#{aid}
+    </update>
+
+    <delete id="deleteAddressByAid">
+        delete from t_address where a_id= #{aid}
+    </delete>
+
+    <select id="findLastModifiedAddress" resultMap="resultMapAddress">
+        select * from t_address where c_id= #{cid} order by modified_time desc limit 0,1
+    </select>
 </mapper>

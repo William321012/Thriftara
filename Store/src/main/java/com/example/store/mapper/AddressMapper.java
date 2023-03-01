@@ -5,6 +5,7 @@ import com.example.store.pojo.City;
 import com.example.store.pojo.State;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -17,4 +18,16 @@ public interface AddressMapper {
     List<State> selectAllState();
 
     List<City> selectCitiesBaseOnState(String stateCode);
+
+    List<Address> selectAllAddress(Integer cid);
+
+    Address selectAddressByAid(Integer aid);
+
+    Integer setAllAddressDefaultZero(Integer cid);
+
+    Integer setAddressDefaultOne(Integer aid, String modifiedUser, Date modifiedTime);
+
+    Integer deleteAddressByAid(Integer aid);
+
+    Address findLastModifiedAddress(Integer cid);
 }
