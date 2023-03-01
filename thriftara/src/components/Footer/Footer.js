@@ -1,13 +1,14 @@
 import React from 'react'
 import './Footer.css'
+import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
 
-const Footer = () => {
+function Footer () {
   return (
     <>
       <div className='footer-container'>
         <section className='footer-logo'>
-          <Link to='/'>Logo</Link>
+          <Link to='/'><img src={Logo} alt='logo' className='FooterLogo'/></Link>
         </section>
         <section className='customer-support'>
           <h3>Customer Support</h3>

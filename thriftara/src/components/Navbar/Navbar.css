@@ -1,13 +1,17 @@
-.navbar-container {
+.navbar-top {
     background-color: black;
-    color: aliceblue;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 700;
 }
 
-ul {
+.nav-logo {
+    height: 5rem;
+}
+
+.topnav {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4,auto);
@@ -43,4 +47,22 @@ a {
     padding: 10px;
     border: none;
     border-radius: 5px;
+}
+
+.navbar-btm {
+    background-color: #151515;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.bottomnav {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    gap: 50px;
+    width: 25vw;
+    justify-content: center;
 }
