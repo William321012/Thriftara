@@ -46,3 +46,23 @@
     place-items: center;
     cursor: pointer;
 }
+
+.rec-container {
+    display: flex;
+    padding-bottom: 2rem;
+}
+
+.rec-card {
+    border-radius: 20px;
+    margin-left: 10px;
+    height: 200px;
+    background-color: aquamarine;
+    flex: 1; 
+    transition: .3s all ease;
+}
+
+.rec-card:hover {
+    flex: 2;
+    background-color: blueviolet;
+    cursor: pointer;
+}

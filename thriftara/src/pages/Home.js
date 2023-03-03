@@ -16,7 +16,7 @@ import WTop1 from '../images/womenstop1.jpeg'
 import WTop2 from '../images/womenstop2.jpeg'
 import WTop3 from '../images/womentop3.jpeg'
 import { images } from '../components/carouselData'
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs' 
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 function Home() {
 
@@ -26,12 +26,12 @@ function Home() {
     <>
       <div className='home-container'>
         <section className='carousel-container'>
-          <div className='carousel-item' style={{backgroundImage: `url(${images[currentImage].img})`}}>
-            <div className='left' onClick={() => {currentImage > 0 && setCurrentImage(currentImage - 1)}}>
-              <BsChevronLeft size={60}/>
+          <div className='carousel-item' style={{ backgroundImage: `url(${images[currentImage].img})` }}>
+            <div className='left' onClick={() => { currentImage > 0 && setCurrentImage(currentImage - 1) }}>
+              <BsChevronLeft size={60} />
             </div>
             <div className='center'></div>
-            <div className='right' onClick={() => {currentImage < images.length - 1 && setCurrentImage(currentImage + 1)}}><BsChevronRight size={60}/></div>
+            <div className='right' onClick={() => { currentImage < images.length - 1 && setCurrentImage(currentImage + 1) }}><BsChevronRight size={60} /></div>
           </div>
         </section>
 
@@ -63,6 +63,13 @@ function Home() {
 
         <section className='recommendations'>
           <Link to='/'><h3>Our Recommendations</h3></Link>
+          <div className='rec-container'>
+            <div className='rec-card'></div>
+            <div className='rec-card'></div>
+            <div className='rec-card'></div>
+            <div className='rec-card'></div>
+            <div className='rec-card'></div>
+          </div>
         </section>
       </div>
     </>
