@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+<div id="title"></div>
+<div id="description"></div>
+<div id="product_price"></div>
+<div id="image_container"></div>
+
+<div >
+    <label for="num">qty：</label>
+    <input id="numDown" type="button" value="-" />
+    <input id="num" type="text" size="2" readonly="readonly" value="1">
+    <input id="numUp" type="button" value="+" />
+</div>
+
+
+<button id="addToCart">add to the shopping cart</button>
+
+</div>
+
+<script>
+    $(document).ready(function (){
+
+        var vars = window.location.search.substring(1);
+        var id=vars.substring(vars.lastIndexOf("=")+1).trim();
+        alert("vars= "+id);
+
+        // var id=vars.substring(vars.lastIndexOf("="))
+        // alert(id)
+
+
+        $.ajax({
+            url:"/products/getProduct",
+            data:"id="+id,
+            type:"post",
+            dataType:"json",
+            
+            success:function (json) {
+                if(json.state==200) {
+                    $("#title").html(json.data.title)
+                    $("#description").html(json.data.itemDescription)
+                    $("#product_price").html(json.data.price)
+                }else if (json.state == 8001) {
+                    location.href = "index.html";
+                } else {
+                    alert("Failed to obtain commodity information. Procedure！" + json.message);
+                }
+            }
+        })
+    })
+
+
+    $("#addToCart").click(function () {
+        var num = $("#num").val();
+
+        var vars = window.location.search.substring(1);
+        var id=vars.substring(vars.lastIndexOf("=")+1).trim();
+        alert("vars= "+id);
+
+        $.ajax({
+            url:"/carts/insertToCart",
+            data:"pid="+id+"&amount="+num,
+            type:"get",
+            dataType:"json",
+
+            success:function (json) {
+                if(json.state==200){
+                    location.href = "cart.html";
+                }
+            },error: function(xhr) {
+                alert("Your login information has expired, please log in again!");
+                location.href = "login.html";
+            }
+        })
+    })
+
+    $("#numUp").click(function (){
+        var val = $("#num").val()
+        $("#num").val(1*val+1)
+
+    })
+
+    $("#numDown").click(function (){
+        $("#num").val($("#num").val()-1)
+
+    })
+</script>
+</body>
+</html>

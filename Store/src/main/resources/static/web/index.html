@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 
@@ -10,7 +11,47 @@
 index
 <a href="password.html">change your password</a><br>
 
-<a href="/customers/getPersonalInfo">edit your personal info</a>
+<a href="/customers/getPersonalInfo">edit your personal info(Test)</a>
+
+<div id="toplist">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        displayTopList()
+    })
+
+
+    function displayTopList(){
+        $.ajax({
+            url:"/products/toplist",
+            type:"get",
+            dataType:"JSON",
+
+            success:function (json) {
+                if(json.state==200) {
+                    var list = json.data;
+                    for (var i = 0; i < list.length; i++) {
+                        var html = '<div>'
+                            + '<div><a href="product.html?id=#{id}">#{title}</a></div>'
+                            + '<div>¥#{price}</div>'
+                            + '<div><img src="..#{image}collect.png"/></div>'
+                            + '</div>';
+
+                        html=html.replace("#{title}", list[i].title);
+                        html=html.replace("#{price}",list[i].price);
+                        html=html.replace("#{image}", list[i].image);
+                        html=html.replace("#{id}", list[i].id);
+                        $("#toplist").append(html);
+                    }
+                }
+
+            }
+
+        })
+    }
+</script>
 </body>
 </html>
 

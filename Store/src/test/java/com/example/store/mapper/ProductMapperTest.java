@@ -13,9 +13,9 @@ public class ProductMapperTest {
     @Resource
     ProductMapper productMapper;
 
-//    @Test
-//    public void topList(){
-//        List<Product> products = productMapper.selectTopProduct();
-//
-//    }
+    @Test
+    public void topList(){
+        List<Product> products = productMapper.selectTopProduct();
+
+    }
 }

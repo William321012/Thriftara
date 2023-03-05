@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/address")
 public class AddressController extends BaseController{
-
     @Resource
     private IAddressService addressService;
 

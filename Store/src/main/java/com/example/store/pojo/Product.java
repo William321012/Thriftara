@@ -9,6 +9,7 @@ public class Product extends BaseEntity implements Serializable {
     private String itemType;
     private String itemDescription;
     private String title;
+    private Long price;
     private Integer num;
     private String image;
     private Integer itemStatus;
@@ -57,6 +58,14 @@ public class Product extends BaseEntity implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 
     public Integer getNum() {
@@ -145,6 +154,7 @@ public class Product extends BaseEntity implements Serializable {
         if (!Objects.equals(itemDescription, product.itemDescription))
             return false;
         if (!Objects.equals(title, product.title)) return false;
+        if (!Objects.equals(price, product.price)) return false;
         if (!Objects.equals(num, product.num)) return false;
         if (!Objects.equals(image, product.image)) return false;
         if (!Objects.equals(itemStatus, product.itemStatus)) return false;
@@ -165,6 +175,7 @@ public class Product extends BaseEntity implements Serializable {
         result = 31 * result + (itemType != null ? itemType.hashCode() : 0);
         result = 31 * result + (itemDescription != null ? itemDescription.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (num != null ? num.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (itemStatus != null ? itemStatus.hashCode() : 0);
@@ -185,6 +196,7 @@ public class Product extends BaseEntity implements Serializable {
                 ", itemType='" + itemType + '\'' +
                 ", itemDescription='" + itemDescription + '\'' +
                 ", title='" + title + '\'' +
+                ", price=" + price +
                 ", num=" + num +
                 ", image='" + image + '\'' +
                 ", itemStatus=" + itemStatus +

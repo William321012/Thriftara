@@ -9,4 +9,6 @@ import java.util.List;
 public interface ProductMapper {
 
     List<Product> selectTopProduct();
+
+    Product selectProductById(Integer id);
 }

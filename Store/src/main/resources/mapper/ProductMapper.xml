@@ -30,7 +30,11 @@
     </resultMap>
 
     <select id="selectTopProduct" resultMap="resultMapProduct">
-        select * from t_product where item_status = 1 order by priority desc limit 0,10
+        select * from t_product where item_status = 1 order by priority desc limit 0,5
+    </select>
+
+    <select id="selectProductById" resultMap="resultMapProduct">
+        select * from t_product where id= #{id}
     </select>
 
 

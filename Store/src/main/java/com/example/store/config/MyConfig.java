@@ -27,6 +27,7 @@ public class MyConfig implements WebMvcConfigurer {
         exclude.add("/images/**");
         exclude.add("/customers/reg");
         exclude.add("/customers/log");
+        exclude.add("/products/**");
 
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**").excludePathPatterns(exclude);
     }

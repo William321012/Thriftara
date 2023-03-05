@@ -56,6 +56,12 @@ public class BaseController {
         }else if(e instanceof AddressDeleteException) {
             result.setState(7004);
             result.setMessage("Default deleting failure");
+        }else if(e instanceof ProductIsNullException) {
+            result.setState(8001);
+            result.setMessage("illegal product");
+        }else if(e instanceof CartNotFoundException){
+            result.setState(8002);
+            result.setMessage("illegal cart");
         }
 
         return result;
