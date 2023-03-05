@@ -15,7 +15,7 @@
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4,auto);
-    gap: 10px;
+    gap: 25px;
     width: 25vw;
     justify-content: end;
 }
@@ -62,7 +62,48 @@ a {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4,auto);
-    gap: 50px;
+    gap: 8rem;
     width: 25vw;
     justify-content: center;
+    position: relative;
+}
+
+.drop {
+    display: none;
+    color: white;
+    list-style: none;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    line-height: 2rem;
+    width: 70%;
+}
+
+/* .drop li {
+    text-align: left;
+} */
+
+.brands:hover .drop {
+    display: block;
+}
+
+.brands:hover .drop li:hover {
+    background-color: olivedrab;
+    width: 100%;
+}
+
+.mens:hover .drop {
+    display: block;
+}
+
+.mens:hover .drop li:hover {
+    background-color: olivedrab;
+}
+
+.womens:hover .drop {
+    display: block;
+}
+
+.womens:hover .drop li:hover {
+    background-color: olivedrab;
 }

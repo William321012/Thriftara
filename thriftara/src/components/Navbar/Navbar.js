@@ -24,9 +24,27 @@ function Navbar() {
       </div>
       <div className='navbar-btm'>
         <ul className='bottomnav'>
-          <li><Link to='/brands'>Brands</Link></li>
-          <li><Link to='/mens'>Menswear</Link></li>
-          <li><Link to='/womens'>Womenswear</Link></li>
+          <li className='brands'><Link to='/brands'>Brands
+            <ul className='drop'>
+              <li>Nike</li>
+              <li>Prada</li>
+              <li>Supreme</li>
+              <li>Gucci</li>
+              <li>Addidas</li>
+            </ul>
+          </Link></li>
+          <li className='mens'><Link to='/mens'>Menswear
+          <ul className='drop'>
+              <li>Tops</li>
+              <li>Bottoms</li>
+            </ul>
+          </Link></li>
+          <li className='womens'><Link to='/womens'>Womenswear
+          <ul className='drop'>
+              <li>Tops</li>
+              <li>Bottoms</li>
+            </ul>
+          </Link></li>
           <li><Link to='/about'>About</Link></li>
         </ul>
       </div>
