@@ -37,28 +37,28 @@ function Home() {
 
         <section className='brands'>
           <Link to='/brands'><h3>Brands</h3></Link>
-          <img src={Nike} alt='nike logo' style={{ width: 100, height: 100, marginRight: 15 }} />
-          <img src={Addidas} alt='addidas logo' style={{ width: 130, height: 100, marginRight: 15 }} />
-          <img src={Gucci} alt='gucci logo' style={{ width: 140, height: 100, marginRight: 15 }} />
-          <img src={Prada} alt='prada logo' style={{ width: 130, height: 100, marginRight: 15 }} />
-          <img src={Supreme} alt='supreme logo' style={{ width: 270, height: 100, marginRight: 15 }} />
+          <img src={Nike} alt='nike logo' style={{ width: 120, height: 120, marginRight: 15 }} />
+          <img src={Addidas} alt='addidas logo' style={{ width: 140, height: 120, marginRight: 15 }} />
+          <img src={Gucci} alt='gucci logo' style={{ width: 160, height: 120, marginRight: 15 }} />
+          <img src={Prada} alt='prada logo' style={{ width: 150, height: 120, marginRight: 15 }} />
+          <img src={Supreme} alt='supreme logo' style={{ width: 290, height: 120, marginRight: 15 }} />
         </section>
 
         <section className='mens'>
           <Link to='/mens'><h3>Menswear</h3></Link>
-          <img src={MPant1} alt='black cargos' style={{ width: 100, height: 100, marginRight: 15 }} />
-          <img src={MPant2} alt='green sweats' style={{ width: 100, height: 100, marginRight: 15 }} />
-          <img src={MTop1} alt='collard shirt' style={{ width: 100, height: 100, marginRight: 15 }} />
-          <img src={MTop2} alt='striped shirt' style={{ width: 100, height: 100, marginRight: 15 }} />
+          <img src={MPant1} alt='black cargos' style={{ width: 170, height: 170, marginRight: 15 }} />
+          <img src={MPant2} alt='green sweats' style={{ width: 170, height: 170, marginRight: 15 }} />
+          <img src={MTop1} alt='collard shirt' style={{ width: 170, height: 170, marginRight: 15 }} />
+          <img src={MTop2} alt='striped shirt' style={{ width: 170, height: 170, marginRight: 15 }} />
         </section>
 
         <section className='womens'>
           <Link to='/womens'><h3>Womenswear</h3></Link>
-          <img src={WPant1} alt='black jeans' style={{ width: 85, height: 100, marginRight: 15 }} />
-          <img src={WPant2} alt='green cargos' style={{ width: 85, height: 100, marginRight: 15 }} />
-          <img src={WTop1} alt='striped shirt' style={{ width: 85, height: 100, marginRight: 15 }} />
-          <img src={WTop2} alt='crop sweater' style={{ width: 80, height: 100, marginRight: 15 }} />
-          <img src={WTop3} alt='corduroy' style={{ width: 85, height: 100, marginRight: 15 }} />
+          <img src={WPant1} alt='black jeans' style={{ width: 155, height: 170, marginRight: 15 }} />
+          <img src={WPant2} alt='green cargos' style={{ width: 155, height: 170, marginRight: 15 }} />
+          <img src={WTop1} alt='striped shirt' style={{ width: 155, height: 170, marginRight: 15 }} />
+          <img src={WTop2} alt='crop sweater' style={{ width: 150, height: 170, marginRight: 15 }} />
+          <img src={WTop3} alt='corduroy' style={{ width: 155, height: 170, marginRight: 15 }} />
         </section>
 
         <section className='recommendations'>

@@ -54,7 +54,7 @@
 
 .rec-card {
     border-radius: 20px;
-    margin-left: 10px;
+    margin-right: 10px;
     height: 200px;
     background-color: aquamarine;
     flex: 1; 
