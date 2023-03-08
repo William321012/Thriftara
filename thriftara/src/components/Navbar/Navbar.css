@@ -41,12 +41,19 @@ a {
     height: 2rem;
     border-radius: 15px;
     border: none;
+    margin-right: 10px;
+    padding: 0 5px;
 }
 
 .search-btn {
-    padding: 10px;
+    padding: 8px 8px;
     border: none;
     border-radius: 5px;
+}
+
+.search-btn:hover {
+    cursor: pointer;
+    color: slateblue;
 }
 
 .navbar-btm {

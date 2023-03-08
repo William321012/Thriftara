@@ -1,0 +1,16 @@
+.card-container {
+    display: block;
+    padding: 2rem 0;
+}
+
+.questions {
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    margin:auto;
+    margin-bottom: 1.5rem;
+    width: 95%;
+    justify-content: center;
+    font-family: monospace;
+    font-size: large;
+}
