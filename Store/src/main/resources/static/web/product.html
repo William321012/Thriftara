@@ -87,6 +87,9 @@
     })
 
     $("#numDown").click(function (){
+        if($("#num").val()==0){
+            return;
+        }
         $("#num").val($("#num").val()-1)
 
     })

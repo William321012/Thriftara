@@ -8,25 +8,25 @@
 <body>
 CART
 
-<form action="order.html">
+<form action="order.html" id="form">
 <table>
     <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>checkbox</th>
+            <th>image</th>
+            <th>unit/price</th>
+            <th>num</th>
+            <th>sum</th>
+            <th>operation</th>
         </tr>
     </thead>
 
     <tbody id="cartContent">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+
     </tbody>
 
-    <button id="submitTable"> go to checkout </button>
+<!--    <input type="submit" value="check out">-->
+    <button type="button" onclick="veri()">checkout</button>
 </table>
 </form>
 
@@ -80,6 +80,19 @@ CART
                 }
             }
         })
+    }
+
+    function veri(){
+        alert("veri")
+        var length=$("#form").children().length;
+        alert(length)
+        for(var i=0; i<length; i++){
+            if($("#form").children()[i].checked == false){
+                alert("check a product")
+                return;
+            }
+        }
+        $("#form").submit();
     }
 
     function reduceNum(id){

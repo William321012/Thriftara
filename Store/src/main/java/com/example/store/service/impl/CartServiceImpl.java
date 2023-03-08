@@ -136,5 +136,16 @@ public class CartServiceImpl implements ICartService {
 
         return newCartNum;
     }
+
+    @Override
+    public List<CartVO> displayAllChosenInTheOrder(Integer[] ids, Integer cid) {
+        List<CartVO> cartVOS = cartMapper.displayAllChosenInTheOrder(ids);
+        for(CartVO c:cartVOS){
+            if(c.getCid()!=cid){
+                throw new ProductIsNullException("illegal product, please try again");
+            }
+        }
+        return cartVOS;
+    }
 }
 

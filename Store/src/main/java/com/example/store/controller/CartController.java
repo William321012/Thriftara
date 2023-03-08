@@ -73,4 +73,18 @@ public class CartController extends BaseController{
 
         return result;
     }
+
+    @RequestMapping("/list")
+    public JsonResult<List<CartVO>> list(HttpServletRequest request, Integer[] checkId){
+        JsonResult<List<CartVO>> result = new JsonResult<>();
+        Integer cid = (Integer)request.getSession().getAttribute("cid");
+
+        List<CartVO> cartVOS = cartService.displayAllChosenInTheOrder(checkId, cid);
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(cartVOS);
+
+        return result;
+    }
 }

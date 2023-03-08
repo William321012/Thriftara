@@ -3,8 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 
+
+<form action="">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>product</th>
+                    <th>unit price</th>
+                    <th>num</th>
+                    <th>total</th>
+                </tr>
+            </thead>
+
+            <tbody id="list">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <span id="totalCount"></span>
+    </div>
+
+    <div><span id="totalPrice"></span></div>
+
+    <a href="/">pay</a>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+            displayCheckOutItems();
+        }
+    )
+
+    function displayCheckOutItems(){
+        $("#list").empty()
+        alert(location.search.substr(1))
+        
+        $.ajax({
+            url:"/carts/list",
+            data:location.search.substr(1),
+            type:"get",
+            dataType:"json",
+            success:function (json) {
+                if(json.state==200){
+                    var list=json.data;
+                    var totalCount=0;
+                    var totalPrice=0;
+
+                    for(var i=0; i<list.length;i++){
+                        var tr=' <tr>\n' +
+                            '                    <td><img src="#{image}"></td>\n' +
+                            '                    <td>#{title}</td>\n' +
+                            '                    <td>$<span>#{unitPrice}</span></td>\n' +
+                            '                    <td>#{num}</td>\n' +
+                            '                    <td>#{sum}</td>\n' +
+                            '                </tr>';
+
+                        tr = tr.replace("#{image}", list[i].image);
+                        tr = tr.replace("#{title}", list[i].title);
+                        tr = tr.replace("#{unitPrice}", list[i].unitPrice);
+                        tr = tr.replace("#{num}", list[i].num);
+                        tr = tr.replace("#{sum}", list[i].num * list[i].unitPrice);
+
+
+                        totalCount+=list[i].num;
+                        totalPrice+=list[i].num * list[i].unitPrice;
+                        $("#list").append(tr)
+
+                    }
+
+                    $("#totalCount").html(totalCount);
+                    $("#totalPrice").html(totalPrice);
+
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>

@@ -16,4 +16,6 @@ public interface ICartService {
 
     Integer minusNumFromTheCart(Integer id, Integer cid, String username);
 
+    List<CartVO> displayAllChosenInTheOrder(Integer[] ids, Integer cid);
+
 }

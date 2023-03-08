@@ -43,4 +43,9 @@ public class CartMapperTest {
     public void checkProductIfIsInTheCart(){
         Cart cart = cartMapper.checkProductIfIsInTheCart(4, 3);
     }
+
+    @Test
+    public void displayAllChosenInTheOrder(){
+        cartMapper.displayAllChosenInTheOrder(new Integer[]{1,2,3,60});
+    }
 }
