@@ -8,7 +8,7 @@
 <body>
 CART
 
-<form action="order.html" id="form">
+<form action="order.html" id="form" onsubmit="return veri(this)">
 <table>
     <thead>
         <tr>
@@ -26,7 +26,7 @@ CART
     </tbody>
 
 <!--    <input type="submit" value="check out">-->
-    <button type="button" onclick="veri()">checkout</button>
+    <button  onclick="veri()">checkout</button>
 </table>
 </form>
 
@@ -82,18 +82,33 @@ CART
         })
     }
 
-    function veri(){
+    function veri(e){
         alert("veri")
-        var length=$("#form").children().length;
-        alert(length)
-        for(var i=0; i<length; i++){
-            if($("#form").children()[i].checked == false){
-                alert("check a product")
-                return;
+        var length = e.children().length;
+        alert("length: "+length)
+        for(var i=0; i<length;i++) {
+            if ($("#form").children()[i].checked == true) {
+                alert(1)
+                return true;
             }
         }
-        $("#form").submit();
+        alert(0)
+        return false;
+
     }
+
+    // function veri(){
+    //     alert("veri")
+    //     var length=$("#form").children().length;
+    //     alert(length)
+    //     for(var i=0; i<length; i++){
+    //         if($("#form").children()[i].checked == false){
+    //             alert("check a product")
+    //             return;
+    //         }
+    //     }
+    //     $("#form").submit();
+    // }
 
     function reduceNum(id){
         var unitPrice = $("#unitPrice"+id).html();
