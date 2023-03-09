@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.OrderMapper">
+
+    <resultMap id="resultMapOrder" type="com.example.store.pojo.Order">
+        <id property="oid" column="oid"></id>
+        <result property="isDelete" column="is_delete"></result>
+        <result property="createdUser" column="created_user"></result>
+        <result property="createTime" column="created_time"></result>
+        <result property="modifiedUser" column="modified_user"></result>
+        <result property="modifiedTime" column="modified_time"></result>
+    </resultMap>
+
+
+
+</mapper>

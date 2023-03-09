@@ -8,7 +8,7 @@
 <body>
 CART
 
-<form action="order.html" id="form" onsubmit="return veri(this)">
+<form action="order.html" id="form">
 <table>
     <thead>
         <tr>
@@ -26,7 +26,7 @@ CART
     </tbody>
 
 <!--    <input type="submit" value="check out">-->
-    <button  onclick="veri()">checkout</button>
+    <button type="button" onclick="veri()">checkout</button>
 </table>
 </form>
 
@@ -58,7 +58,7 @@ CART
                             '            <td>$ <span id="unitPrice#{id}">#{unitPrice}</span></td>\n' +
                             '            <td><input type="button" value="-" id="minus-#{id}" onclick="reduceNum(#{id})"><input type="text" name="" id="num#{id}" size="2" value="#{num}" readonly><input type="button" value="+" id="plus+#{id}" onclick="addNum(#{id})"></td>\n' +
                             '            <td><span id="sum#{id}">#{sum}</span></td>\n' +
-                            '            <td><button onclick="delete(#{id}})">delete</button></td>\n' +
+                            '            <td><button type="button" onclick="deleteCart(#{id})">delete</button></td>\n' +
                             '        </tr>'
 
                         tr = tr.replaceAll("#{id}", list[i].id);
@@ -82,33 +82,22 @@ CART
         })
     }
 
-    function veri(e){
+    function veri(){
         alert("veri")
-        var length = e.children.length;
-        alert("length: "+length)
-        for(var i=0; i<length;i++) {
-            if ($("#form").children()[i].checked == true) {
-                alert(1)
-                return true;
+        var check = document.getElementsByName("checkId");
+        var length=check.length;
+        for(var i=0; i<check.length;i++) {
+            if (check[i].checked == true) {
+
+                document.getElementById("form").submit();
+                return;
             }
         }
-        alert(0)
-        return false;
+        alert("you must select at least one product")
+        return;
 
     }
 
-    // function veri(){
-    //     alert("veri")
-    //     var length=$("#form").children().length;
-    //     alert(length)
-    //     for(var i=0; i<length; i++){
-    //         if($("#form").children()[i].checked == false){
-    //             alert("check a product")
-    //             return;
-    //         }
-    //     }
-    //     $("#form").submit();
-    // }
 
     function reduceNum(id){
         var unitPrice = $("#unitPrice"+id).html();
@@ -158,6 +147,11 @@ CART
                 }
             }
         })
+    }
+
+    function deleteCart(id){
+
+        alert(id)
     }
 
 

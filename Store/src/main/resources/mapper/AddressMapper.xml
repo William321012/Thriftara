@@ -31,6 +31,7 @@
         select count(*) from t_address where c_id=#{cid}
     </select>
 
+
     <insert id="insertAddress" useGeneratedKeys="true" keyProperty="aid" >
         insert into t_address (c_id,name,city,state,zip,address,phone,apartment,is_default,created_user, created_time,modified_user,modified_time)
         values(

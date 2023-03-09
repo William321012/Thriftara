@@ -8,6 +8,8 @@
 <body>
 
 
+<select name="address" id="address"></select>
+
 <form action="">
     <div>
         <table>
@@ -40,6 +42,7 @@
 
     $(document).ready(function () {
             displayCheckOutItems();
+            displayAllAddress();
         }
     )
 
@@ -82,6 +85,35 @@
 
                     $("#totalCount").html(totalCount);
                     $("#totalPrice").html(totalPrice);
+
+                }
+            }
+        })
+    }
+
+
+    function displayAllAddress(){
+        $.ajax({
+            url:"/address/getAllAddressByCid",
+            type:"get",
+            dataType:"json",
+
+            success:function (json){
+                if(json.state==200) {
+                    var list = json.data;
+                    for (var i = 0; i < list.length; i++) {
+                        var option= "<option value='#{aid}'>#{name}&nbsp;#{address}&nbsp;#{zip}&nbsp;#{city}&nbsp;#{state}&nbsp;#{phone}</option>";
+
+                        option = option.replace("#{aid}", list[i].aid);
+                        option = option.replace("#{name}", list[i].name);
+                        option = option.replace("#{address}", list[i].address);
+                        option = option.replace("#{zip}", list[i].zip);
+                        option = option.replace("#{city}", list[i].city);
+                        option = option.replace("#{state}", list[i].state);
+                        option = option.replace("#{phone}", list[i].phone);
+                        alert(option)
+                        $("#address").append(option);
+                    }
 
                 }
             }

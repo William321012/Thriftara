@@ -69,6 +69,12 @@ public class AddressServiceImpl implements IAddressService {
         return addresses;
     }
 
+    /**
+     *
+     * @param aid address id
+     * @param username
+     * @param cid customer id
+     */
     @Transactional
     @Override
     public void setAddressDefaultOne(Integer aid, String username, Integer cid) {
@@ -112,6 +118,8 @@ public class AddressServiceImpl implements IAddressService {
         }
 
     }
+
+
 
 
 }
