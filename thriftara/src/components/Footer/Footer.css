@@ -21,10 +21,61 @@
     width: 20vw;
 }
 
+.contact-btn  {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 10px;
+}
+
+.contact-btn:hover {
+    cursor: pointer;
+    color: green;
+}
+
 .faq {
     width: 20vw;
 }
 
+.learn-more {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 10px;
+}
+
+.learn-more:hover {
+    cursor: pointer;
+    color: green;
+}
+
 .newsletter {
     width: 20vw;
+}
+
+.email-input {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.subscribe-btn {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 10px;
+}
+
+.subscribe-btn:hover {
+    cursor: pointer;
+    color: green;
 }
