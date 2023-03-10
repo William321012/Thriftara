@@ -12,7 +12,7 @@ public class Order extends BaseEntity{
     private String receiverCity;
     private String receiverState;
     private Integer receiverZip;
-    private Double totalPrice;
+    private Long totalPrice;
     //0 unpaid, 1 paid, 2 cancel, 3 close, 4 finished
     private Integer status;
     private Date orderTime;
@@ -82,11 +82,11 @@ public class Order extends BaseEntity{
         this.receiverZip = receiverZip;
     }
 
-    public Double getTotalPrice() {
+    public Long getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
     }
 

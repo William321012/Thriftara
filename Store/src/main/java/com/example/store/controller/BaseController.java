@@ -62,8 +62,10 @@ public class BaseController {
         }else if(e instanceof CartNotFoundException){
             result.setState(8002);
             result.setMessage("illegal cart");
+        }else if(e instanceof ProductInsufficientException) {
+            result.setState(9001);
+            result.setMessage("insufficient num of product");
         }
-
         return result;
     }
 

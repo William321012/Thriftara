@@ -33,7 +33,7 @@
         select * from t_product where item_status = 1 order by priority desc limit 0,5
     </select>
 
-    <select id="selectProductById" resultMap="resultMapProduct">
+    <select id="getProductById" resultMap="resultMapProduct">
         select * from t_product where id= #{id}
     </select>
 

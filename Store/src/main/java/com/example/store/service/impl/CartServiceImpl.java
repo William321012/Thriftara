@@ -42,7 +42,7 @@ public class CartServiceImpl implements ICartService {
 
         //product is not in the cart
         if(cart == null){
-            Product product = productMapper.selectProductById(pid);
+            Product product = productMapper.getProductById(pid);
             if(product==null){
                 throw new ProductIsNullException("illegal product");
             }
@@ -65,7 +65,7 @@ public class CartServiceImpl implements ICartService {
             }
             //product is in the cart already
         }else{
-            Product product = productMapper.selectProductById(pid);
+            Product product = productMapper.getProductById(pid);
             //int total=amount;
             int total =cart.getNum() + amount;
             Long price=product.getPrice()* total;
@@ -87,13 +87,13 @@ public class CartServiceImpl implements ICartService {
     @Transactional
     public Integer addNumFromTheCart(Integer id,Integer cid, String username) {
 
-        Cart cart = cartMapper.getProductFromTheCartById(id);
+        Cart cart = cartMapper.getCartById(id);
         if(cart == null || (!(cart.getCid().equals(cid)))){
             throw new CartNotFoundException("illegal cart");
         }
 
         Integer pid = cart.getPid();
-        Product product = productMapper.selectProductById(pid);
+        Product product = productMapper.getProductById(pid);
         Long price = product.getPrice();
 
         Integer cartNum = cart.getNum();
@@ -113,13 +113,13 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public Integer minusNumFromTheCart(Integer id, Integer cid, String username) {
-        Cart cart = cartMapper.getProductFromTheCartById(id);
+        Cart cart = cartMapper.getCartById(id);
         if (cart == null || (!(cart.getCid().equals(cid)))) {
             throw new CartNotFoundException("illegal cart");
         }
 
         Integer pid = cart.getPid();
-        Product product = productMapper.selectProductById(pid);
+        Product product = productMapper.getProductById(pid);
 
         Long price = product.getPrice();
 

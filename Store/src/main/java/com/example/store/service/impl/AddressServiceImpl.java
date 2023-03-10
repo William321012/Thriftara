@@ -119,7 +119,18 @@ public class AddressServiceImpl implements IAddressService {
 
     }
 
+    @Override
+    public Address selectAddressByAid(Integer aid, Integer cid) {
+        Address address = addressMapper.selectAddressByAid(aid);
+        if(address==null){
+            throw new AddressNotFoundException("this address is illegal");
+        }
 
+        if(address.getCid()!=cid){
+            throw new AddressNotFoundException("this address is illegal");
+        }
+        return address;
+    }
 
 
 }

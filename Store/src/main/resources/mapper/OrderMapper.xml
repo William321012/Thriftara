@@ -7,13 +7,41 @@
 
     <resultMap id="resultMapOrder" type="com.example.store.pojo.Order">
         <id property="oid" column="oid"></id>
-        <result property="isDelete" column="is_delete"></result>
+        <result property="receiverName" column="receiver_name"></result>
+        <result property="receiverPhone" column="receiver_phone"></result>
+        <result property="receiverAddress" column="receiver_address"></result>
+        <result property="receiverCity" column="receiver_city"></result>
+        <result property="receiverState" column="receiver_state"></result>
+        <result property="receiverZip" column="receiver_zip"></result>
+        <result property="totalPrice" column="total_price"></result>
+        <result property="orderTime" column="order_time"></result>
+        <result property="payTime" column="pay_time"></result>
         <result property="createdUser" column="created_user"></result>
         <result property="createTime" column="created_time"></result>
         <result property="modifiedUser" column="modified_user"></result>
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
 
+    <resultMap id="resultMapOrderItem" type="com.example.store.pojo.OrderItem">
+        <id property="id" column="id"></id>
+        <result property="unitPrice" column="unit_price"></result>
+    </resultMap>
+
+    <insert id="createOrder" useGeneratedKeys="true" keyProperty="oid">
+        insert into t_order (cid, receiver_name, receiver_phone, receiver_address, receiver_city,
+                             receiver_state, receiver_zip, total_price, status, order_time, pay_time,
+                             created_user, created_time, modified_user, modified_time)
+
+        values(#{cid},#{receiverName},#{receiverPhone},#{receiverAddress},#{receiverCity},#{receiverState},#{receiverZip},#{totalPrice},#{status},
+                  #{orderTime},#{payTime},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
+    </insert>
+
+    <insert id="createOrderItem" useGeneratedKeys="true" keyProperty="id">
+        insert into t_order_item (oid, pid, title, image, unit_price,
+                             num, created_user, created_time, modified_user, modified_time)
+
+        values(#{oid},#{pid},#{title},#{image},#{unitPrice},#{num},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
+    </insert>
 
 
 </mapper>

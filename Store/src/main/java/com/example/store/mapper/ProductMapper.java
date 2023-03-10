@@ -10,5 +10,5 @@ public interface ProductMapper {
 
     List<Product> selectTopProduct();
 
-    Product selectProductById(Integer id);
+    Product getProductById(Integer id);
 }

@@ -1,5 +1,6 @@
 package com.example.store.service;
 
+import com.example.store.pojo.Cart;
 import com.example.store.vo.CartVO;
 
 import java.util.Date;

@@ -24,7 +24,7 @@ public interface CartMapper {
     //insert
     Integer insertProductInTheCart(Cart cart);
 
-    Cart getProductFromTheCartById(Integer id);
+    Cart getCartById(Integer id);
 
     List<CartVO> displayAllChosenInTheOrder(Integer[] ids);
 }

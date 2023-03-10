@@ -32,7 +32,7 @@ public class ProductServideImpl implements IProductService {
 
     @Override
     public Product getProductById(Integer id) {
-        Product product = productMapper.selectProductById(id);
+        Product product = productMapper.getProductById(id);
         if(product==null){
             throw new ProductIsNullException("illegal product");
         }

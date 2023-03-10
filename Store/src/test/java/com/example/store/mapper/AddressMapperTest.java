@@ -77,4 +77,9 @@ public class AddressMapperTest {
     public void selectAddressOrderByTime(){
         Address oneUserAddressOrderByModifiedTime = addressMapper.findLastModifiedAddress(1);
     }
+
+    @Test
+    public void selectAddressByAid(){
+        addressMapper.selectAddressByAid(21);
+    }
 }
