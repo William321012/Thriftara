@@ -8,7 +8,7 @@
 <body>
 <div><img src="" alt="" id="img_avatar"></div>
 
-<form id="form11">
+<form id="form">
     <input type="file" name="file" id="file">
     <input type="button" value="upload" id="uploadAvatar">
 
@@ -21,7 +21,7 @@
         $.ajax({
             url:"/customers/updateAvatar",
             type:"post",
-            data:new FormData($("#form11")[0]),
+            data:new FormData($("#form")[0]),
             processData:false,
             contentType:false,
             dataType:"json",

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+
+<form>
+  recipients:<input type="text" name="name" id="name"><br>
+  state:<select name="state" id="state"></select><br>
+  city:<select name="city" id="city"></select><br>
+  address: <input type="text" name="address" id="address"><br>
+  apartment: <input type="text" name="apartment" id="apartment"><br>
+  zip:<input type="text" name="zip" id="zip"><br>
+  phone: <input type="text" name="phone" id="phone">
+
+  <input type="button" value="modify" id="modify">
+  <input type="button" value="reset" id="reset">
+</form>
+
+<script>
+  // $("#save").click(function () {
+  //   var phone = $("#phone").val();
+  //   var email = $("#email").val();
+  //   var gender =$('input:radio:checked').val();
+  //
+  //   alert(gender)
+  //   $.ajax({
+  //     url:"/customers/updateInfo",
+  //     type:"POST",
+  //     data:"phone="+phone+"&email="+email+"&gender="+gender,
+  //     dataType:"JSON",
+  //
+  //     success:function (json) {
+  //       if(json.state == 200){
+  //         alert("update info success")
+  //         location.href="personalInfo.html"
+  //       }else{
+  //         alert("update info failed")
+  //       }
+  //     }
+  //   })
+  // })
+
+
+  $(document).ready(function(){
+    $.ajax({
+      url:"/address/getAddressByAid",
+      type:"get",
+      data:"aid="+location.search.substr(1),
+      dataType:"JSON",
+
+      success:function (json) {
+        if(json.state == 200){
+          document.getElementById("name").value=json.data.address.name
+
+          var states=json.data.states
+          for(var i=0; i<states.length;i++) {
+            var opt = document.createElement("option");
+            opt.value = states[i].code;
+            opt.name = states[i].name;
+            opt.innerText=states[i].name;
+
+            if (json.data.address.state === states[i].code) {
+              opt.selected = true;
+            }
+            document.getElementById("state").appendChild(opt);
+          }
+
+
+          var cities=json.data.cities
+          for(var i=0; i<cities.length;i++){
+            var opt = document.createElement("option");
+            opt.value = cities[i].cityName;
+            opt.name = cities[i].cityName;
+            opt.innerText=cities[i].cityName;
+
+            if (json.data.address.city === cities[i].cityName) {
+              opt.selected = true;
+            }
+            document.getElementById("city").appendChild(opt)
+          }
+          document.getElementById("address").value=json.data.address.address
+          document.getElementById("apartment").value=json.data.address.apartment
+          document.getElementById("zip").value=json.data.address.zip
+          document.getElementById("phone").value=json.data.address.phone
+        }
+      }
+    })
+  })
+
+
+
+  $("#state").change(function () {
+    $("#city").empty()
+    var code = $("#state").val();
+    alert(code)
+
+    $.ajax({
+      url:"/address/selectCitiesBaseOnState",
+      type:"post",
+      data:"code="+code,
+      dataType:"JSON",
+      success:function (json) {
+        if(json.state==200){
+          var list =json.data
+          for (var i=0; i<list.length;i++){
+            var opt="<option value='"+list[i].cityName+"'>"+list[i].cityName+"</option>"
+            $("#city").append(opt)
+          }
+        }
+      }
+    })
+  })
+
+  $("#modify").click(function () {
+    var name = $("#name").val();
+    var state = $("#state").val();
+    var city = $("#city").val();
+    var address = $("#address").val();
+    var apartment = $("#apartment").val();
+    var zip = $("#zip").val();
+    var phone = $("#phone").val();
+
+    var aid=location.search.substr(1)
+    $.ajax({
+      url:"/address/updateNewAddress",
+      type:"post",
+      data:"aid="+aid+"&name="+name+"&address="+address+"&apartment="+apartment+"&zip="+zip+"&phone="+phone+"&state="+state+"&city="+city,
+      dataType:"JSON",
+      success:function (json) {
+        if(json.state==200){
+          alert("update success")
+        }
+      }
+    })
+  })
+</script>
+</body>
+</html>

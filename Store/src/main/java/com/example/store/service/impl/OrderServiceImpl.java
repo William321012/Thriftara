@@ -1,15 +1,9 @@
 package com.example.store.service.impl;
 
-import com.example.store.mapper.AddressMapper;
-import com.example.store.mapper.CartMapper;
-import com.example.store.mapper.OrderMapper;
-import com.example.store.mapper.ProductMapper;
+import com.example.store.mapper.*;
 import com.example.store.pojo.*;
 import com.example.store.service.IOrderService;
-import com.example.store.service.exception.AddressNotFoundException;
-import com.example.store.service.exception.InsertException;
-import com.example.store.service.exception.ProductInsufficientException;
-import com.example.store.service.exception.ProductIsNullException;
+import com.example.store.service.exception.*;
 import com.example.store.vo.CartVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -35,6 +29,7 @@ public class OrderServiceImpl implements IOrderService {
     @Resource
     private ProductMapper productMapper;
 
+
     /**
      *
      * @param aid
@@ -47,6 +42,7 @@ public class OrderServiceImpl implements IOrderService {
     @Transactional
     //ids= cart id = how many item in cart that the user selected to pay
     public Order createOrder(Integer aid, String username, Integer cid, Integer[] ids) {
+
         Long total=0l;
         Address address = addressService.selectAddressByAid(aid, cid);
         if(address==null){

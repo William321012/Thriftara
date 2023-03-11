@@ -8,109 +8,108 @@
 <body>
 
 <div>
-  <table id="addressTable">
-      <thead>
-      <tr>
-          <th>recipient</th>
-          <th>address</th>
-          <th>phone</th>
-          <th>operation</th>
-      </tr>
-      </thead>
-      <tbody id="addressBody"></tbody>
-  </table>
+    <table id="addressTable">
+        <thead>
+        <tr>
+            <th>recipient</th>
+            <th>address</th>
+            <th>phone</th>
+            <th>operation</th>
+        </tr>
+        </thead>
+        <tbody id="addressBody"></tbody>
+    </table>
 
 </div>
 
 
 
 <script>
-  $(document).ready(function (){
-      alert("address start")
+    $(document).ready(function (){
+        alert("address start")
 
-      showAddress();
-  })
+        showAddress();
+    })
 
-  function showAddress(){
+    function showAddress(){
 
-      $("#addressBody").empty();
-      $.ajax({
-          url:"/address/getAllAddressByCid",
-          type:"get",
-          dataType:"json",
+        $("#addressBody").empty();
+        $.ajax({
+            url:"/address/getAllAddressByCid",
+            type:"get",
+            dataType:"json",
 
-          success:function (json){
-              if(json.state==200) {
-                  var list = json.data;
-                  for (var i = 0; i < list.length; i++) {
-                      var address = list[i].state + "-" + list[i].city + "-" + list[i].address + "-" + list[i].zip;
-                      var tr = '<tr>\n' +
-                          '          <td>#{name}</td>\n' +
-                          '          <td>#{address}</td>\n' +
-                          '          <td>#{phone}</td>\n' +
-                          '          <td><a href="">modify</a></td>\n' +
-                          '          <td><button onclick="deleteAddress(#{aid})">delete</button></td>\n' +
-                          '          <td><button onclick="setDefault(#{aid})" id="defaultbtn"> set as default</button></td>\n' +
-                          '      </tr>';
+            success:function (json){
+                if(json.state==200) {
+                    var list = json.data;
+                    for (var i = 0; i < list.length; i++) {
+                        var address = list[i].state + "-" + list[i].city + "-" + list[i].address + "-" + list[i].zip;
+                        var tr = '<tr>\n' +
+                            '          <td>#{name}</td>\n' +
+                            '          <td>#{address}</td>\n' +
+                            '          <td>#{phone}</td>\n' +
+                            '          <td><a href="modifyAddress.html?#{aid}">modify</a></td>\n' +
+                            '          <td><button onclick="deleteAddress(#{aid})">delete</button></td>\n' +
+                            '          <td><button onclick="setDefault(#{aid})" id="defaultbtn"> set as default</button></td>\n' +
+                            '      </tr>';
 
-                      tr=tr.replace("#{name}", list[i].name);
-                      tr=tr.replace("#{address}",address);
-                      tr=tr.replace("#{phone}", list[i].phone);
-                      tr=tr.replaceAll("#{aid}", list[i].aid);
+                        tr=tr.replace("#{name}", list[i].name);
+                        tr=tr.replace("#{address}",address);
+                        tr=tr.replace("#{phone}", list[i].phone);
+                        tr=tr.replaceAll("#{aid}", list[i].aid);
 
-                      $("#addressTable").append(tr);
-                  }
-                  $("#defaultbtn:eq(0)").hide();
-              }
-          }
-      })
-
-
-  }
-
-  function setDefault(aid) {
-
-      $.ajax({
-          url:"/address/setDefault",
-          type:"get",
-          data:"aid="+aid,
-          dataType:"JSON",
-
-          success:function (json) {
-              if(json.state == 200){
-                  alert("update info success")
-                  //when you update the info, you also have to reload the address info
-                  showAddress();
-              }else{
-                  alert("update info failed")
-              }
-          }
-      })
+                        $("#addressTable").append(tr);
+                    }
+                    $("#defaultbtn:eq(0)").hide();
+                }
+            }
+        })
 
 
-  }
+    }
 
-  function deleteAddress(aid) {
+    function setDefault(aid) {
 
-      $.ajax({
-          url:"/address/delete",
-          type:"get",
-          data:"aid="+aid,
-          dataType:"JSON",
+        $.ajax({
+            url:"/address/setDefault",
+            type:"get",
+            data:"aid="+aid,
+            dataType:"JSON",
 
-          success:function (json) {
-              if(json.state == 200){
-                  alert("update info success");
-                  //when you update the info, you also have to reload the address info
-                  showAddress();
-              }else{
-                  alert("update info failed");
-              }
-          }
-      })
+            success:function (json) {
+                if(json.state == 200){
+                    alert("update info success")
+                    //when you update the info, you also have to reload the address info
+                    showAddress();
+                }else{
+                    alert("update info failed")
+                }
+            }
+        })
 
 
-  }
+    }
+
+    function deleteAddress(aid) {
+
+        $.ajax({
+            url:"/address/delete",
+            type:"get",
+            data:"aid="+aid,
+            dataType:"JSON",
+
+            success:function (json) {
+                if(json.state == 200){
+                    alert("update info success");
+                    //when you update the info, you also have to reload the address info
+                    showAddress();
+                }else{
+                    alert("update info failed");
+                }
+            }
+        })
+
+    }
 
 </script>
 </body>

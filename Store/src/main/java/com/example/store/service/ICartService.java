@@ -19,4 +19,6 @@ public interface ICartService {
 
     List<CartVO> displayAllChosenInTheOrder(Integer[] ids, Integer cid);
 
+    void deleteProductFromTheCartById(Integer id, Integer cid);
+
 }

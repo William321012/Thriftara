@@ -71,4 +71,10 @@
     <select id="findLastModifiedAddress" resultMap="resultMapAddress">
         select * from t_address where c_id= #{cid} order by modified_time desc limit 0,1
     </select>
+
+    <update id="updateAddress">
+        update t_address set name=#{name},city=#{city}, state=#{state}, address=#{address}, apartment=#{apartment}, zip=#{zip}, phone=#{phone}, modified_user= #{modifiedUser}, modified_time= #{modifiedTime} where a_id=#{aid}
+    </update>
+
+
 </mapper>

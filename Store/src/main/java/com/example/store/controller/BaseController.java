@@ -65,6 +65,12 @@ public class BaseController {
         }else if(e instanceof ProductInsufficientException) {
             result.setState(9001);
             result.setMessage("insufficient num of product");
+        }else if(e instanceof DeleteException) {
+            result.setState(9002);
+            result.setMessage("delete failed");
+        }else if(e instanceof PhoneIsNullException) {
+            result.setState(9003);
+            result.setMessage("you must finish your phone information before ordering");
         }
         return result;
     }

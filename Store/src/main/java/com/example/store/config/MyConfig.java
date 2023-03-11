@@ -1,11 +1,15 @@
 package com.example.store.config;
 
 import com.example.store.Interceptor.LoginInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import org.slf4j.LoggerFactory;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +33,17 @@ public class MyConfig implements WebMvcConfigurer {
         exclude.add("/customers/log");
         exclude.add("/products/**");
 
+
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**").excludePathPatterns(exclude);
     }
 
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//        registry.addResourceHandler("/images").addResourceLocations("file:"+System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        registry.addResourceHandler("/images/**").addResourceLocations("file:" + System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\");
+
+    }
 
 
 }

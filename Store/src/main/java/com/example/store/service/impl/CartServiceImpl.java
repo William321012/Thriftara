@@ -6,6 +6,7 @@ import com.example.store.pojo.Cart;
 import com.example.store.pojo.Product;
 import com.example.store.service.ICartService;
 import com.example.store.service.exception.CartNotFoundException;
+import com.example.store.service.exception.DeleteException;
 import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.ProductIsNullException;
 import com.example.store.vo.CartVO;
@@ -87,17 +88,17 @@ public class CartServiceImpl implements ICartService {
     @Transactional
     public Integer addNumFromTheCart(Integer id,Integer cid, String username) {
 
-        Cart cart = cartMapper.getCartById(id);
-        if(cart == null || (!(cart.getCid().equals(cid)))){
+        Cart cart1 = cartMapper.getCartById(id);
+        if(cart1 == null || (!(cart1.getCid().equals(cid)))){
             throw new CartNotFoundException("illegal cart");
         }
 
-        Integer pid = cart.getPid();
+        Integer pid = cart1.getPid();
         Product product = productMapper.getProductById(pid);
         Long price = product.getPrice();
 
-        Integer cartNum = cart.getNum();
-        Long cartPrice = cart.getPrice();
+        Integer cartNum = cart1.getNum();
+        Long cartPrice = cart1.getPrice();
 
         Integer newCartNum=cartNum+1;
         Long newCartPrice = cartPrice+price;
@@ -146,6 +147,34 @@ public class CartServiceImpl implements ICartService {
             }
         }
         return cartVOS;
+    }
+
+    /**
+     *
+     * @param id cart id
+     * @param cid customer id
+     */
+    @Override
+    public void deleteProductFromTheCartById(Integer id, Integer cid) {
+        List<CartVO> cartVOS = cartMapper.displayAllProductsInTheCart(cid);
+        Cart cart = cartMapper.getCartById(id);
+        Boolean flag= false;
+        for(CartVO c:cartVOS){
+            if(c.getPid()==cart.getPid()){
+                flag =true;
+                break;
+            }
+        }
+
+        if(!flag){
+            throw new ProductIsNullException("illegal product");
+        }
+
+        Integer count = cartMapper.deleteProductById(id);
+        if(count!=1){
+            throw new DeleteException("deletion failed");
+        }
+
     }
 }
 

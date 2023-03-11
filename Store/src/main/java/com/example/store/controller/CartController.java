@@ -87,4 +87,16 @@ public class CartController extends BaseController{
 
         return result;
     }
+
+    @RequestMapping("/delete")
+    public JsonResult<Void> delete(HttpServletRequest request, Integer id){
+        JsonResult<Void> result = new JsonResult<>();
+        Integer cid = (Integer)request.getSession().getAttribute("cid");
+
+        cartService.deleteProductFromTheCartById(id, cid);
+
+        result.setState(200);
+        result.setMessage("success");
+        return result;
+    }
 }

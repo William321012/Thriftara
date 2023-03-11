@@ -48,4 +48,8 @@ public class CartMapperTest {
     public void displayAllChosenInTheOrder(){
         cartMapper.displayAllChosenInTheOrder(new Integer[]{1,2,3,60});
     }
+    @Test
+    public void getCart(){
+        cartMapper.getCartById(2)
+    }
 }

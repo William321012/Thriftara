@@ -137,8 +137,9 @@ public class UserController extends BaseController {
 
         //Specifies that uploaded files must be under this directory ../upload/xxx.jpg
         //create the directory for storing the avatar first ../upload
-        String upload =  request.getSession().getServletContext().getRealPath("/upload");
-//        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+//        String upload =  request.getSession().getServletContext().getRealPath("/upload");
+//        System.out.println(upload);
+        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
 
         System.out.println(upload);
 
@@ -184,8 +185,8 @@ public class UserController extends BaseController {
         //return the path of the file for displaying
         //storing the path of the avatar to the db
 
-        String avatar="/upload/"+newFile;
-//        String avatar="/images/"+newFile;
+//        String avatar="/upload/"+newFile;
+        String avatar="/images/"+newFile;
         userService.updateAvatar(cid, avatar, username);
 
         result.setState(200);

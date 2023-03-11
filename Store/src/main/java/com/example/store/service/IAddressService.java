@@ -24,4 +24,5 @@ public interface IAddressService {
     Address selectAddressByAid(Integer aid, Integer cid);
 
 
+    void updateAddress(Integer cid, String username, Address address);
 }

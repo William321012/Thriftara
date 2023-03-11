@@ -26,7 +26,8 @@ CART
     </tbody>
 
 <!--    <input type="submit" value="check out">-->
-    <button type="button" onclick="veri()">checkout</button>
+    <button type="button" onclick="veri()">checkout</button><br>
+    <a href="index.html">go back</a>
 </table>
 </form>
 
@@ -152,6 +153,21 @@ CART
     function deleteCart(id){
 
         alert(id)
+        $.ajax({
+            url:"/carts/delete",
+            type:"get",
+            data:"id="+id,
+            dataType:"json",
+
+            success:function (json) {
+                if(json.state == 200){
+                    alert("delete success")
+                    display_cart();
+                }else{
+
+                }
+            }
+        })
     }
 
 

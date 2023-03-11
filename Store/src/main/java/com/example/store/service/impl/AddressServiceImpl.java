@@ -1,8 +1,10 @@
 package com.example.store.service.impl;
 
 import com.example.store.mapper.AddressMapper;
+import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Address;
 import com.example.store.pojo.City;
+import com.example.store.pojo.Customer;
 import com.example.store.pojo.State;
 import com.example.store.service.IAddressService;
 import com.example.store.service.exception.*;
@@ -19,6 +21,9 @@ import java.util.List;
 public class AddressServiceImpl implements IAddressService {
     @Resource
     private AddressMapper addressMapper;
+
+    @Resource
+    private CustomerMapper customerMapper;
 
     @Value("${customer.address.max_count}")
     private Integer max;
@@ -65,6 +70,7 @@ public class AddressServiceImpl implements IAddressService {
 
     @Override
     public List<Address> selectAllAddressByCid(Integer cid) {
+
         List<Address> addresses = addressMapper.selectAllAddress(cid);
         return addresses;
     }
@@ -108,9 +114,10 @@ public class AddressServiceImpl implements IAddressService {
         }
 
         List<Address> addresses = addressMapper.selectAllAddress(cid);
-        if(addresses==null){
+        if(addresses.size()==0){
             return;
         }
+
         if(address.getIsDefault()==1){
             Address a = addressMapper.findLastModifiedAddress(cid);
             Integer aid1 = a.getAid();
@@ -129,7 +136,19 @@ public class AddressServiceImpl implements IAddressService {
         if(address.getCid()!=cid){
             throw new AddressNotFoundException("this address is illegal");
         }
+
         return address;
+    }
+
+    @Override
+    public void updateAddress(Integer cid, String username, Address address) {
+        address.setModifiedUser(username);
+        address.setModifiedTime(new Date());
+        Integer integer = addressMapper.updateAddress(address);
+        if(integer!=1){
+            throw new InsertException("insertion failed");
+        }
+
     }
 
 

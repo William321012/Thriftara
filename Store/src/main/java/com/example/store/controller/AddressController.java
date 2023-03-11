@@ -1,6 +1,7 @@
 package com.example.store.controller;
 
 import com.example.store.pojo.Address;
+import com.example.store.pojo.AddressState;
 import com.example.store.pojo.City;
 import com.example.store.pojo.State;
 import com.example.store.service.IAddressService;
@@ -49,7 +50,6 @@ public class AddressController extends BaseController{
         result.setState(200);
         result.setMessage("success");
         result.setData(cities);
-        for (City c:cities){System.out.println(c.toString());}
 
         return result;
     }
@@ -58,7 +58,7 @@ public class AddressController extends BaseController{
     public JsonResult<List<Address>> getAllAddressByCid (HttpServletRequest request){
         JsonResult<List<Address>> result = new JsonResult<>();
         Integer cid =(Integer)request.getSession().getAttribute("cid");
-        List<Address> addresses = addressService.selectAllAddressByCid(cid);   result.setState(200);
+        List<Address> addresses = addressService.selectAllAddressByCid(cid);
         result.setState(200);
         result.setMessage("success");
         result.setData(addresses);
@@ -87,6 +87,43 @@ public class AddressController extends BaseController{
         result.setState(200);
         result.setMessage("success");
 
+        return result;
+    }
+
+    @RequestMapping("/getAddressByAid")
+    public JsonResult<AddressState> getAllAddressByAid (HttpServletRequest request, Integer aid){
+        JsonResult<AddressState> result = new JsonResult<>();
+        Integer cid =(Integer)request.getSession().getAttribute("cid");
+        Address address = addressService.selectAddressByAid(aid,cid);
+        List<State> states = addressService.selectAllStates();
+
+        AddressState addressState = new AddressState();
+        addressState.setAddress(address);
+        addressState.setStates(states);
+        String stateCode = address.getState();
+
+        List<City> cities = addressService.selectCitiesBaseOnState(stateCode);
+        addressState.setCities(cities);
+
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(addressState);
+
+        return result;
+    }
+
+    @RequestMapping("/updateNewAddress")
+//    aid="+aid+"&name="+name+"&address="+address+"&apartment="+apartment+"&zip="+zip+"&phone="+phone+"&state="+state+"&city="+city
+    public JsonResult<Void> update(HttpServletRequest request,Address address){
+        System.out.println(address);
+        JsonResult<Void> result = new JsonResult<>();
+        Integer cid =(Integer) request.getSession().getAttribute("cid");
+        String username =(String) request.getSession().getAttribute("username");
+        addressService.updateAddress(cid,username,address);
+
+        result.setState(200);
+        result.setMessage("success");
         return result;
     }
 }

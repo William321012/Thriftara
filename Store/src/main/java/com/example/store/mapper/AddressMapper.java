@@ -30,4 +30,6 @@ public interface AddressMapper {
     Integer deleteAddressByAid(Integer aid);
 
     Address findLastModifiedAddress(Integer cid);
+
+    Integer updateAddress(Address address);
 }

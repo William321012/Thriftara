@@ -8,9 +8,9 @@
 <body>
 
 
-<select name="address" id="address"></select>
+<select name="order_address" id="order_address"></select>
 
-<form action="">
+<form id="orderForm">
     <div>
         <table>
             <thead>
@@ -35,7 +35,7 @@
 
     <div><span id="totalPrice"></span></div>
 
-    <a href="/">pay</a>
+    <button type="button" id="pay">pay</button>
 </form>
 
 <script>
@@ -43,6 +43,38 @@
     $(document).ready(function () {
             displayCheckOutItems();
             displayAllAddress();
+
+            $("#pay").click(function () {
+                var val = $("#order_address").val();
+                var ids = location.search.substr(1);
+                alert(val);
+                alert(ids);
+
+                $.ajax({
+                    url:"/orders/createOrder",
+                    type:"get",
+                    data:"aid="+val+"&"+ids,
+                    dataType:"json",
+
+                    success:function (json){
+                        if(json.state==200) {
+                            alert(json.data)
+                            alert("transaction success")
+                            var oid = json.data.oid;
+                            alert(oid)
+                            location.href = 'payment.html?oid='+oid+'';
+                            //location.href="payment.html";
+
+                        }
+
+                    },
+
+                    error:function (xhr){
+                        alert(xhr.status)
+                    }
+
+                })
+            })
         }
     )
 
@@ -70,6 +102,7 @@
                             '                    <td>#{sum}</td>\n' +
                             '                </tr>';
 
+                        // tr = tr.replace("#{id}", list[i].id);
                         tr = tr.replace("#{image}", list[i].image);
                         tr = tr.replace("#{title}", list[i].title);
                         tr = tr.replace("#{unitPrice}", list[i].unitPrice);
@@ -93,6 +126,7 @@
 
 
     function displayAllAddress(){
+        alert("displaying all address")
         $.ajax({
             url:"/address/getAllAddressByCid",
             type:"get",
@@ -102,9 +136,9 @@
                 if(json.state==200) {
                     var list = json.data;
                     for (var i = 0; i < list.length; i++) {
-                        var option= "<option value='#{aid}'>#{name}&nbsp;#{address}&nbsp;#{zip}&nbsp;#{city}&nbsp;#{state}&nbsp;#{phone}</option>";
+                        var option= "<option value='#{aid}'>#{aid}&nbsp#{name}&nbsp;#{address}&nbsp;#{zip}&nbsp;#{city}&nbsp;#{state}&nbsp;#{phone}</option>";
 
-                        option = option.replace("#{aid}", list[i].aid);
+                        option = option.replaceAll("#{aid}", list[i].aid);
                         option = option.replace("#{name}", list[i].name);
                         option = option.replace("#{address}", list[i].address);
                         option = option.replace("#{zip}", list[i].zip);
@@ -112,13 +146,14 @@
                         option = option.replace("#{state}", list[i].state);
                         option = option.replace("#{phone}", list[i].phone);
                         alert(option)
-                        $("#address").append(option);
+                        $("#order_address").append(option);
                     }
 
                 }
             }
         })
     }
+
 </script>
 </body>
 </html>

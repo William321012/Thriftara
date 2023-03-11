@@ -34,7 +34,7 @@
         select * from t_cart where cid=#{cid} and pid=#{pid}
     </select>
 
-    <select id="getProductFromTheCartById" resultMap="resultMapCart">
+    <select id="getCartById" resultMap="resultMapCart">
         select * from t_cart where id=#{id}
     </select>
 
@@ -58,6 +58,10 @@
         )
         order by a.modified_time desc
     </select>
+
+    <delete id="deleteProductById">
+        delete from t_cart where id = #{id}
+    </delete>
 
 
 
