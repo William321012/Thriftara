@@ -6,21 +6,19 @@ import Addidas from '../logo/addidaslogo.png'
 import Gucci from '../logo/Gucci.jpeg'
 import Prada from '../logo/pradalogo.jpeg'
 import Supreme from '../logo/Supreme_Logo.png'
-import MPant1 from '../images/menpants1.jpeg'
-import MPant2 from '../images/menpants2.webp'
-import MTop1 from '../images/mentop1.webp'
-import MTop2 from '../images/mentop2.webp'
-import WPant1 from '../images/womenpant1.webp'
-import WPant2 from '../images/womenpant2.webp'
-import WTop1 from '../images/womenstop1.jpeg'
-import WTop2 from '../images/womenstop2.jpeg'
-import WTop3 from '../images/womentop3.jpeg'
 import { images } from '../components/carouselData'
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
+import { MProducts } from '../products/MensProducts'
+// import { WProducts } from '../products/WomensProducts'
+// import MItem from '../products/MensProductDisplay'
+// import WItem from '../products/WomensProductDisplay'
+import { BsChevronLeft, BsChevronRight, BsCartPlus } from 'react-icons/bs'
+
 
 function Home() {
 
   const [currentImage, setCurrentImage] = useState(0)
+  const [mproducts] = useState(MProducts)
+  const [cart, setCart] = useState()
 
   return (
     <>
@@ -46,19 +44,30 @@ function Home() {
 
         <section className='mens'>
           <Link to='/mens'><h3>Menswear</h3></Link>
-          <img src={MPant1} alt='black cargos' style={{ width: 170, height: 170, marginRight: 15 }} />
-          <img src={MPant2} alt='green sweats' style={{ width: 170, height: 170, marginRight: 15 }} />
-          <img src={MTop1} alt='collard shirt' style={{ width: 170, height: 170, marginRight: 15 }} />
-          <img src={MTop2} alt='striped shirt' style={{ width: 170, height: 170, marginRight: 15 }} />
+          {/* <section className='products'>
+          {MProducts.map((product) => (
+            <MItem data={product} />
+          ))} */}
+          {/* </section> */}
+          <section className='products'>
+          {mproducts.map((product, index) => (
+            <div className='mproducts' key={index}>
+              <img src={product.image} alt='product images' style={{ width: 200, height: 200 }} />
+              <h4>{product.title}</h4>
+              <p>Price: ${product.unitPrice}</p>
+              <button ><BsCartPlus /></button>
+            </div>
+          ))}
+          </section>
         </section>
 
         <section className='womens'>
           <Link to='/womens'><h3>Womenswear</h3></Link>
-          <img src={WPant1} alt='black jeans' style={{ width: 155, height: 170, marginRight: 15 }} />
-          <img src={WPant2} alt='green cargos' style={{ width: 155, height: 170, marginRight: 15 }} />
-          <img src={WTop1} alt='striped shirt' style={{ width: 155, height: 170, marginRight: 15 }} />
-          <img src={WTop2} alt='crop sweater' style={{ width: 150, height: 170, marginRight: 15 }} />
-          <img src={WTop3} alt='corduroy' style={{ width: 155, height: 170, marginRight: 15 }} />
+          {/* <section className='products'>
+            {WProducts.map((product) => (
+              <WItem data={product} />
+            ))}
+          </section> */}
         </section>
 
         <section className='recommendations'>
@@ -71,6 +80,7 @@ function Home() {
             <div className='rec-card'></div>
           </div>
         </section>
+
       </div>
     </>
   )

@@ -50,6 +50,6 @@ public class CartMapperTest {
     }
     @Test
     public void getCart(){
-        cartMapper.getCartById(2)
+        cartMapper.getCartById(2);
     }
 }

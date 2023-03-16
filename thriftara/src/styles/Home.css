@@ -47,6 +47,16 @@
     cursor: pointer;
 }
 
+.mens .products {
+    display: flex;
+    gap: 10px;
+}
+
+.womens .products {
+    display: flex;
+    gap: 10px;
+}
+
 .rec-container {
     display: flex;
     padding-bottom: 2rem;

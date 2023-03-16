@@ -3,7 +3,9 @@ import '../styles/Cart.css'
 
 function Cart() {
   return (
-    <div>Cart</div>
+    <div>
+      <h2>Shopping Cart</h2>
+    </div>
   )
 }
 

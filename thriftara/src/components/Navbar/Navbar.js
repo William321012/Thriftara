@@ -2,7 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
-import { BsCart4 } from 'react-icons/bs'
+import { BsCart4, BsSearch } from 'react-icons/bs'
 
 function Navbar() {
   return (
@@ -12,7 +12,7 @@ function Navbar() {
         <div className='search-bar'>
           <form>
             <input type="text" placeholder='Search...' className='search-text' />
-            <button type='submit' className='search-btn'>Search</button>
+            <button type='submit' className='search-btn'><BsSearch /></button>
           </form>
         </div>
         <ul className='topnav'>
