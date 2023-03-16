@@ -1,16 +1,16 @@
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import React from 'react'
 import './Navbar.css'
 import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
 import { BsCart4, BsSearch } from 'react-icons/bs'
-=======
-import React from "react";
-import "./Navbar.css";
-import Logo from "../../logo/logo.png";
-import { Link } from "react-router-dom";
-import { BsCart4 } from "react-icons/bs";
->>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0
+// =======
+// import React from "react";
+// import "./Navbar.css";
+// import Logo from "../../logo/logo.png";
+// import { Link } from "react-router-dom";
+// import { BsCart4 } from "react-icons/bs";
+// >>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0
 
 function Navbar() {
   return (
@@ -21,10 +21,10 @@ function Navbar() {
         </Link>
         <div className="search-bar">
           <form>
-<<<<<<< HEAD
+{/* <<<<<<< HEAD */}
             <input type="text" placeholder='Search...' className='search-text' />
             <button type='submit' className='search-btn'><BsSearch /></button>
-=======
+{/* =======
             <input
               type="text"
               placeholder="Search..."
@@ -33,7 +33,7 @@ function Navbar() {
             <button type="submit" className="search-btn">
               Search
             </button>
->>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0
+>>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0 */}
           </form>
         </div>
         <ul className="topnav">
@@ -98,7 +98,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/pages/about">About</Link>
           </li>
         </ul>
       </div>
