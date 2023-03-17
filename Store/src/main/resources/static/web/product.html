@@ -10,7 +10,7 @@
 <div id="title"></div>
 <div id="description"></div>
 <div id="product_price"></div>
-<div id="image_container"></div>
+<div id="image_container"><img src="" alt="" id="product_image"></div>
 
 <div >
     <label for="num">qty：</label>
@@ -46,6 +46,9 @@
                     $("#title").html(json.data.title)
                     $("#description").html(json.data.itemDescription)
                     $("#product_price").html(json.data.price)
+                    var image =json.data.image+"_1.png"
+                    $("#product_image").attr("src",image)
+
                 }else if (json.state == 8001) {
                     location.href = "index.html";
                 } else {
