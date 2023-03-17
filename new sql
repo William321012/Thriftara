@@ -1,0 +1,547 @@
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `city`
+--
+
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `city` (
+  `c_id` int NOT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state_code` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `city`
+--
+
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES (1,'New York','NY'),(2,'Los Angeles','CA'),(3,'Chicago','IL'),(4,'Houston','TX'),(5,'Phoenix','AZ'),(6,'Philadelphia','PA'),(7,'San Antonio','TX'),(8,'San Diego','CA'),(9,'Dallas','TX'),(10,'San Jose','CA'),(11,'Detroit','MI'),(12,'Jacksonville','FL'),(13,'Indianapolis','IN'),(14,'San Francisco','CA'),(15,'Columbus','OH'),(16,'Austin','TX'),(17,'Memphis','TN'),(18,'Fort Worth','TX'),(19,'Baltimore','MD'),(20,'Charlotte','NC'),(21,'El Paso','TX'),(22,'Milwaukee','WI'),(23,'Boston','MA'),(24,'Seattle','WA'),(25,'Washington','WA'),(26,'Denver','CO'),(27,'Louisville','KY'),(28,'Las Vegas','NV'),(29,'Nashville','TN'),(30,'Oklahoma City','OK'),(31,'Portland','OR'),(32,'Tucson','AZ'),(33,'Albuquerque','NM'),(34,'Atlanta','GA'),(35,'Long Beach','CA'),(36,'Fresno','CA'),(37,'Sacramento','CA'),(38,'Mesa','AZ'),(39,'Kansas City','MO'),(40,'Cleveland','OH'),(41,'Virginia Beach','VA'),(42,'Omaha','NE'),(43,'Miami','FL'),(44,'Oakland','CA'),(45,'Tulsa','OK'),(46,'Honolulu','HI'),(47,'Minneapolis','MN'),(48,'Colorado Springs','CO'),(49,'Arlington','TX'),(50,'Wichita','KS'),(51,'Raleigh','NC'),(52,'St. Louis','MO'),(53,'Santa Ana','CA'),(54,'Anaheim','CA'),(55,'Tampa','FL'),(56,'Cincinnati','OH'),(57,'Pittsburgh','PA'),(58,'Bakersfield','CA'),(59,'Aurora','CO'),(60,'Toledo','OH'),(61,'Riverside','CA'),(62,'Stockton','CA'),(63,'Corpus Christi','TX'),(64,'Newark','NJ'),(65,'Anchorage','AK'),(66,'Buffalo','NY'),(67,'St. Paul','MN'),(68,'Lexington','KY'),(69,'Plano','TX'),(70,'Fort Wayne','IN'),(71,'St. Petersburg','FL'),(72,'Glendale','AZ'),(73,'Jersey City','NJ'),(74,'Lincoln','NE'),(75,'Henderson','NV'),(76,'Chandler','AZ'),(77,'Norfolk','VA'),(78,'Greensboro','NC'),(79,'Scottsdale','AZ'),(80,'Baton Rouge','LA'),(81,'Birmingham','AL'),(82,'Madison','WI'),(83,'New Orleans','LA'),(84,'Chesapeake','VA'),(85,'Orlando','FL'),(86,'Garland','TX'),(87,'Hialeah','FL'),(88,'Laredo','TX'),(89,'Chula Vista','CA'),(90,'Lubbock','TX'),(91,'Reno','NV'),(92,'Akron','OH'),(93,'Durham','NC'),(94,'Rochester','NY'),(95,'Modesto','CA'),(96,'Montgomery','AL'),(97,'Fremont','CA'),(98,'Shreveport','LA'),(99,'Arlington','VA'),(100,'Glendale','CA'),(101,'San Bernardino','CA'),(102,'Boise','ID'),(103,'Spokane','WA'),(104,'Yonkers','NY'),(105,'North Las Vegas','NV'),(106,'Winston-Salem','NC'),(107,'Tacoma','WA'),(108,'Irving','TX'),(109,'Huntington Beach','CA'),(110,'Irvine','CA'),(111,'Des Moines','IA'),(112,'Great Rapids','MI'),(113,'Richmond','VA'),(114,'Mobile','AL'),(115,'Gilbert','AZ'),(116,'Augusta','GA'),(117,'Columbus','GA'),(118,'Fort Lauderdale','FL'),(119,'Amarillo','TX'),(120,'Oxnard','CA'),(121,'Little Rock','AR'),(122,'Moreno Valley','CA'),(123,'Knoxville','TN'),(124,'Salt Lake City','UT'),(125,'Newport News','VA'),(126,'Jackson','MS'),(127,'Worcester','MA'),(128,'Providence','RI'),(129,'Ontario','CA'),(130,'Brownsville','TX'),(131,'Rancho Cucamonga','CA'),(132,'Aurora','IL'),(133,'Fontana','CA'),(134,'Tempe','AZ'),(135,'Rockford','IL'),(136,'Huntsville','AL'),(137,'Fayetteville','NC'),(138,'Santa Clarita','CA'),(139,'Overland Park','KS'),(140,'Garden Grove','CA'),(141,'Oceanside','CA'),(142,'Tallahassee','FL'),(143,'Vancouver','WA'),(144,'Dayton','OH'),(145,'Chattanooga','TN'),(146,'Pomona','CA'),(147,'Santa Rosa','CA'),(148,'Grand Prairie','TX'),(149,'Salem','OR'),(150,'Cape Coral','FL'),(151,'Springfield','MA'),(152,'Springfield','MO'),(153,'Corona','CA'),(154,'Pembroke Pines','FL'),(155,'Paterson','NJ'),(156,'Eugene','OR'),(157,'Hollywood','FL'),(158,'Salinas','CA'),(159,'Hampton','VA'),(160,'Pasadena','TX'),(161,'Pasadena','CA'),(162,'Port St. Lucie','FL'),(163,'Kansas City','KS'),(164,'Naperville','IL'),(165,'Joliet','IL'),(166,'Sioux Falls','SD'),(167,'Torrance','CA'),(168,'Peoria','AZ'),(169,'Lancaster','CA'),(170,'Syracuse','NY'),(171,'Hayward','CA'),(172,'Lakewood','CO'),(173,'Palmdale','CA'),(174,'Alexandria','VA'),(175,'Bridgeport','CT'),(176,'Orange','CA'),(177,'Warren','MI'),(178,'Escondido','CA'),(179,'Fullerton','CA'),(180,'Mesquite','TX'),(181,'Sunnyvale','CA'),(182,'Coral Springs','FL'),(183,'Fort Collins','CO'),(184,'Elk Grove','CA'),(185,'Sterling Heights','MI'),(186,'Savannah','GA'),(187,'McAllen','TX'),(188,'Elizabeth','NJ'),(189,'Hartford','CT'),(190,'Cedar Rapids','IA'),(191,'Thousand Oaks','CA'),(192,'New Haven','CT'),(193,'El Monte','CA'),(194,'Concord','CA'),(195,'Topeka','KS'),(196,'Carrollton','TX'),(197,'Waco','TX'),(198,'Simi Valley','CA'),(199,'West Valley','UT'),(200,'Columbia','SC'),(201,'Stamford','CT'),(202,'Bellevue','WA'),(203,'Flint','MI'),(204,'Vallejo','CA'),(205,'Springfield','IL'),(206,'Evansville','IN'),(207,'Inglewood','CA'),(208,'Abilene','TX'),(209,'Olathe','KS'),(210,'Lansing','MI'),(211,'Lafayette','LA'),(212,'Provo','UT'),(213,'Visalia','CA'),(214,'Ann Arbor','MI'),(215,'Clarksville','TN'),(216,'Peoria','IL'),(217,'Cary','NC'),(218,'Athens','GA'),(219,'Beaumont','TX'),(220,'Costa Mesa','CA'),(221,'Denton','TX'),(222,'Manchester','SH'),(223,'Independence','MO'),(224,'Downey','CA'),(225,'Thornton','CO'),(226,'Gainesville','FL'),(227,'Santa Clara','CA'),(228,'Miramar','FL'),(229,'Charleston','SC'),(230,'West Covina','CA'),(231,'Clearwater','FL'),(232,'McKinney','TX'),(233,'Allentown','PA'),(234,'Waterbury','CT'),(235,'Roseville','CA'),(236,'Westminster','CO'),(237,'Norwalk','CA'),(238,'South Bend','IN'),(239,'Fairfield','CA'),(240,'Arvada','CO'),(241,'Pompano Beach','FL'),(242,'Burbank','CA'),(243,'San Buenaventura','CA'),(244,'Pueblo','CO'),(245,'Lowell','MA'),(246,'Norman','OK'),(247,'Richmond','CA'),(248,'Midland','TX'),(249,'Erie','PA'),(250,'Killeen','TX'),(251,'Elgin','IL'),(252,'Berkeley','CA'),(253,'Portsmouth','VA'),(254,'Cambridge','MA'),(255,'Daly City','CA'),(256,'Antioch','CA'),(257,'Green Bay','WI'),(258,'West Jordan','UT'),(259,'Billings','MT');
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `state`
+--
+
+DROP TABLE IF EXISTS `state`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `state` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`s_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `state`
+--
+
+LOCK TABLES `state` WRITE;
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+INSERT INTO `state` VALUES (1,'AL','Alabama'),(2,'AK','Alaska'),(3,'AZ','Arizona'),(4,'AR','Arkansas'),(5,'CA','California'),(6,'CO','Colorado'),(7,'CT','Connecticut'),(8,'DE','Delaware'),(9,'FL','Florida'),(10,'GA','Georgia'),(11,'HI','Hawaii'),(12,'ID','Idaho'),(13,'IL','Illinois'),(14,'IN','Indiana'),(15,'IA','Iowa'),(16,'KS','Kansas'),(17,'KY','Kentucky'),(18,'LA','Louisiana'),(19,'ME','Maine'),(20,'MD','Maryland'),(21,'MA','Massachusetts'),(22,'MI','Michigan'),(23,'MN','Minnesota'),(24,'MS','Mississippi'),(25,'MO','Missouri'),(26,'MT','Montana'),(27,'NE','Nebraska'),(28,'NV','Nevada'),(29,'NH','New hampshire'),(30,'NJ','New jersey'),(31,'NM','New mexico'),(32,'NY','New York'),(33,'NC','North Carolina'),(34,'ND','North Dakota'),(35,'OH','Ohio'),(36,'OK','Oklahoma'),(37,'OR','Oregon'),(38,'PA','Pennsylvania'),(39,'RI','Rhode island'),(40,'SC','South carolina'),(41,'SD','South dakota'),(42,'TN','Tennessee'),(43,'TX','Texas'),(44,'UT','Utah'),(45,'VT','Vermont'),(46,'VA','Virginia'),(47,'WA','Washington'),(48,'WV','West Virginia'),(49,'WI','Wisconsin'),(50,'WY','Wyoming');
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_address`
+--
+
+DROP TABLE IF EXISTS `t_address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_address` (
+  `a_id` int NOT NULL AUTO_INCREMENT,
+  `c_id` int DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(10) DEFAULT NULL,
+  `zip` int DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `apartment` varchar(255) DEFAULT NULL,
+  `is_default` int DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`a_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_address`
+--
+
+LOCK TABLES `t_address` WRITE;
+/*!40000 ALTER TABLE `t_address` DISABLE KEYS */;
+INSERT INTO `t_address` VALUES (21,8,'chaocheng zhu','Phoenix','AZ',11204,'1729 65th St','3159752753','',1,'114514','2023-02-28 21:09:12','114514','2023-02-28 21:09:59'),(22,8,'chaocheng zhu','Honolulu','HI',11204,'1729 65th St','3159752753','',0,'114514','2023-02-28 21:09:47','114514','2023-02-28 21:09:56'),(24,4,'chaocheng zhu','Cedar Rapids','IA',11204,'1729 65th St','3159752753','',0,'sb2','2023-03-09 17:13:11','sb2','2023-03-14 18:45:18'),(25,4,'chaocheng zhu','New York','NY',11204,'5555555','3159752753','N/A',1,'sb2','2023-03-09 17:40:38','sb2','2023-03-16 20:54:22'),(28,9,'chaocheng zhu','Mobile','AL',11204,'1729 65th St','3159752753','',1,'666','2023-03-10 20:39:01','666','2023-03-10 20:39:01'),(30,4,'chaocheng zhu','Cedar Rapids','IA',11204,'77777','3159752753','',0,'sb2','2023-03-14 18:45:40','sb2','2023-03-14 18:45:40');
+/*!40000 ALTER TABLE `t_address` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_cart`
+--
+
+DROP TABLE IF EXISTS `t_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cid` int DEFAULT NULL,
+  `pid` int DEFAULT NULL,
+  `price` bigint DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_cart`
+--
+
+LOCK TABLES `t_cart` WRITE;
+/*!40000 ALTER TABLE `t_cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_customer`
+--
+
+DROP TABLE IF EXISTS `t_customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_customer` (
+  `c_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `salt` char(36) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `gender` int DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `is_delete` int DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `modified_user` varchar(20) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`c_id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_customer`
+--
+
+LOCK TABLES `t_customer` WRITE;
+/*!40000 ALTER TABLE `t_customer` DISABLE KEYS */;
+INSERT INTO `t_customer` VALUES (1,'sb','sb','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'sb0','sb0','0',NULL,NULL,NULL,NULL,0,'sb0','2023-02-16 17:27:24','sb0','2023-02-16 17:27:24'),(3,'sb1','B4C121EFCA9B9AFBC5B32D63CBB6DC1F','0',NULL,NULL,NULL,NULL,0,'sb1','2023-02-16 17:54:50','sb1','2023-02-16 17:54:50'),(4,'sb2','5DE2C19BF569E31B519E07DED1A6EDB7','B52FC779-48AE-4F57-9794-A99787714C46','555555','555555',1,'/images/F8EB0418-BB1C-449F-8F48-432A48262D18.png',0,'sb2','2023-02-16 18:07:03','sb2','2023-03-16 18:41:50'),(5,'sb555','BB256AD459A4A78DF3A194BE42B6D6B7','28484CE9-EFBA-4065-970C-098D5224CC73',NULL,NULL,NULL,NULL,0,'sb555','2023-02-16 18:38:13','sb555','2023-02-16 18:38:13'),(6,'sb5','CDAA4913CD93DA5D19F8A8AE5786D8E6','B6FEC2B2-F040-402A-9EE7-BD4716E7FD02',NULL,NULL,NULL,NULL,0,'sb5','2023-02-16 20:41:25','sb5','2023-02-16 20:41:25'),(7,'joe','859C9A70E8C9CE025656C6A8C98BCECB','C0156A89-8E86-4561-8B44-AB7C9CDAEA53',NULL,NULL,NULL,NULL,0,'joe','2023-02-16 23:27:43','joe','2023-02-16 23:27:43'),(8,'114514','B89DC7476748966E12658B5654F225A8','770E27DD-A6A1-4ECC-B883-132686CEEF40',NULL,NULL,NULL,NULL,0,'114514','2023-02-28 20:53:01','114514','2023-02-28 20:53:54'),(9,'666','084D185B42340F4683189FA169EFF3FD','1FF2BEB8-DC2B-457C-AA1A-8DD7F8BF0138',NULL,NULL,NULL,NULL,0,'666','2023-03-10 19:35:41','666','2023-03-10 19:35:41');
+/*!40000 ALTER TABLE `t_customer` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_order`
+--
+
+DROP TABLE IF EXISTS `t_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_order` (
+  `oid` int NOT NULL AUTO_INCREMENT,
+  `cid` int DEFAULT NULL,
+  `receiver_name` varchar(255) DEFAULT NULL,
+  `receiver_phone` varchar(255) DEFAULT NULL,
+  `receiver_address` varchar(255) DEFAULT NULL,
+  `receiver_city` varchar(255) DEFAULT NULL,
+  `receiver_state` varchar(255) DEFAULT NULL,
+  `receiver_zip` int DEFAULT NULL,
+  `total_price` bigint DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `order_time` datetime DEFAULT NULL,
+  `pay_time` datetime DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`oid`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_order`
+--
+
+LOCK TABLES `t_order` WRITE;
+/*!40000 ALTER TABLE `t_order` DISABLE KEYS */;
+INSERT INTO `t_order` VALUES (23,4,'chaocheng zhu','3159752753','77777','Cedar Rapids','IA',11204,1270,0,'2023-03-14 18:52:46',NULL,'sb2','2023-03-14 18:52:46','sb2','2023-03-14 18:52:46'),(24,4,'chaocheng zhu','3159752753','77777','Cedar Rapids','IA',11204,1270,0,'2023-03-14 18:54:41',NULL,'sb2','2023-03-14 18:54:41','sb2','2023-03-14 18:54:41'),(25,4,'chaocheng zhu','3159752753','77777','Cedar Rapids','IA',11204,1110,0,'2023-03-14 18:57:08',NULL,'sb2','2023-03-14 18:57:08','sb2','2023-03-14 18:57:08'),(26,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,1150,0,'2023-03-14 18:59:12',NULL,'sb2','2023-03-14 18:59:12','sb2','2023-03-14 18:59:12'),(27,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,1150,0,'2023-03-14 19:00:29',NULL,'sb2','2023-03-14 19:00:29','sb2','2023-03-14 19:00:29'),(28,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,900,0,'2023-03-14 19:15:09',NULL,'sb2','2023-03-14 19:15:09','sb2','2023-03-14 19:15:09'),(29,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,900,0,'2023-03-14 19:19:04',NULL,'sb2','2023-03-14 19:19:04','sb2','2023-03-14 19:19:04'),(30,4,'chaocheng zhu','3159752753','77777','Cedar Rapids','IA',11204,900,1,'2023-03-14 19:20:15','2023-03-14 19:20:35','sb2','2023-03-14 19:20:15','sb2','2023-03-14 19:20:35'),(31,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,40,1,'2023-03-14 19:32:33','2023-03-14 19:33:05','sb2','2023-03-14 19:32:33','sb2','2023-03-14 19:33:05'),(32,4,'chaocheng zhu','3159752753','77777','Cedar Rapids','IA',11204,90,1,'2023-03-14 19:47:11','2023-03-14 19:47:17','sb2','2023-03-14 19:47:11','sb2','2023-03-14 19:47:17'),(33,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,50,1,'2023-03-14 19:51:53','2023-03-14 19:51:59','sb2','2023-03-14 19:51:53','sb2','2023-03-14 19:51:59'),(34,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,700,1,'2023-03-14 19:52:57','2023-03-14 19:53:03','sb2','2023-03-14 19:52:57','sb2','2023-03-14 19:53:03'),(35,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,8,1,'2023-03-14 22:09:03','2023-03-14 22:09:09','sb2','2023-03-14 22:09:03','sb2','2023-03-14 22:09:09'),(36,4,'chaocheng zhu','3159752753','6666','New York','NY',11204,15,1,'2023-03-16 20:50:54','2023-03-16 20:51:02','sb2','2023-03-16 20:50:54','sb2','2023-03-16 20:51:02'),(37,4,'chaocheng zhu','3159752753','1729 65th St','Cedar Rapids','IA',11204,10,1,'2023-03-17 12:15:12','2023-03-17 12:15:21','sb2','2023-03-17 12:15:12','sb2','2023-03-17 12:15:21');
+/*!40000 ALTER TABLE `t_order` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_order_item`
+--
+
+DROP TABLE IF EXISTS `t_order_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_order_item` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `oid` int DEFAULT NULL,
+  `pid` int DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `unit_price` bigint DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_order_item`
+--
+
+LOCK TABLES `t_order_item` WRITE;
+/*!40000 ALTER TABLE `t_order_item` DISABLE KEYS */;
+INSERT INTO `t_order_item` VALUES (51,23,2,'clothes2','img2',50,8,'sb2','2023-03-14 18:52:46','sb2','2023-03-14 18:52:46'),(52,23,3,'clothes3','img3',10,7,'sb2','2023-03-14 18:52:46','sb2','2023-03-14 18:52:46'),(53,23,1,'clothes1','img1',100,8,'sb2','2023-03-14 18:52:46','sb2','2023-03-14 18:52:46'),(54,24,2,'clothes2','img2',50,8,'sb2','2023-03-14 18:54:41','sb2','2023-03-14 18:54:41'),(55,24,3,'clothes3','img3',10,7,'sb2','2023-03-14 18:54:41','sb2','2023-03-14 18:54:41'),(56,24,1,'clothes1','img1',100,8,'sb2','2023-03-14 18:54:41','sb2','2023-03-14 18:54:41'),(57,25,3,'clothes3','img3',10,6,'sb2','2023-03-14 18:57:08','sb2','2023-03-14 18:57:08'),(58,25,1,'clothes1','img1',100,7,'sb2','2023-03-14 18:57:08','sb2','2023-03-14 18:57:08'),(59,25,2,'clothes2','img2',50,7,'sb2','2023-03-14 18:57:08','sb2','2023-03-14 18:57:08'),(60,26,1,'clothes1','img1',100,8,'sb2','2023-03-14 18:59:12','sb2','2023-03-14 18:59:12'),(61,26,2,'clothes2','img2',50,7,'sb2','2023-03-14 18:59:12','sb2','2023-03-14 18:59:12'),(62,27,1,'clothes1','img1',100,8,'sb2','2023-03-14 19:00:29','sb2','2023-03-14 19:00:29'),(63,27,2,'clothes2','img2',50,7,'sb2','2023-03-14 19:00:29','sb2','2023-03-14 19:00:29'),(64,28,2,'clothes2','img2',50,6,'sb2','2023-03-14 19:15:09','sb2','2023-03-14 19:15:09'),(65,28,1,'clothes1','img1',100,6,'sb2','2023-03-14 19:15:09','sb2','2023-03-14 19:15:09'),(66,29,2,'clothes2','img2',50,6,'sb2','2023-03-14 19:19:04','sb2','2023-03-14 19:19:04'),(67,29,1,'clothes1','img1',100,6,'sb2','2023-03-14 19:19:04','sb2','2023-03-14 19:19:04'),(68,30,2,'clothes2','img2',50,6,'sb2','2023-03-14 19:20:15','sb2','2023-03-14 19:20:15'),(69,30,1,'clothes1','img1',100,6,'sb2','2023-03-14 19:20:15','sb2','2023-03-14 19:20:15'),(70,31,3,'clothes3','img3',10,4,'sb2','2023-03-14 19:32:33','sb2','2023-03-14 19:32:33'),(71,32,3,'clothes3','img3',10,9,'sb2','2023-03-14 19:47:11','sb2','2023-03-14 19:47:11'),(72,33,3,'clothes3','img3',10,5,'sb2','2023-03-14 19:51:53','sb2','2023-03-14 19:51:53'),(73,34,1,'clothes1','img1',100,7,'sb2','2023-03-14 19:52:57','sb2','2023-03-14 19:52:57'),(74,35,6,'clothes6','img6',1,8,'sb2','2023-03-14 22:09:03','sb2','2023-03-14 22:09:03'),(75,36,12,'555','/images/878CA7E2-BDD3-47E2-B614-3390ACB5DC0F',5,3,'sb2','2023-03-16 20:50:54','sb2','2023-03-16 20:50:54'),(76,37,12,'555','/images/878CA7E2-BDD3-47E2-B614-3390ACB5DC0F',5,2,'sb2','2023-03-17 12:15:12','sb2','2023-03-17 12:15:12');
+/*!40000 ALTER TABLE `t_order_item` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_product`
+--
+
+DROP TABLE IF EXISTS `t_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int DEFAULT NULL,
+  `item_type` varchar(255) DEFAULT NULL,
+  `item_description` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `image` varchar(500) DEFAULT NULL,
+  `item_status` int DEFAULT '1',
+  `priority` int DEFAULT NULL,
+  `brand` varchar(255) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `item_condition` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `gender` int DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `price` bigint DEFAULT NULL,
+  `cid` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_product`
+--
+
+LOCK TABLES `t_product` WRITE;
+/*!40000 ALTER TABLE `t_product` DISABLE KEYS */;
+INSERT INTO `t_product` VALUES (1,NULL,NULL,'item1','clothes1',9983,'img1',1,10,'aa',NULL,'new','red',1,NULL,'2023-03-14 19:53:03','admin','sb2',100,NULL),(2,NULL,NULL,'item2','clothes2',9990,'img2',1,9,'aa',NULL,'new','red',2,NULL,'2023-03-14 19:20:35','admin','sb2',50,NULL),(3,NULL,NULL,'item3','clothes3',9975,'img3',1,9,'aa',NULL,'new','white',1,NULL,'2023-03-14 19:51:59','admin','sb2',10,NULL),(4,NULL,NULL,NULL,'clothes4',9999,'img4',1,9,'bb',NULL,'new','white',2,NULL,'2023-03-14 19:51:59','admin',NULL,1,NULL),(5,NULL,NULL,NULL,'clothes5',9999,'img5',1,9,'bb',NULL,'new','white',1,NULL,'2023-03-14 19:51:59','admin',NULL,1,NULL),(6,NULL,NULL,NULL,'clothes6',9991,'img6',1,8,'cc',NULL,'new','white',1,NULL,'2023-03-14 22:09:09','admin','sb2',1,NULL),(12,NULL,'skirt','555','555',5550,'/images/878CA7E2-BDD3-47E2-B614-3390ACB5DC0F',1,8,'555','555','2','555',1,NULL,'2023-03-17 12:15:21',NULL,'sb2',5,4),(13,NULL,'skirt','5555','55',555,'/images/49AEB526-1683-4154-BCED-0A80C8B739C6',1,8,'555','555','1','55',1,NULL,NULL,NULL,NULL,NULL,4);
+/*!40000 ALTER TABLE `t_product` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
+
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_product_category`
+--
+
+DROP TABLE IF EXISTS `t_product_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_product_category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint DEFAULT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `status` int DEFAULT '1',
+  `sort_order` int DEFAULT NULL,
+  `is_parent` int DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  `created_user` varchar(50) DEFAULT NULL,
+  `modified_user` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_product_category`
+--
+
+LOCK TABLES `t_product_category` WRITE;
+/*!40000 ALTER TABLE `t_product_category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_product_category` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-03-17 12:24:25
