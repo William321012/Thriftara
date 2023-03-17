@@ -1,0 +1,35 @@
+.title {
+    text-align: center;
+    font-size: 75px;
+    padding: 15px;
+}
+
+.fadeline {
+    display:block;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#000), to(#fff));
+}
+
+#content .fadeline {
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 130, from(#000), to(#fff));
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#content {
+    padding: 30px;
+}
+
+#content h3 {
+    padding: 5px;
+}
+
+#content h4 {
+    padding: 3px;
+}

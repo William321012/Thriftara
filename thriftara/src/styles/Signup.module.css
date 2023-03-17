@@ -1,0 +1,27 @@
+.card {
+  padding: 5%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fadeline {
+  display: block;
+  height: 1px;
+  background: black;
+  background: -webkit-gradient(
+    radial,
+    50% 50%,
+    0,
+    50% 50%,
+    350,
+    from(#000),
+    to(#fff)
+  );
+  margin: 20px;
+}
+
+.Signuppic_settings {
+  width: 525px;
+  height: 775px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
