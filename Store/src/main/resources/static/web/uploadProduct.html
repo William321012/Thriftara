@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div><img src="" alt="" id="img_product"></div>
+
+<form id="form">
+  <input type="file" name="file" id="file" accept="image/*" multiple><br>
+  item title:<input type="text" id="title" name="title"><br>
+  item description: <input type="text" id="description" name="description"><br>
+  item price: <input type="number" id="price" name="price"><br>
+  item status: <select id="status">
+  <option value="1">new</option>
+  <option value="2">second hand</option>
+                  </select><br>
+
+  item category:<select id="category">
+  <option value="1">skirt</option>
+  <option value="2">t_shirt</option>
+  <option value="3">blouse</option>
+                </select><br>
+
+  gender: male<input type="radio" name="gender" id="male" checked value="1">
+  female<input type="radio" name="gender" id="female" value="2"><br>
+  brand:<input type="text" name="brand" id="brand"><br>
+  size: <input type="text" name="size" id="size"><br>
+  color: <input type="text" name="color" id="color"><br>
+  number: <input type="number" name="number" id="number"><br>
+
+
+  <button type="button" id="uploadProduct">uploadProduct</button>
+
+</form>
+
+<script>
+
+  function check(names, dat) {
+    for (var i = 0; i < names.length; i++) {
+      var name=names[i];
+      if (document.getElementById(name).value.trim() != "") {
+        dat.append(name, document.getElementById(name).value);
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  $("#uploadProduct").click(function () {
+    var dat=new FormData();
+    var files=document.getElementById("file").files;
+    if(files.length>5){
+      alert("you at most can upload 5 pictures")
+      return;
+    }else if(files.length==0){
+      alert("you must at least upload 1 pictures")
+      return;
+    }
+    for(var i=0;i<files.length;i++) {
+      dat.append("file", files[i]);
+    }
+    if(!check(["title","description","price","status","category","brand","size","color","number"],dat)){
+      alert("you must fill in all the information before submitting")
+      return;
+    }
+    // dat.append("title",$("#title").val())
+    // dat.append("description",$("#description").val())
+    // dat.append("price",$("#price").val())
+    // dat.append("status",$("#status").val())
+    // dat.append("category",$("#category").val())
+
+    if(document.getElementById("female").checked==true){
+      dat.append("gender","2");
+    }else if(document.getElementById("male").checked==true){
+      dat.append("gender","1");
+    }else{
+      dat.append("gender","unselected");
+    }
+    // dat.append("brand",$("#brand").val())
+    // dat.append("size",$("#size").val())
+    // dat.append("color",$("#color").val())
+    // dat.append("number",$("#number").val())
+
+
+    alert("uploading product")
+    var title = $("#title").val();
+    $.ajax({
+      url:"/products/uploadProduct",
+      type:"POST",
+      data:dat,
+      processData:false,
+      contentType:false,
+      dataType:"json",
+
+
+      success:function (json){
+        if(json.state == 200) {
+          alert(json.data);
+          $("#img_product").attr("src", json.data);
+        }
+      }
+
+    })
+  })
+
+
+  // function uploadProduct(){
+  //   var data=new FormData();
+  //   var form=document.getElementById("form");
+  //   data.append("file",form.children[0].value);
+  //   data.append("description",document.getElementById("description").value);
+  //
+  //   var x = new XMLHttpRequest();
+  //   x.open("POST","/customers/uploadProduct",true);
+  //   x.setRequestHeader("Content-type","application/json; charset=UTF-8");
+  //   x.onload=function (){
+  //
+  //   }
+  //   x.send(data);
+  //
+  // }
+
+</script>
+</body>
+</html>

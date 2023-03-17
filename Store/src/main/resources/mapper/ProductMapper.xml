@@ -24,7 +24,7 @@
 
 
         <result property="createdUser" column="created_user"></result>
-        <result property="createTime" column="created_time"></result>
+        <result property="createdTime" column="created_time"></result>
         <result property="modifiedUser" column="modified_user"></result>
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
@@ -36,6 +36,23 @@
     <select id="getProductById" resultMap="resultMapProduct">
         select * from t_product where id= #{id}
     </select>
+
+    <update id="updateItemNum">
+        update t_product set num = #{num}, modified_user=#{modifiedUser},modified_time=#{modifiedTime}  where id =#{pid}
+    </update>
+
+    <select id="selectAllProduct" resultMap="resultMapProduct">
+        select * from t_product where item_status = 1 order by priority desc
+    </select>
+
+
+    <insert id="uploadProduct" useGeneratedKeys="true" keyProperty="id">
+        insert into t_product (cid,item_type, item_description, title,num,image,item_status, priority, brand, size,
+                               item_condition, color, gender, created_time, created_user, modified_user,modified_time)
+        values(#{cid},#{itemType},#{itemDescription},#{title},#{num},#{image},#{itemStatus},#{priority},#{brand},
+               #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime})
+    </insert>
+
 
 
 

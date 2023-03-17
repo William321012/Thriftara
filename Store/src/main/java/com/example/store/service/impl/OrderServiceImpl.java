@@ -25,9 +25,11 @@ public class OrderServiceImpl implements IOrderService {
     private CartMapper cartMapper;
 
     @Resource
-    private CartServiceImpl cartService;
-    @Resource
     private ProductMapper productMapper;
+
+    @Resource
+    private CartServiceImpl cartService;
+
 
 
     /**
@@ -116,6 +118,72 @@ public class OrderServiceImpl implements IOrderService {
         }
 
         return order;
+    }
+
+    @Override
+    public Order getOrder(Integer oid, Integer cid) {
+        Order orderByOid = orderMapper.getOrderByOid(oid);
+        if(orderByOid == null){
+            throw new OrderNotFoundException("order not found");
+        }
+
+        if(orderByOid.getCid()!=cid){
+            throw new OrderNotFoundException("order is illegal");
+        }
+
+        return orderByOid;
+    }
+
+    @Override
+    @Transactional
+    public void updateOrder(Integer cid, Integer orderId, String username) {
+
+        Order orderByOid = orderMapper.getOrderByOid(orderId);
+        if(orderByOid == null){
+            throw new OrderNotFoundException("order is not found");
+        }
+
+        if(orderByOid.getCid()!=cid){
+            throw new OrderNotFoundException("illegal order");
+        }
+
+        List<OrderItem> orderItemByOid = orderMapper.getOrderItemByOid(orderId);
+
+
+        //iterate each item from this order
+        for(OrderItem o : orderItemByOid){
+            if(o==null){
+                throw new OrderNotFoundException("order item is not found");
+            }
+
+            Integer pid = o.getPid();
+            Product product = productMapper.getProductById(pid);
+            if(product == null){
+                throw new ProductIsNullException("product is null");
+            }
+
+            Integer num = o.getNum();
+            product.setNum(product.getNum()-num);
+
+            Integer newNum= product.getNum();
+            if(newNum<0){
+                throw new ProductInsufficientException("insufficient product");
+            }
+
+            Integer integer = productMapper.updateItemNum(pid, username, new Date(), newNum);
+            if(integer!=1){
+                throw new UpdateInforException("update failed");
+            }
+
+            Integer integer1 = cartMapper.deleteProductByPidAndCid(cid, pid);
+            if(integer1 !=1){
+                throw new DeleteException("deletion failed");
+            }
+
+        }
+
+        orderMapper.updateOrder(new Date(),username, new Date(), orderId);
+
     }
 
 

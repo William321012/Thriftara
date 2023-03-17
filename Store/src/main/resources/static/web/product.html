@@ -73,7 +73,8 @@
                 if(json.state==200){
                     location.href = "cart.html";
                 }
-            },error: function(xhr) {
+            },
+            error: function(xhr) {
                 alert("Your login information has expired, please log in again!");
                 location.href = "login.html";
             }
@@ -87,7 +88,7 @@
     })
 
     $("#numDown").click(function (){
-        if($("#num").val()==0){
+        if($("#num").val()<=1){
             return;
         }
         $("#num").val($("#num").val()-1)

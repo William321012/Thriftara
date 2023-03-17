@@ -10,7 +10,7 @@
         <result property="cid" column="c_id"></result>
         <result property="isDefault" column="is_default"></result>
         <result property="createdUser" column="created_user"></result>
-        <result property="createTime" column="created_time"></result>
+        <result property="createdTime" column="created_time"></result>
         <result property="modifiedUser" column="modified_user"></result>
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
@@ -36,7 +36,7 @@
         insert into t_address (c_id,name,city,state,zip,address,phone,apartment,is_default,created_user, created_time,modified_user,modified_time)
         values(
                   #{cid},#{name},#{city},#{state},#{zip},#{address},#{phone},#{apartment},
-                  #{isDefault},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime}
+                  #{isDefault},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
               )
     </insert>
 

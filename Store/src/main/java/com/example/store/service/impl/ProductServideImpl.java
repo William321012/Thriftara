@@ -3,9 +3,11 @@ package com.example.store.service.impl;
 import com.example.store.mapper.ProductMapper;
 import com.example.store.pojo.Product;
 import com.example.store.service.IProductService;
+import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.ProductIsNullException;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,4 +41,27 @@ public class ProductServideImpl implements IProductService {
         return product;
 
     }
+
+    public List<Product> getAllProduct() {
+        List<Product> products = productMapper.selectAllProduct();
+        for(Product p:products){
+            p.setPriority(null);
+            p.setCreatedUser(null);
+            p.setCreateTime(null);
+            p.setModifiedTime(null);
+            p.setModifiedUser(null);
+        }
+        return products;
+    }
+
+    @Override
+    @Transactional
+    public void uploadProduct(Product product) {
+        Integer integer = productMapper.uploadProduct(product);
+        if(integer!=1){
+            throw new InsertException("insertion failed");
+        }
+    }
+
+
 }

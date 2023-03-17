@@ -17,7 +17,7 @@
         <result property="orderTime" column="order_time"></result>
         <result property="payTime" column="pay_time"></result>
         <result property="createdUser" column="created_user"></result>
-        <result property="createTime" column="created_time"></result>
+        <result property="createdTime" column="created_time"></result>
         <result property="modifiedUser" column="modified_user"></result>
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
@@ -33,15 +33,29 @@
                              created_user, created_time, modified_user, modified_time)
 
         values(#{cid},#{receiverName},#{receiverPhone},#{receiverAddress},#{receiverCity},#{receiverState},#{receiverZip},#{totalPrice},#{status},
-                  #{orderTime},#{payTime},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
+                  #{orderTime},#{payTime},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime})
     </insert>
 
     <insert id="createOrderItem" useGeneratedKeys="true" keyProperty="id">
         insert into t_order_item (oid, pid, title, image, unit_price,
                              num, created_user, created_time, modified_user, modified_time)
 
-        values(#{oid},#{pid},#{title},#{image},#{unitPrice},#{num},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
+        values(#{oid},#{pid},#{title},#{image},#{unitPrice},#{num},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime})
     </insert>
+
+    <select id="getOrderItemByOid" resultMap="resultMapOrderItem">
+        select * from t_order_item where oid = #{oid}
+    </select>
+
+    <select id="getOrderByOid" resultMap="resultMapOrder">
+        select * from t_order where oid = #{oid}
+    </select>
+
+    <update id="updateOrder">
+        update t_order set status = 1, pay_time=#{payTime}, modified_user=#{modifiedUser},modified_time=#{modifiedTime}  where oid =#{oid}
+    </update>
+
+
 
 
 </mapper>

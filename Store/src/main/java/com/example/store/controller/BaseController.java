@@ -71,6 +71,9 @@ public class BaseController {
         }else if(e instanceof PhoneIsNullException) {
             result.setState(9003);
             result.setMessage("you must finish your phone information before ordering");
+        }else if(e instanceof OrderNotFoundException) {
+            result.setState(9003);
+            result.setMessage("order is not found");
         }
         return result;
     }

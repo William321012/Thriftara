@@ -8,4 +8,8 @@ public interface IProductService {
     List<Product> getTopList();
 
     Product getProductById(Integer id);
+
+    List<Product> getAllProduct();
+
+    void uploadProduct(Product product);
 }

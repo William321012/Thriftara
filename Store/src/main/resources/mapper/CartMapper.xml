@@ -8,7 +8,7 @@
     <resultMap id="resultMapCart" type="com.example.store.pojo.Cart">
         <id property="id" column="id"></id>
         <result property="createdUser" column="created_user"></result>
-        <result property="createTime" column="created_time"></result>
+        <result property="createdTime" column="created_time"></result>
         <result property="modifiedUser" column="modified_user"></result>
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
@@ -17,7 +17,7 @@
 
     <insert id="insertProductInTheCart" useGeneratedKeys="true" keyProperty="id">
         insert into t_cart (cid, pid, price, num, created_user,created_time, modified_user,modified_time)
-        values ( #{cid},#{pid},#{price},#{num},#{createdUser},#{createTime},#{modifiedUser},#{modifiedTime})
+        values ( #{cid},#{pid},#{price},#{num},#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime})
     </insert>
 
 
@@ -61,6 +61,10 @@
 
     <delete id="deleteProductById">
         delete from t_cart where id = #{id}
+    </delete>
+
+    <delete id="deleteProductByPidAndCid">
+        delete from t_cart where pid = #{pid} and cid =#{cid}
     </delete>
 
 

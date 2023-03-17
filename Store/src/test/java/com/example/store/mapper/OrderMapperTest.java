@@ -6,6 +6,8 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class OrderMapperTest {
 
@@ -24,5 +26,15 @@ public class OrderMapperTest {
         OrderItem orderItem =new OrderItem();
         orderItem.setCreatedUser("test1");
         orderMapper.createOrderItem(orderItem);
+    }
+
+    @Test
+    public void getOrderByOid(){
+        Order orderByOid = orderMapper.getOrderByOid(20);
+    }
+
+    @Test
+    public void getOrderItemByOid(){
+        List<OrderItem> orderItemByOid = orderMapper.getOrderItemByOid(20);
     }
 }

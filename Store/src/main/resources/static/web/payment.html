@@ -6,12 +6,47 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-    transaction success!
+    please finish your transaction !
+    <div>order id is:<span id="orderId"></span></div>
 
+    <button id="pay">confirm payment</button>
 
 
     <script>
+        $(document).ready(function (){
+            var orderId=location.search.substr(1);
 
+            $.ajax({
+                url:"/orders/getOrderByOid",
+                data:orderId,
+                type:"get",
+                dataType:"json",
+
+                success:function (json){
+                    if(json.state==200) {
+                        alert(json.data.oid)
+                        $("#orderId").html(json.data.oid)
+                    }
+                }
+            })
+        })
+        
+        $("#pay").click(function () {
+            alert("paying")
+            var val = $("#orderId").html();
+            alert(val)
+            $.ajax({
+                url:"/orders/updateOrderStatus",
+                data:"oid="+val,
+                type:"get",
+                dataType:"json",
+                success:function (json){
+                    if(json.state==200) {
+                        location.href="success.html"
+                    }
+                }
+            })
+        })
 
     </script>
 

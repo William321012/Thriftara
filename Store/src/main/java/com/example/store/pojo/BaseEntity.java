@@ -7,14 +7,14 @@ import java.util.Objects;
 public class BaseEntity implements Serializable {
 
     private String createdUser;
-    private Date createTime;
+    private Date createdTime;
 
     private String modifiedUser;
     private Date modifiedTime;
 
-    public BaseEntity(String createdUser, Date createTime, String modifiedUser, Date modifiedTime) {
+    public BaseEntity(String createdUser, Date createdTime, String modifiedUser, Date modifiedTime) {
         this.createdUser = createdUser;
-        this.createTime = createTime;
+        this.createdTime = createdTime;
         this.modifiedUser = modifiedUser;
         this.modifiedTime = modifiedTime;
     }
@@ -31,11 +31,11 @@ public class BaseEntity implements Serializable {
     }
 
     public Date getCreateTime() {
-        return createTime;
+        return createdTime;
     }
 
     public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+        this.createdTime = createTime;
     }
 
     public String getModifiedUser() {
@@ -62,7 +62,7 @@ public class BaseEntity implements Serializable {
         BaseEntity that = (BaseEntity) o;
 
         if (!Objects.equals(createdUser, that.createdUser)) return false;
-        if (!Objects.equals(createTime, that.createTime)) return false;
+        if (!Objects.equals(createdTime, that.createdTime)) return false;
         if (!Objects.equals(modifiedUser, that.modifiedUser)) return false;
         return Objects.equals(modifiedTime, that.modifiedTime);
     }
@@ -70,7 +70,7 @@ public class BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         int result = createdUser != null ? createdUser.hashCode() : 0;
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
+        result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         result = 31 * result + (modifiedUser != null ? modifiedUser.hashCode() : 0);
         result = 31 * result + (modifiedTime != null ? modifiedTime.hashCode() : 0);
         return result;
@@ -80,7 +80,7 @@ public class BaseEntity implements Serializable {
     public String toString() {
         return "BaseEntity{" +
                 "createdUser='" + createdUser + '\'' +
-                ", createTime=" + createTime +
+                ", createdTime=" + createdTime +
                 ", modifiedUser='" + modifiedUser + '\'' +
                 ", modifiedTime=" + modifiedTime +
                 '}';

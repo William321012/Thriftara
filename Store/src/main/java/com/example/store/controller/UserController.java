@@ -4,6 +4,7 @@ package com.example.store.controller;
 import com.example.store.controller.exception.*;
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Customer;
+import com.example.store.pojo.Product;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.UsernameDuplicatedException;
@@ -32,9 +33,10 @@ public class UserController extends BaseController {
     @Autowired
     private IUserService userService;
 
+
     @RequestMapping("/reg")
 
-    public JsonResult<Void> reg(Customer customer){
+    public JsonResult<Void> reg(Customer customer) {
         JsonResult<Void> result = new JsonResult<>();
 
         userService.registration(customer);
@@ -45,13 +47,13 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/log")
-    public JsonResult<Customer> log(Customer customer, HttpSession httpSession){
+    public JsonResult<Customer> log(Customer customer, HttpSession httpSession) {
         JsonResult<Customer> result = new JsonResult<>();
         Customer customer1 = userService.login(customer);
 
-        httpSession.setAttribute("customer",customer1);
-        httpSession.setAttribute("cid",customer1.getCid());
-        httpSession.setAttribute("username",customer1.getUsername());
+        httpSession.setAttribute("customer", customer1);
+        httpSession.setAttribute("cid", customer1.getCid());
+        httpSession.setAttribute("username", customer1.getUsername());
 
         result.setState(200);
         result.setMessage("success");
@@ -60,13 +62,13 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/password")
-    public JsonResult<Void> password(String oldPassword, String newPassword, String confirm, HttpSession httpSession){
+    public JsonResult<Void> password(String oldPassword, String newPassword, String confirm, HttpSession httpSession) {
         System.out.println(oldPassword);
         System.out.println(newPassword);
         System.out.println(confirm);
 
         JsonResult<Void> result = new JsonResult<>();
-        String username =(String)httpSession.getAttribute("username");
+        String username = (String) httpSession.getAttribute("username");
 
         userService.changePassword(oldPassword, newPassword, confirm, username);
 
@@ -77,10 +79,10 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/getPersonalInfo")
-    public JsonResult<Customer> getPersonalInfo(HttpServletRequest request){
+    public JsonResult<Customer> getPersonalInfo(HttpServletRequest request) {
         JsonResult<Customer> result = new JsonResult<>();
 
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
 
         Customer customerInfoById = userService.getCustomerInfoById(cid);
 
@@ -95,43 +97,48 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/updateInfo")
-    public JsonResult<Void> updateInfo(Customer customer,HttpServletRequest request){
+    public JsonResult<Void> updateInfo(Customer customer, HttpServletRequest request) {
         JsonResult<Void> result = new JsonResult<>();
 
 //        Integer cid = getIdFromSession(request.getSession());
-        Integer cid= (Integer) request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
         customer.setCid(cid);
         System.out.println(customer);
 
-        String username = (String)request.getSession().getAttribute("username");
+        String username = (String) request.getSession().getAttribute("username");
 
-        userService.updateCustomerInformation(cid,username,customer);
+        userService.updateCustomerInformation(cid, username, customer);
 
         result.setState(200);
         result.setMessage("success");
         return result;
     }
 
-    public static final int AVATAR_MAX_SIZE=10*1024*1024;
+    public static final int AVATAR_MAX_SIZE = 10 * 1024 * 1024;
 
     public static final List<String> AVATAR_TYPE = new ArrayList<>();
 
-    static{
+    static {
         AVATAR_TYPE.add("image/png");
         AVATAR_TYPE.add("image/jpeg");
         AVATAR_TYPE.add("image/gif");
     }
+
     @RequestMapping("/updateAvatar")
-    public JsonResult<String> updateAvatar(HttpServletRequest request, MultipartFile file){
+    public JsonResult<String> updateAvatar(HttpServletRequest request, MultipartFile file) {
         JsonResult<String> result = new JsonResult<>();
 
-        if(file.isEmpty()){throw new FileEmptyException("file is empty");}
+        if (file.isEmpty()) {
+            throw new FileEmptyException("file is empty");
+        }
 
-        if(file.getSize()>AVATAR_MAX_SIZE){throw new FileSizeException("the size of file does not meet the requirement");}
+        if (file.getSize() > AVATAR_MAX_SIZE) {
+            throw new FileSizeException("the size of file does not meet the requirement");
+        }
 
         String contentType = file.getContentType();
 
-        if(!AVATAR_TYPE.contains(contentType)){
+        if (!AVATAR_TYPE.contains(contentType)) {
             throw new FileTypeException("the type of file does not meet the requirement");
         }
 
@@ -139,14 +146,14 @@ public class UserController extends BaseController {
         //create the directory for storing the avatar first ../upload
 //        String upload =  request.getSession().getServletContext().getRealPath("/upload");
 //        System.out.println(upload);
-        String upload= System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+        String upload = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
 
         System.out.println(upload);
 
         File dir = new File(upload);
 
         //create this directory if it does not exist
-        if(!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdirs();
         }
 
@@ -164,29 +171,29 @@ public class UserController extends BaseController {
         String newFileName = UUID.randomUUID().toString().toUpperCase();
 
         //complete whole file name with encryption filename + suffix  ex: xxx +.jpg
-        String newFile= newFileName+suffix;
+        String newFile = newFileName + suffix;
 
         //create a empty file that is under the "dir" directory(/upload) with the file name "newFile"
-        File dest = new File(dir,newFile);
+        File dest = new File(dir, newFile);
 
         //transfer the data from the input file to that empty file "dest"
         try {
             file.transferTo(dest);
-        }catch (FileStateException e){
+        } catch (FileStateException e) {
             throw new FileStateException("the state of file is abnormal");
         } catch (IOException e) {
             throw new FileIOException("IO Exception");
         }
 
 
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username =(String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
 
         //return the path of the file for displaying
         //storing the path of the avatar to the db
 
 //        String avatar="/upload/"+newFile;
-        String avatar="/images/"+newFile;
+        String avatar = "/images/" + newFile;
         userService.updateAvatar(cid, avatar, username);
 
         result.setState(200);
@@ -205,7 +212,7 @@ public class UserController extends BaseController {
     public JsonResult<String> getAvatar(HttpServletRequest request) {
         JsonResult<String> result = new JsonResult<>();
 
-        Customer customer =(Customer) request.getSession().getAttribute("customer");
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
         Integer cid = customer.getCid();
 
         String avatar = userService.getAvatar(cid);
@@ -216,5 +223,8 @@ public class UserController extends BaseController {
         result.setData(avatar);
         return result;
     }
+
+
+
 
 }

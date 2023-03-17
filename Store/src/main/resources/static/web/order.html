@@ -95,7 +95,7 @@
 
                     for(var i=0; i<list.length;i++){
                         var tr=' <tr>\n' +
-                            '                    <td><img src="#{image}"></td>\n' +
+                            '                    <td><img src="#{image}_1.png"></td>\n' +
                             '                    <td>#{title}</td>\n' +
                             '                    <td>$<span>#{unitPrice}</span></td>\n' +
                             '                    <td>#{num}</td>\n' +
@@ -145,7 +145,6 @@
                         option = option.replace("#{city}", list[i].city);
                         option = option.replace("#{state}", list[i].state);
                         option = option.replace("#{phone}", list[i].phone);
-                        alert(option)
                         $("#order_address").append(option);
                     }
 

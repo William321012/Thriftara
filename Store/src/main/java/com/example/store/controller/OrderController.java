@@ -32,4 +32,29 @@ public class OrderController extends BaseController{
 
     }
 
+    @RequestMapping("/getOrderByOid")
+    public JsonResult<Order> getOrderByOid(HttpServletRequest request, Integer oid){
+        JsonResult<Order> jsonResult = new JsonResult<>();
+        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Order order = orderService.getOrder(oid, cid);
+        jsonResult.setState(200);
+        jsonResult.setMessage("success");
+        jsonResult.setData(order);
+
+        return jsonResult;
+
+    }
+
+    @RequestMapping("/updateOrderStatus")
+    public JsonResult<Void> updateOrderStatus(HttpServletRequest request, Integer oid){
+        JsonResult<Void> jsonResult = new JsonResult<>();
+        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        String username = (String)request.getSession().getAttribute("username");
+
+        orderService.updateOrder(cid,oid,username);
+        jsonResult.setState(200);
+        jsonResult.setMessage("success");
+
+        return jsonResult;
+    }
 }

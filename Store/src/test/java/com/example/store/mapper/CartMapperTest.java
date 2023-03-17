@@ -50,6 +50,12 @@ public class CartMapperTest {
     }
     @Test
     public void getCart(){
-        cartMapper.getCartById(2)
+        cartMapper.getCartById(9);
     }
+
+    @Test
+    public void deleteProductByPidAndCid(){
+        cartMapper.deleteProductByPidAndCid(4,3);
+    }
+
 }

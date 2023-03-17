@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+show all products
+
+<div id="allProducts">
+
+</div>
+
+
+<script>
+  $(document).ready(function () {
+    displayAllProductList()
+  })
+
+
+  function displayAllProductList(){
+    $.ajax({
+      url:"/products/getAllProduct",
+      type:"get",
+      dataType:"JSON",
+
+      success:function (json) {
+        if(json.state==200) {
+          var list = json.data;
+          alert(list.length)
+          for (var i = 0; i < list.length; i++) {
+            var html = '<div>'
+                    + '<div><a href="product.html?id=#{id}">#{title}</a></div>'
+                    + '<div>¥#{price}</div>'
+                    + '<div><img src="#{image}_1.png"/></div>'
+                    + '</div>';
+
+            html=html.replace("#{title}", list[i].title);
+            html=html.replace("#{price}",list[i].price);
+            html=html.replace("#{image}", list[i].image);
+            html=html.replace("#{id}", list[i].id);
+            $("#allProducts").append(html);
+          }
+        }
+
+      }
+
+    })
+  }
+</script>
+</body>
+</html>

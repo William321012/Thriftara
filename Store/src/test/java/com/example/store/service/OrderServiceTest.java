@@ -16,4 +16,9 @@ public class OrderServiceTest {
         Integer[] ids= new Integer[]{1,2,3};
         orderService.createOrder(26,"Admin",4, ids);
     }
+
+    @Test
+    public void updateOrder(){
+        orderService.updateOrder(4,20,"admin");
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.store.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class Product extends BaseEntity implements Serializable {
     private Integer id;
+    private Integer cid;
     private Integer categoryId;
     private String itemType;
     private String itemDescription;
@@ -26,6 +28,14 @@ public class Product extends BaseEntity implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCid() {
+        return cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 
     public Integer getCategoryId() {
@@ -149,6 +159,7 @@ public class Product extends BaseEntity implements Serializable {
         Product product = (Product) o;
 
         if (!Objects.equals(id, product.id)) return false;
+        if (!Objects.equals(cid, product.cid)) return false;
         if (!Objects.equals(categoryId, product.categoryId)) return false;
         if (!Objects.equals(itemType, product.itemType)) return false;
         if (!Objects.equals(itemDescription, product.itemDescription))
@@ -171,6 +182,7 @@ public class Product extends BaseEntity implements Serializable {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (cid != null ? cid.hashCode() : 0);
         result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
         result = 31 * result + (itemType != null ? itemType.hashCode() : 0);
         result = 31 * result + (itemDescription != null ? itemDescription.hashCode() : 0);
@@ -192,6 +204,7 @@ public class Product extends BaseEntity implements Serializable {
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", cid=" + cid +
                 ", categoryId=" + categoryId +
                 ", itemType='" + itemType + '\'' +
                 ", itemDescription='" + itemDescription + '\'' +
