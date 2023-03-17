@@ -8,7 +8,7 @@ import Prada from '../logo/pradalogo.jpeg'
 import Supreme from '../logo/Supreme_Logo.png'
 import { images } from '../components/carouselData'
 import { MProducts } from '../products/MensProducts'
-// import { WProducts } from '../products/WomensProducts'
+import { WProducts } from '../products/WomensProducts'
 // import MItem from '../products/MensProductDisplay'
 // import WItem from '../products/WomensProductDisplay'
 import { BsChevronLeft, BsChevronRight, BsCartPlus } from 'react-icons/bs'
@@ -17,7 +17,6 @@ import { BsChevronLeft, BsChevronRight, BsCartPlus } from 'react-icons/bs'
 function Home() {
 
   const [currentImage, setCurrentImage] = useState(0)
-  const [mproducts] = useState(MProducts)
   const [cart, setCart] = useState()
 
   return (
@@ -50,24 +49,30 @@ function Home() {
           ))} */}
           {/* </section> */}
           <section className='products'>
-          {mproducts.map((product, index) => (
-            <div className='mproducts' key={index}>
-              <img src={product.image} alt='product images' style={{ width: 200, height: 200 }} />
-              <h4>{product.title}</h4>
-              <p>Price: ${product.unitPrice}</p>
-              <button ><BsCartPlus /></button>
-            </div>
-          ))}
+            {MProducts.map((product) => (
+              <div className='product-items' key={product.id}>
+                <div className='item-img'><img src={product.image} alt={product.title} style={{ width: 200, height: 200 }} /></div>
+                <div className='item-name'><h4>{product.title}</h4></div>
+                <div className='item-price'><p>Price: ${product.unitPrice}</p></div>
+                <button className='add-cart-btn'>Add To Cart <BsCartPlus size={20}/></button>
+              </div>
+            ))}
           </section>
         </section>
 
         <section className='womens'>
           <Link to='/womens'><h3>Womenswear</h3></Link>
-          {/* <section className='products'>
+          <section className='products'>
             {WProducts.map((product) => (
-              <WItem data={product} />
+              <div className='product-items' key={product.id}>
+                <div className='item-img'><img src={product.image} alt={product.title} style={{ width: 200, height: 250 }}/></div>
+                <div className='item-name'><h4>{product.title}</h4></div>
+                <div className='item-price'><p>Price: ${product.unitPrice}</p></div>
+                {/* add onClick function to add to cart */}
+                <button className='add-cart-btn'>Add To Cart <BsCartPlus size={20}/></button>
+              </div>
             ))}
-          </section> */}
+          </section>
         </section>
 
         <section className='recommendations'>

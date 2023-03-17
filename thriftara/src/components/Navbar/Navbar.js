@@ -21,10 +21,10 @@ function Navbar() {
         </Link>
         <div className="search-bar">
           <form>
-{/* <<<<<<< HEAD */}
+            {/* <<<<<<< HEAD */}
             <input type="text" placeholder='Search...' className='search-text' />
             <button type='submit' className='search-btn'><BsSearch /></button>
-{/* =======
+            {/* =======
             <input
               type="text"
               placeholder="Search..."
@@ -36,7 +36,7 @@ function Navbar() {
 >>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0 */}
           </form>
         </div>
-        <ul className="topnav">
+        <section className="topnav">
           <Link to="/pages/Sell">
             <button>Sell</button>
           </Link>
@@ -46,18 +46,20 @@ function Navbar() {
           <Link to="/pages/Signup">
             <button>Signup</button>
           </Link>
-          <li>
-            <Link to="/cart">
-              <BsCart4 size={20} />
-            </Link>
-          </li>
-        </ul>
+          <Link to="/cart">
+            <BsCart4 size={20} />
+          </Link>
+        </section>
       </div>
+
       <div className="navbar-btm">
         <ul className="bottomnav">
-          <li className="brands">
-            <Link to="/brands">
-              Brands
+
+          <section className='brands'>
+            <li className="brands">
+              <Link to="/brands">
+                Brands
+              </Link>
               <div className="links">
                 <ul className="drop">
                   <li>
@@ -77,29 +79,38 @@ function Navbar() {
                   </li>
                 </ul>
               </div>
-            </Link>
-          </li>
-          <li className="mens">
-            <Link to="/mens">
-              Menswear
+            </li>
+          </section>
+
+          <section className='menswear'>
+            <li className="mens">
+              <Link to="/mens">
+                Menswear
+              </Link>
               <ul className="drop">
-                <li>Tops</li>
-                <li>Bottoms</li>
+                <li><Link to="/mens/tops">Tops</Link></li>
+                <li><Link to="/mens/bottoms">Bottoms</Link></li>
               </ul>
-            </Link>
-          </li>
-          <li className="womens">
-            <Link to="/womens">
-              Womenswear
+            </li>
+          </section>
+
+          <section className='menswear'>
+            <li className="mens">
+              <Link to="/mens">
+                Menswear
+              </Link>
               <ul className="drop">
-                <li>Tops</li>
-                <li>Bottoms</li>
+                <li><Link to="/womens/tops">Tops</Link></li>
+                <li><Link to="/womens/bottoms">Bottoms</Link></li>
               </ul>
-            </Link>
-          </li>
-          <li>
-            <Link to="/pages/about">About</Link>
-          </li>
+            </li>
+          </section>
+
+          <section className='about-page'>
+            <li>
+              <Link to="/pages/about">About</Link>
+            </li>
+          </section>
         </ul>
       </div>
     </>
