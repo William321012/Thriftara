@@ -55,6 +55,10 @@
         update t_order set status = 1, pay_time=#{payTime}, modified_user=#{modifiedUser},modified_time=#{modifiedTime}  where oid =#{oid}
     </update>
 
+    <select id="displayAllOrdersByCid" resultMap="resultMapOrder">
+        select * from t_order where cid=#{cid} and status= 1;
+    </select>
+
 
 
 

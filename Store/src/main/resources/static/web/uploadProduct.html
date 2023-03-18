@@ -100,11 +100,9 @@
 
       success:function (json){
         if(json.state == 200) {
-          alert(json.data);
           $("#img_product").attr("src", json.data);
         }
       }
-
     })
   })
 

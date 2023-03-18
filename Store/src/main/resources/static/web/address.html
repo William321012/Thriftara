@@ -43,7 +43,7 @@
                 if(json.state==200) {
                     var list = json.data;
                     for (var i = 0; i < list.length; i++) {
-                        var address = list[i].state + "-" + list[i].city + "-" + list[i].address + "-" + list[i].zip;
+                        var address =list[i].address + "-" + list[i].city + "-"+ list[i].state + "-"  + list[i].zip;
                         var tr = '<tr>\n' +
                             '          <td>#{name}</td>\n' +
                             '          <td>#{address}</td>\n' +

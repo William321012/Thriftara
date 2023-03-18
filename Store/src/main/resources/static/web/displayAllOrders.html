@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+<div>
+  <table id="order">
+    <thead>
+    <tr>
+      <th>orderNo</th>
+      <th>recipient</th>
+      <th>address</th>
+      <th>total</th>
+      <th>date</th>
+      <th>operation</th>
+    </tr>
+    </thead>
+    <tbody id="orderBody">
+
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function () {
+            displayAllOrder();
+
+  })
+
+  function displayAllOrder(){
+    $.ajax({
+      url:"/orders/displayAllOrder",
+      type:"get",
+      dataType:"json",
+      success:function (json) {
+        if (json.state == 200) {
+          var list = json.data
+
+          for(var i=0; i<list.length;i++){
+            var address =list[i].receiverAddress + "-" + list[i].receiverCity + "-"+ list[i].receiverState + "-"  + list[i].receiverZip;
+            var tr = '<tr>\n' +
+                    '          <td>#{oid};</td>\n' +
+                    '          <td>#{receiverName}</td>\n' +
+                    '          <td>#{address}</td>\n' +
+                    '          <td>#{totalPrice}</td>\n' +
+                    '          <td>#{date}</td>\n' +
+                    '          <td><button onclick="orderDetail(#{oid})" id="orderDetail">detail</button></td>\n' +
+                    '      </tr>';
+
+            tr = tr.replaceAll("#{oid}", list[i].oid);
+            tr = tr.replace("#{address}", address);
+            tr = tr.replace("#{receiverName}", list[i].receiverName);
+            tr = tr.replace("#{totalPrice}", list[i].totalPrice);
+            tr = tr.replaceAll("#{date}", list[i].orderTime);
+
+            $("#orderBody").append(tr);
+          }
+
+        }
+      }
+    })
+  }
+
+  function orderDetail(oid){
+    location.href = 'orderDetail.html?oid='+oid+'';
+  }
+</script>
+
+</body>
+</html>

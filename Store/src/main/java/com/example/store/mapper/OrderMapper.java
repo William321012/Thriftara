@@ -14,7 +14,8 @@ public interface OrderMapper {
     Integer createOrderItem(OrderItem orderItem);
     Order getOrderByOid(Integer oid);
     Integer updateOrder(Date payTime, String modifiedUser, Date modifiedTime, Integer oid);
-
     List<OrderItem> getOrderItemByOid(Integer oid);
+
+    List<Order> displayAllOrdersByCid(Integer cid);
 
 }

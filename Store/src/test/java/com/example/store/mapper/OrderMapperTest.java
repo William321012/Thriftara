@@ -30,11 +30,17 @@ public class OrderMapperTest {
 
     @Test
     public void getOrderByOid(){
-        Order orderByOid = orderMapper.getOrderByOid(20);
+        Order orderByOid = orderMapper.getOrderByOid(31);
     }
 
     @Test
     public void getOrderItemByOid(){
         List<OrderItem> orderItemByOid = orderMapper.getOrderItemByOid(20);
     }
+    
+    @Test
+    public void displayAllOrdersByCid(){
+        List<Order> orders = orderMapper.displayAllOrdersByCid(4);
+    }
 }
+

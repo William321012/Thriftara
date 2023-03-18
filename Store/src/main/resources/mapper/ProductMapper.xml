@@ -48,9 +48,9 @@
 
     <insert id="uploadProduct" useGeneratedKeys="true" keyProperty="id">
         insert into t_product (cid,item_type, item_description, title,num,image,item_status, priority, brand, size,
-                               item_condition, color, gender, created_time, created_user, modified_user,modified_time)
+                               item_condition, color, gender, created_time, created_user, modified_user,modified_time,price)
         values(#{cid},#{itemType},#{itemDescription},#{title},#{num},#{image},#{itemStatus},#{priority},#{brand},
-               #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime})
+               #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime},#{price})
     </insert>
 
 

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,6 +79,8 @@ public class ProductController extends BaseController{
         JsonResult<Void> result = new JsonResult<>();
 //        List<String> images = new ArrayList<>();
         int count=1;
+
+        System.out.println(price);
 
         Integer cid=(Integer)request.getSession().getAttribute("cid");
 
@@ -175,6 +178,12 @@ public class ProductController extends BaseController{
         product.setItemCondition(status);
         product.setColor(color);
         product.setGender(Integer.parseInt(gender));
+
+        String username=(String)request.getSession().getAttribute("username");
+        product.setCreatedUser(username);
+        product.setCreateTime(new Date());
+        product.setModifiedUser(username);
+        product.setModifiedTime(new Date());
 
         System.out.println(product);
 
