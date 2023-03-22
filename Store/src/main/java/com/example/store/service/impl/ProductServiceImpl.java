@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ProductServideImpl implements IProductService {
+public class ProductServiceImpl implements IProductService {
 
     @Resource
     ProductMapper productMapper;
@@ -63,5 +63,16 @@ public class ProductServideImpl implements IProductService {
         }
     }
 
+    @Override
+    public List<Product> getProductByCategory(String category) {
+        List<Product> productByCategory = productMapper.getProductByCategory(category);
+        return productByCategory;
+    }
 
+    @Override
+    public List<Product> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders) {
+        List<Product> productByFilter = productMapper.getProductByFilter(category, brands, sizes, conditions, genders);
+        return productByFilter;
+
+    }
 }

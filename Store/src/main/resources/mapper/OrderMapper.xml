@@ -59,7 +59,16 @@
         select * from t_order where cid=#{cid} and status= 1;
     </select>
 
+    <select id="getAllOrders"  resultMap="resultMapOrder">
+        select * from t_order;
+    </select>
 
+    <delete id="deleteOrder">
+        delete from t_order where oid=#{oid} and status=0
+    </delete>
 
+    <delete id="deleteOrderItem">
+        delete from t_order_item where oid=#{oid}
+    </delete>
 
 </mapper>

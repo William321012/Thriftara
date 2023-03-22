@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+
+        .hide{
+            display: none;
+        }
+
+    </style>
+</head>
+
+<div id="filter">
+    brand: <br>
+    Nike<input type="checkbox" id="Nike" onclick="updateFilter()"><br>
+    Supreme<input type="checkbox" id="Supreme" onclick="updateFilter()"><br>
+    Prada<input type="checkbox" id="Prada" onclick="updateFilter()"><br>
+    Gucci<input type="checkbox" id="Gucci" onclick="updateFilter()"><br>
+
+    size:<br>
+    S:<input type="checkbox" id="S" onclick="updateFilter()"><br>
+    M:<input type="checkbox" id="M" onclick="updateFilter()"><br>
+    L:<input type="checkbox" id="L" onclick="updateFilter()"><br>
+    XL:<input type="checkbox" id="XL" onclick="updateFilter()"><br>
+
+    condition:<br>
+    New:<input type="checkbox" id="New" onclick="updateFilter()"><br>
+    Like New:<input type="checkbox" id="LikeNew" onclick="updateFilter()"><br>
+    Very good:<input type="checkbox" id="VeryGood" onclick="updateFilter()"><br>
+    Good:<input type="checkbox" id="Good" onclick="updateFilter()"><br>
+    Fair:<input type="checkbox" id="Fair" onclick="updateFilter()"><br>
+
+    gender:<br>
+    Male:<input type="checkbox" id="Male" onclick="updateFilter()"><br>
+    Female:<input type="checkbox" id="Female" onclick="updateFilter()"><br>
+</div>
+
+
+<div id="content" class="content">
+
+</div>
+<body>
+<script>
+    // function updateFilter() {
+    //     var brand = new Set();
+    //     if (document.getElementById("Nike").checked == true) {
+    //         brand.add("Nike".toLowerCase());
+    //     }
+    //
+    //     if (document.getElementById("Supreme").checked == true) {
+    //         brand.add("Supreme".toLowerCase());
+    //     }
+    //
+    //     if (document.getElementById("Prada").checked == true) {
+    //         brand.add("Prada".toLowerCase());
+    //     }
+    //
+    //     if (document.getElementById("Gucci").checked == true) {
+    //         brand.add("Gucci".toLowerCase());
+    //     }
+    //
+    //     var size = new Set();
+    //     if (document.getElementById("S").checked == true) {
+    //         size.add("S".toLowerCase());
+    //     }
+    //     if (document.getElementById("M").checked == true) {
+    //         size.add("M".toLowerCase());
+    //     }
+    //     if (document.getElementById("L").checked == true) {
+    //         size.add("L".toLowerCase());
+    //     }
+    //     if (document.getElementById("XL").checked == true) {
+    //         size.add("XL".toLowerCase());
+    //     }
+    //
+    //     var items = new Set();
+    //     var content = document.getElementById("content");
+    //
+    //     if (brand.size == 0) {
+    //         for (var i = 0; i < content.children.length; i++) {
+    //             items.add(content.children[i]);
+    //         }
+    //     } else {
+    //         for (var i = 0; i < content.children.length; i++) {
+    //             if (brand.has(content.children[i].children[3].innerText.trim().toLowerCase())) {
+    //                 items.add(content.children[i]);
+    //             }
+    //         }
+    //     }
+    //
+    //     var items2;
+    //     if (size.size == 0) {
+    //         items2 = new Set(items);
+    //     } else {
+    //         items2 = new Set();
+    //
+    //         for (var i of items2) {
+    //             if (size.has(i.children[4].innerText.trim().toLowerCase())) {
+    //                 items2.add(i);
+    //             }
+    //         }
+    //     }
+    //
+    //
+    //     for (var i = 0; i < content.children.length; i++) {
+    //         if (items2.has(content.children[i])) {
+    //             content.children[i].classList.remove("hide");
+    //         }else{
+    //             content.children[i].classList.add("remove");
+    //         }
+    //     }
+    //
+    // }
+
+    function updateFilter() {
+        // var filterObject = {
+        //     brand: [],
+        //     size: [],
+        //     condition:[],
+        //     gender:[],
+        // };
+        //
+        // if ($("#Nike").prop('checked')) {
+        //     filterObject["brand"].push("Nike");
+        // }
+        //
+        // if ($("#Supreme").prop('checked')) {
+        //     filterObject["brand"].push("Supreme");
+        // }
+        //
+        // if ($("#Prada").prop('checked')) {
+        //     filterObject["brand"].push("Prada");
+        // }
+        //
+        // if ($("#Gucci").prop('checked')) {
+        //     filterObject["brand"].push("Gucci");
+        // }
+        //
+        // if ($("#S").prop('checked')) {
+        //     filterObject["size"].push("S");
+        // }
+        // if ($("#M").prop('checked')) {
+        //     filterObject["size"].push("M");
+        // }
+        // if ($("#L").prop('checked')) {
+        //     filterObject["size"].push("L");
+        // }
+        // if ($("#XL").prop('checked')) {
+        //     filterObject["size"].push("XL");
+        // }
+        // if ($("#New").prop('checked')) {
+        //     filterObject["condition"].push("1");
+        // }
+        // if ($("#LikeNew").prop('checked')) {
+        //     filterObject["condition"].push("2");
+        // }
+        // if ($("#VeryGood").prop('checked')) {
+        //     filterObject["condition"].push("3");
+        // }
+        // if ($("#Good").prop('checked')) {
+        //     filterObject["condition"].push("4");
+        // }
+        // if ($("#Fair").prop('checked')) {
+        //     filterObject["condition"].push("5");
+        // }
+        // if ($("#Male").prop('checked')) {
+        //     filterObject["gender"].push("1");
+        // }
+        // if ($("#Female").prop('checked')) {
+        //     filterObject["gender"].push("2");
+        // }
+
+        var brand = [];
+        if ($("#Nike").prop('checked')) {
+                brand.push("Nike");
+        }
+        if ($("#Supreme").prop('checked')) {
+            brand.push("Supreme");
+        }
+        if ($("#Prada").prop('checked')) {
+            brand.push("Prada");
+        }
+        if ($("#Gucci").prop('checked')) {
+            brand.push("Gucci");
+        }
+
+        var size= [];
+        if ($("#S").prop('checked')) {
+            size.push("1");
+        }
+        if ($("#M").prop('checked')) {
+            size.push("2");
+        }
+        if ($("#L").prop('checked')) {
+            size.push("3");
+        }
+        if ($("#XL").prop('checked')) {
+            size.push("4");
+        }
+
+        var condition=[];
+        if ($("#New").prop('checked')) {
+            condition.push("1");
+        }
+        if ($("#LikeNew").prop('checked')) {
+            condition.push("2");
+        }
+        if ($("#VeryGood").prop('checked')) {
+            condition.push("3");
+        }
+        if ($("#Good").prop('checked')) {
+            condition.push("4");
+        }
+        if ($("#Fair").prop('checked')) {
+            condition.push("5");
+        }
+        var gender =[];
+        if ($("#Male").prop('checked')) {
+            gender.push("1");
+        }
+        if ($("#Female").prop('checked')) {
+            gender.push("2");
+        }
+
+
+
+        var vars = window.location.search.substring(1);
+        var id = vars.substring(vars.lastIndexOf("=") + 1).trim();
+
+        $("#content").empty();
+        $.ajax({
+            url: "/products/getProductByFilter",
+            data: "category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender,
+            type: "post",
+            dataType: "json",
+
+            success:function (json) {
+                if(json.state==200) {
+                    var list = json.data;
+                    alert(list.length)
+                    for (var i = 0; i < list.length; i++) {
+                        var html = '<div>'
+                            + '<div><img src="#{image}_1.png"/></div>'
+                            + '<div><a href="product.html?id=#{id}">#{title}</a></div>'
+                            + '<div>$#{price}</div>'
+                            + '<div>#{brand}</div>'
+                            + '<div>#{size}</div>'
+                            + '</div>';
+
+                        html=html.replace("#{title}", list[i].title);
+                        html=html.replace("#{price}",list[i].price);
+                        html=html.replace("#{brand}", list[i].brand);
+                        if(list[i].size == "1"){
+                            var size = "S";
+                        }else if(list[i].size == "2"){
+                            var size = "M";
+                        }else if(list[i].size == "3"){
+                            var size = "L";
+                        }else if(list[i].size == "4"){
+                            var size = "XL";
+                        }
+                        html=html.replace("#{size}", size);
+                        html=html.replace("#{image}", list[i].image);
+                        html=html.replace("#{id}", list[i].id);
+                        $("#content").append(html);
+                    }
+                }else if (json.state == 8001) {
+                    location.href = "index.html";
+                } else {
+                    alert("Failed to obtain commodity information. Procedure！" + json.message);
+                }
+            }
+        })
+
+    }
+
+
+
+    $(document).ready(function (){
+
+        var vars = window.location.search.substring(1);
+        var id=vars.substring(vars.lastIndexOf("=")+1).trim();
+        alert("vars= "+id);
+
+        $.ajax({
+          url:"/products/getProductByCategory",
+          data:"category="+id,
+          type:"post",
+          dataType:"json",
+
+          success:function (json) {
+              if(json.state==200) {
+                  var list = json.data;
+                  alert(list.length)
+                  for (var i = 0; i < list.length; i++) {
+                      var html = '<div>'
+                          + '<div><img src="#{image}_1.png"/></div>'
+                          + '<div><a href="product.html?id=#{id}">#{title}</a></div>'
+                          + '<div>$#{price}</div>'
+                          + '<div>#{brand}</div>'
+                          + '<div>#{size}</div>'
+                          + '</div>';
+
+                      html=html.replace("#{title}", list[i].title);
+                      html=html.replace("#{price}",list[i].price);
+                      html=html.replace("#{brand}", list[i].brand);
+                      if(list[i].size == "1"){
+                          var size = "S";
+                      }else if(list[i].size == "2"){
+                          var size = "M";
+                      }else if(list[i].size == "3"){
+                          var size = "L";
+                      }else if(list[i].size == "4"){
+                          var size = "XL";
+                      }
+                      html=html.replace("#{size}", size);
+                      html=html.replace("#{image}", list[i].image);
+                      html=html.replace("#{id}", list[i].id);
+                      $("#content").append(html);
+                  }
+              }else if (json.state == 8001) {
+              location.href = "index.html";
+            } else {
+              alert("Failed to obtain commodity information. Procedure！" + json.message);
+            }
+          }
+        })
+    })
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -41,6 +42,12 @@ public class OrderMapperTest {
     @Test
     public void displayAllOrdersByCid(){
         List<Order> orders = orderMapper.displayAllOrdersByCid(4);
+    }
+
+    @Test
+    public void deleteOrder(){
+        orderMapper.deleteOrder(23);
+        orderMapper.deleteOrderItem(23);
     }
 }
 

@@ -150,13 +150,19 @@ public class ProductController extends BaseController{
         Product product = new Product();
         switch (category) {
             case "1":
-                product.setItemType("skirt");
+                product.setItemType("Tops");
                 break;
             case "2":
-                product.setItemType("t_shirt");
+                product.setItemType("Bottoms");
                 break;
             case "3":
-                product.setItemType("blouse");
+                product.setItemType("Outerwear");
+                break;
+            case "4":
+                product.setItemType("Footwear");
+                break;
+            case "5":
+                product.setItemType("Accessories");
                 break;
 
             default:
@@ -194,6 +200,43 @@ public class ProductController extends BaseController{
         result.setMessage("success");
         return result;
     }
+
+    @RequestMapping("/getProductByCategory")
+    public JsonResult<List<Product>> getProductByCategory(String category){
+        JsonResult<List<Product>> result = new JsonResult<>();
+
+        List<Product> productByCategory = productService.getProductByCategory(category);
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(productByCategory);
+
+
+        return result;
+    }
+
+//    category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender,
+    @RequestMapping("/getProductByFilter")
+    public JsonResult<List<Product>> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders){
+        JsonResult<List<Product>> result = new JsonResult<>();
+        String pcategory = category;
+        String[] pbrands = brands;
+        String[] psizes = sizes;
+        String[] pconditions = conditions;
+        Integer[] pgenders=genders;
+//        Integer[] pgenders = new Integer[10];
+//        for(int i=0; i<genders.length;i++){
+//            pgenders[i]=Integer.parseInt(genders[i]);
+//        }
+
+        List<Product> productByFilter = productService.getProductByFilter(pcategory, pbrands, psizes, pconditions, pgenders);
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(productByFilter);
+
+        return result;
+    }
+
 
 
 

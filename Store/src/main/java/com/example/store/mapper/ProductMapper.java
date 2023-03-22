@@ -18,4 +18,8 @@ public interface ProductMapper {
     List<Product> selectAllProduct();
 
     Integer uploadProduct(Product product);
+
+    List<Product> getProductByCategory(String category);
+
+    List<Product> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders);
 }

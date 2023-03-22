@@ -18,4 +18,10 @@ public interface OrderMapper {
 
     List<Order> displayAllOrdersByCid(Integer cid);
 
+    List<Order> getAllOrders();
+
+    Integer deleteOrder(Integer oid);
+
+    Integer deleteOrderItem(Integer oid);
+
 }
