@@ -48,10 +48,51 @@
 
     <insert id="uploadProduct" useGeneratedKeys="true" keyProperty="id">
         insert into t_product (cid,item_type, item_description, title,num,image,item_status, priority, brand, size,
-                               item_condition, color, gender, created_time, created_user, modified_user,modified_time)
+                               item_condition, color, gender, created_time, created_user, modified_user,modified_time,price)
         values(#{cid},#{itemType},#{itemDescription},#{title},#{num},#{image},#{itemStatus},#{priority},#{brand},
-               #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime})
+               #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime},#{price})
     </insert>
+
+    <select id="getProductByCategory" resultMap="resultMapProduct">
+        select * from t_product where item_type =#{category}
+    </select>
+
+<!--    List<Product> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders);-->
+
+    <select id="getProductByFilter" resultMap="resultMapProduct">
+        select * from t_product
+        where
+            item_type =#{category}
+
+        <if test="brands!=null and brands.length>0">
+            and brand IN
+            <foreach collection="brands" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="sizes!=null and sizes.length>0">
+            and size IN
+            <foreach collection="sizes" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="conditions!=null and conditions.length>0">
+            and item_condition IN
+            <foreach collection="conditions" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+        <if test="genders!=null and genders.length>0">
+            and gender IN
+            <foreach collection="genders" item="value" separator="," open="(" close=")">
+                #{value}
+            </foreach>
+        </if>
+
+    </select>
 
 
 

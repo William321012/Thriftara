@@ -186,5 +186,25 @@ public class OrderServiceImpl implements IOrderService {
 
     }
 
+    @Override
+    public List<OrderItem> getOrderItemByOid(Integer oid, Integer cid, String username) {
+        Order orderByOid = orderMapper.getOrderByOid(oid);
+        if(orderByOid.getCid()!=cid){
+            throw new OrderNotFoundException("illegal order");
+        }
+
+        List<OrderItem> orderItemByOid = orderMapper.getOrderItemByOid(oid);
+
+        return orderItemByOid;
+    }
+
+    @Override
+    public List<Order> displayAllOrdersByCid(Integer cid) {
+        List<Order> orders = orderMapper.displayAllOrdersByCid(cid);
+        if(orders == null){
+            throw new OrderNotFoundException("order is not found");
+        }
+        return orders;
+    }
 
 }

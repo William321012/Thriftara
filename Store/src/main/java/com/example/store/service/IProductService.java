@@ -12,4 +12,9 @@ public interface IProductService {
     List<Product> getAllProduct();
 
     void uploadProduct(Product product);
+
+    List<Product> getProductByCategory(String category);
+
+    List<Product >getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders);
+
 }

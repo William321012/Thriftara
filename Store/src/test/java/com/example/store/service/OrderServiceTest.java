@@ -21,4 +21,9 @@ public class OrderServiceTest {
     public void updateOrder(){
         orderService.updateOrder(4,20,"admin");
     }
+
+    @Test
+    public void getOrderItemByOid(){
+        orderService.getOrderItemByOid(23,4,"admin");
+    }
 }

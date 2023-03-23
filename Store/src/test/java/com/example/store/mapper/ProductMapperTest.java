@@ -37,4 +37,23 @@ public class ProductMapperTest {
         product.setImage("aabb");
         Integer integer = productMapper.uploadProduct(product);
     }
+
+    @Test
+    public void getProductByCategory(){
+        productMapper.getProductByCategory("Tops");
+    }
+
+    @Test
+    public void getProductByFilter(){
+        String[] brands= {"Nike"};
+//        String[] sizes= {"1"};
+//        String[] conditions= {"1"};
+//        Integer[] gender= {1};
+
+        String[] sizes= {};
+        String[] conditions= {};
+        Integer[] gender= {};
+
+        List<Product> tops = productMapper.getProductByFilter("Tops", brands, null, conditions, gender);
+    }
 }

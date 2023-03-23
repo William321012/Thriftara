@@ -10,6 +10,10 @@
 <div id="title"></div>
 <div id="description"></div>
 <div id="product_price"></div>
+<div id="gender">
+    gender: M<input type="radio" name="gender" id="genderM" value="1" disabled="true">  F<input type="radio" name="gender" id="genderF" value="2" disabled="true">
+
+</div>
 <div id="image_container"><img src="" alt="" id="product_image"></div>
 
 <div >
@@ -45,9 +49,13 @@
                 if(json.state==200) {
                     $("#title").html(json.data.title)
                     $("#description").html(json.data.itemDescription)
-                    $("#product_price").html(json.data.price)
+                    var price='$'+json.data.price;
+                    $("#product_price").html(price)
                     var image =json.data.image+"_1.png"
                     $("#product_image").attr("src",image)
+
+                    var radio = json.data.gender==1 ? $("#genderM") : $("#genderF")
+                    radio.prop("checked","checked")
 
                 }else if (json.state == 8001) {
                     location.href = "index.html";
@@ -57,6 +65,7 @@
             }
         })
     })
+
 
 
     $("#addToCart").click(function () {

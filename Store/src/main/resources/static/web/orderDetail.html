@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>image&nbsp;</th>
+        <th>title&nbsp;</th>
+        <th>unit/price&nbsp;</th>
+        <th>num&nbsp;</th>
+        <th>sum</th>
+    </tr>
+    </thead>
+
+    <tbody id="orderDetailContent">
+    </tbody>
+
+    <div>
+        <span id="totalCount"></span>
+    </div>
+
+    <div><span id="totalPrice"></span></div>
+
+</table>
+
+<a href="displayAllOrders.html">go back</a>
+
+<script>
+    $(document).ready(function () {
+        displayOrderDetail();
+
+    })
+
+    function displayOrderDetail() {
+        var totalCount=0;
+        var totalPrice=0;
+        $.ajax({
+            url: "/orders/getOrderItemByOid",
+            type: "get",
+            data: location.search.substr(1),
+            dataType: "json",
+
+            success:function (json) {
+                if(json.state==200) {
+                    var list=json.data
+                    for(var i=0; i<list.length;i++) {
+                        var tr = ' <tr>\n' +
+                            '            <td><image src="#{image}_1.png"></image></td>\n' +
+                            '            <td>#{title}</td>\n' +
+                            '            <td>$ <span id="unitPrice#{id}">#{unitPrice}</span></td>\n' +
+                            '            <td>#{num}</td>\n' +
+                            '            <td><span id="sum#{id}">#{sum}</span></td>\n' +
+                            '        </tr>'
+
+                        tr = tr.replaceAll("#{id}", list[i].id);
+                        tr = tr.replace("#{image}", list[i].image);
+                        tr = tr.replace("#{title}", list[i].title);
+                        tr = tr.replace("#{unitPrice}", list[i].unitPrice);
+                        tr = tr.replace("#{sum}", list[i].num * list[i].unitPrice);
+                        tr = tr.replace("#{num}", list[i].num);
+
+                        $("#orderDetailContent").append(tr)
+                        totalCount+=list[i].num;
+                        totalPrice+=list[i].num * list[i].unitPrice;
+                    }
+                    $("#totalCount").html(totalCount);
+                    $("#totalPrice").html(totalPrice);
+
+
+                }else if (json.state == 8001) {
+                    location.href = "index.html";
+                } else {
+                    alert("Failed to obtain commodity information. Procedure！" + json.message);
+                }
+            }
+        })
+    }
+</script>
+
+</body>
+</html>
