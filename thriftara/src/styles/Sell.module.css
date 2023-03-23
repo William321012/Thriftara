@@ -1,0 +1,6 @@
+/* Can you this in the jsx to access css modules while using bootstrap.
+className={`form-control ${styles.buttons}`} */
+
+/* .buttons {
+  background-color: black;
+} */

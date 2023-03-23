@@ -1,23 +1,38 @@
 import React from "react";
 // import styles from "../styles/Sell.module.css";
 // import { Link } from "react-router-dom";
+import SellNewItem from "../components/SellNewItem/SellNewItem";
 
 class Sell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      option: 1,
+      option1: true,
+      option2: false,
+      option3: false,
     };
   }
 
-  changeOption(option) {
-    this.option = option;
-  }
-
-  generateComponent() {
-    if (this.option === 1) {
-    } else if (this.option === 2) {
-    } else if (this.option === 3) {
+  //Used for conditional rendering. Used states because if-else statements do work is jsx.
+  changeOption(value) {
+    if (value === 1) {
+      this.setState({
+        option1: true,
+        option2: false,
+        option3: false,
+      });
+    } else if (value === 2) {
+      this.setState({
+        option1: false,
+        option2: true,
+        option3: false,
+      });
+    } else if (value === 3) {
+      this.setState({
+        option1: false,
+        option2: false,
+        option3: true,
+      });
     }
   }
 
@@ -30,19 +45,70 @@ class Sell extends React.Component {
               <div className="col-2 align-middle">
                 <button
                   onClick={this.changeOption.bind(this, 1)}
-                  className="form-control my-auto"
+                  className="form-control"
+                  style={{
+                    marginTop: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+
+                    marginBottom: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+                  }}
                 >
                   For Sale
                 </button>
                 <button
                   onClick={this.changeOption.bind(this, 2)}
-                  className="form-control my-auto"
+                  className="form-control"
+                  style={{
+                    marginTop: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+
+                    marginBottom: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+                  }}
                 >
                   Sold
                 </button>
                 <button
                   onClick={this.changeOption.bind(this, 3)}
-                  className="form-control my-auto"
+                  className="form-control"
+                  style={{
+                    marginTop: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+
+                    marginBottom: this.state.option1
+                      ? "50px"
+                      : null || this.state.option2
+                      ? "50px"
+                      : null || this.state.option3
+                      ? "50px"
+                      : null,
+                  }}
                 >
                   Sell New Item
                 </button>
@@ -50,7 +116,11 @@ class Sell extends React.Component {
 
               <div className="col-10">
                 <div className="card">
-                  <div className="card-body"></div>
+                  <div className="card-body">
+                    {this.state.option1 ? <h1>Option 1</h1> : null}
+                    {this.state.option2 ? <h1>Option 2</h1> : null}
+                    {this.state.option3 ? <SellNewItem /> : null}
+                  </div>
                 </div>
               </div>
             </div>
