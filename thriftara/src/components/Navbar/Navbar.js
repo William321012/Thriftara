@@ -101,7 +101,7 @@ function Navbar() {
               </Link>
               <ul className="drop">
                 <li><Link to="/womens/tops">Tops</Link></li>
-                <li><Link to="/womens/bottoms">Bottoms</Link></li>
+                <li><Link to="/wo2mens/bottoms">Bottoms</Link></li>
               </ul>
             </li>
           </section>
