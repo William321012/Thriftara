@@ -4,13 +4,6 @@ import './Navbar.css'
 import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
 import { BsCart4, BsSearch } from 'react-icons/bs'
-// =======
-// import React from "react";
-// import "./Navbar.css";
-// import Logo from "../../logo/logo.png";
-// import { Link } from "react-router-dom";
-// import { BsCart4 } from "react-icons/bs";
-// >>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0
 
 function Navbar() {
   return (
@@ -21,32 +14,21 @@ function Navbar() {
         </Link>
         <div className="search-bar">
           <form>
-            {/* <<<<<<< HEAD */}
             <input type="text" placeholder='Search...' className='search-text' />
             <button type='submit' className='search-btn'><BsSearch /></button>
-            {/* =======
-            <input
-              type="text"
-              placeholder="Search..."
-              className="search-text"
-            />
-            <button type="submit" className="search-btn">
-              Search
-            </button>
->>>>>>> 056522fe55a5b01232262e1d09f34a0129ac99b0 */}
           </form>
         </div>
         <section className="topnav">
-          <Link to="/pages/Sell">
+          <Link to="/pages/Sell" class="text-light" style={{ textDecoration: 'none' }}>
             <button>Sell</button>
           </Link>
-          <Link to="/pages/Login">
+          <Link to="/pages/Login" class="text-light" style={{ textDecoration: 'none' }}>
             <button>Login</button>
           </Link>
-          <Link to="/pages/Signup">
+          <Link to="/pages/Signup" class="text-light" style={{ textDecoration: 'none' }}>
             <button>Signup</button>
           </Link>
-          <Link to="/cart">
+          <Link to="/cart" class="text-light" style={{ textDecoration: 'none' }}>
             <BsCart4 size={20} />
           </Link>
         </section>
@@ -55,27 +37,27 @@ function Navbar() {
       <div className="navbar-btm">
         <ul className="bottomnav">
 
-          <section className='brands'>
-            <li className="brands">
-              <Link to="/brands">
+          <section className='nav-brands'>
+            <li className="nav-brands">
+              <Link to="/brands" class="text-light" style={{ textDecoration: 'none' }}>
                 Brands
               </Link>
               <div className="links">
                 <ul className="drop">
                   <li>
-                    <Link to="https://www.nike.com">Nike</Link>
+                    <Link to="https://www.nike.com" class="text-light" style={{ textDecoration: 'none' }}>Nike</Link>
                   </li>
                   <li>
-                    <Link to="https://www.prada.com/us/en.html">Prada</Link>
+                    <Link to="https://www.prada.com/us/en.html" class="text-light" style={{ textDecoration: 'none' }}>Prada</Link>
                   </li>
                   <li>
-                    <Link to="https://us.supreme.com">Supreme</Link>
+                    <Link to="https://us.supreme.com" class="text-light" style={{ textDecoration: 'none' }}>Supreme</Link>
                   </li>
                   <li>
-                    <Link to="https://www.gucci.com/us/en/">Gucci</Link>
+                    <Link to="https://www.gucci.com/us/en/" class="text-light" style={{ textDecoration: 'none' }}>Gucci</Link>
                   </li>
                   <li>
-                    <Link to="https://www.adidas.com/us">Addidas</Link>
+                    <Link to="https://www.adidas.com/us" class="text-light" style={{ textDecoration: 'none' }}>Addidas</Link>
                   </li>
                 </ul>
               </div>
@@ -84,31 +66,31 @@ function Navbar() {
 
           <section className='menswear'>
             <li className="mens">
-              <Link to="/mens">
+              <Link to="/mens" class="text-light" style={{ textDecoration: 'none' }}>
                 Menswear
               </Link>
               <ul className="drop">
-                <li><Link to="/mens/tops">Tops</Link></li>
-                <li><Link to="/mens/bottoms">Bottoms</Link></li>
+                <li><Link to="/mens/tops" class="text-light" style={{ textDecoration: 'none' }}>Tops</Link></li>
+                <li><Link to="/mens/bottoms" class="text-light" style={{ textDecoration: 'none' }}>Bottoms</Link></li>
               </ul>
             </li>
           </section>
 
-          <section className='menswear'>
+          <section className='womenswear'>
             <li className="mens">
-              <Link to="/mens">
-                Menswear
+              <Link to="/womens" class="text-light" style={{ textDecoration: 'none' }}>
+                Womenswear
               </Link>
               <ul className="drop">
-                <li><Link to="/womens/tops">Tops</Link></li>
-                <li><Link to="/womens/bottoms">Bottoms</Link></li>
+                <li><Link to="/womens/tops" class="text-light" style={{ textDecoration: 'none' }}>Tops</Link></li>
+                <li><Link to="/womens/bottoms" class="text-light" style={{ textDecoration: 'none' }}>Bottoms</Link></li>
               </ul>
             </li>
           </section>
 
           <section className='about-page'>
             <li>
-              <Link to="/pages/about">About</Link>
+              <Link to="/pages/about" class="text-light" style={{ textDecoration: 'none' }}>About</Link>
             </li>
           </section>
         </ul>

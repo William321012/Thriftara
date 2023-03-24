@@ -4,46 +4,8 @@
     text-align: left;
 }
 
-.carousel-container {
-    width: 100%;
-    height: 20rem;
-    /* display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden; */
-}
-
-.carousel-item {
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-}
-
-.carousel-item .left {
-    flex: 5%;
-    height: 100%;
-    color: slategray;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-}
-
-.carousel-item .center {
-    flex: 90%;
-    height: 100%;
-}
-
-.carousel-item .right {
-    flex: 5%;
-    height: 100%;
-    color: slategray;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
+.home-brands {
+    padding: 2rem 0;
 }
 
 .product-items:hover {
@@ -57,11 +19,13 @@
 .mens .products {
     display: flex;
     gap: 10px;
+    padding: 2rem 0;
 }
 
 .womens .products {
     display: flex;
     gap: 10px;
+    padding: 2rem 0;
 }
 
 .add-cart-btn {
@@ -84,7 +48,7 @@
 
 .rec-container {
     display: flex;
-    padding-bottom: 2rem;
+    padding: 2rem 0;
 }
 
 .rec-card {
