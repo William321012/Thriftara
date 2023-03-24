@@ -8,12 +8,14 @@ import com.example.store.service.IAddressService;
 import com.example.store.util.JsonResult;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/address")
 public class AddressController extends BaseController{
     @Resource

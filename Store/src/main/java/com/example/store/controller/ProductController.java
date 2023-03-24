@@ -7,6 +7,7 @@ import com.example.store.service.IProductService;
 import com.example.store.util.JsonResult;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/products")
 public class ProductController extends BaseController{
 
