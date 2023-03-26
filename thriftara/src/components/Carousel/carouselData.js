@@ -1,4 +1,4 @@
-import ci1 from './carousel-img1.png'
+import ci1 from './carousel-img1.webp'
 import ci2 from './carousel-img2.jpeg'
 import ci3 from './carousel-img3.jpeg'
 import ci4 from './carousel-img4.jpeg'
