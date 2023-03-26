@@ -1,13 +1,13 @@
-import Nike from '../../logo/nikelogo.jpeg'
-import Addidas from '../../logo/addidaslogo.png'
-import Gucci from '../../logo/Gucci.jpeg'
-import Prada from '../../logo/pradalogo.jpeg'
-import Supreme from '../../logo/Supreme_Logo.png'
+import ci1 from './carousel-img1.png'
+import ci2 from './carousel-img2.jpeg'
+import ci3 from './carousel-img3.jpeg'
+import ci4 from './carousel-img4.jpeg'
+import ci5 from './carousel-img5.webp'
 
 export const images = [
-    {id: 1, title: "item1", img: Nike},
-    {id: 2, title: "item2", img: Addidas},
-    {id: 3, title: "item3", img: Gucci},
-    {id: 4, title: "item4", img: Prada},
-    {id: 5, title: "item5", img: Supreme},
+    {id: 1, title: "item1", img: ci1},
+    {id: 2, title: "item2", img: ci2},
+    {id: 3, title: "item3", img: ci3},
+    {id: 4, title: "item4", img: ci4},
+    {id: 5, title: "item5", img: ci5},
 ]

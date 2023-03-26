@@ -1,6 +1,4 @@
 .navbar-top {
-    background-color: black;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +43,7 @@ a {
     width: 15rem;
     height: 2rem;
     border-radius: 15px;
-    border: none;
+    border-width: 1px;
     margin-right: 10px;
     padding: 0 5px;
 }
@@ -55,7 +53,6 @@ a {
     border: none;
 	outline: none;
     background: transparent;
-    color: white;
     border-radius: 5px;
 }
 
@@ -65,12 +62,13 @@ a {
 }
 
 .navbar-btm {
-    background-color: #151515;
-    color: white;
+    background-color: darkseagreen;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 700;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bolder;
 }
 
 .bottomnav {
@@ -81,6 +79,7 @@ a {
     width: 25vw;
     justify-content: center;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .nav-brands:hover .drop {
@@ -88,13 +87,12 @@ a {
 }
 
 .nav-brands:hover .drop li:hover {
-    background-color: olivedrab;
+    background-color: white;
     width: 100%;
 }
 
 .drop {
     display: none;
-    color: white;
     list-style: none;
     padding-top: 1rem;
     padding-left: 1rem;
@@ -103,18 +101,18 @@ a {
     width: 110%;
 }
 
-.mens:hover .drop {
+.nav-mens:hover .drop {
     display: block;
 }
 
-.mens:hover .drop li:hover {
-    background-color: olivedrab;
+.nav-mens:hover .drop li:hover {
+    background-color: white;
 }
 
-.womens:hover .drop {
+.nav-womens:hover .drop {
     display: block;
 }
 
-.womens:hover .drop li:hover {
-    background-color: olivedrab;
+.nav-womens:hover .drop li:hover {
+    background-color: white;
 }
