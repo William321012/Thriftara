@@ -16,7 +16,7 @@ function Footer() {
           <h3>Customer Support</h3>
           <p>Contact Number: 1-XXX-XXX-XXXX</p>
           <Link to="/pages/Contacts">
-            <button>Contact Us</button>
+            <button className="contact-btn">Contact Us</button>
           </Link>
         </section>
         <section className="faq">

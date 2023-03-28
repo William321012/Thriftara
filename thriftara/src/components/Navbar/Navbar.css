@@ -23,6 +23,14 @@
     border: none;
 }
 
+.cart-item-count {
+    border-radius: 10px;
+    min-width: 20px;
+    background-color: aquamarine;
+    position: absolute;
+    top: 20px;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -80,6 +88,7 @@ a {
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .nav-brands:hover .drop {
@@ -94,11 +103,22 @@ a {
 .drop {
     display: none;
     list-style: none;
-    padding-top: 1rem;
+    /* padding-top: 1rem;
     padding-left: 1rem;
-    padding-right: 2rem;
+    padding-right: 2rem; */
+    padding: 0;
     line-height: 2rem;
-    width: 110%;
+    width: 50%;
+    position: absolute;
+    left: 1;
+    z-index: 5;
+    background-color:darkseagreen;
+    opacity: 90%;
+}
+
+.drop li {
+    text-align: left;
+    padding: 0 1rem;
 }
 
 .nav-mens:hover .drop {

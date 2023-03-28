@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
 import Nike from '../logo/nikelogo.jpeg'
@@ -13,7 +14,23 @@ import Carousel from '../components/Carousel/Carousel'
 
 function Home() {
 
-  const [cart, setCart] = useState()
+  const [cart, setCart] = useState([
+
+  ])
+
+  //used to load data
+  // useEffect(() => {
+    
+  // })
+
+  const addToCart = ()=> {
+    // const result = axios.post("http://localhost:8080/cart/insertToCart", {
+    //   pid: 1,
+    //   amount: 1
+    // });
+    // setCart(result.data)
+    console.log("added to cart")
+  }
 
   return (
     <>
@@ -41,7 +58,7 @@ function Home() {
                 <img src={product.image} alt={product.title} />
                 <h5>{product.title}</h5>
                 <h6>Price: ${product.unitPrice}</h6>
-                <button className='add-cart-btn'>Add To Cart <BsCartPlus size={20} /></button>
+                <button className='add-cart-btn' onClick={addToCart}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
           </section>
@@ -56,7 +73,7 @@ function Home() {
                 <h5>{product.title}</h5>
                 <h6>Price: ${product.unitPrice}</h6>
                 {/* add onClick function to add to cart */}
-                <button className='add-cart-btn'>Add To Cart <BsCartPlus size={20} /></button>
+                <button className='add-cart-btn' onClick={addToCart}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
           </section>

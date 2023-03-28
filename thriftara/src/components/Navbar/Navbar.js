@@ -20,16 +20,17 @@ function Navbar() {
         </div>
         <section className="topnav">
           <Link to="/pages/Sell" class="text-dark" style={{ textDecoration: 'none' }}>
-            <button>Sell</button>
+            <button className='sell-btn'>Sell</button>
           </Link>
           <Link to="/pages/Login" class="text-dark" style={{ textDecoration: 'none' }}>
-            <button>Login</button>
+            <button className='login-btn'>Login</button>
           </Link>
           <Link to="/pages/Signup" class="text-dark" style={{ textDecoration: 'none' }}>
-            <button>Signup</button>
+            <button className='signup-btn'>Signup</button>
           </Link>
           <Link to="/cart" class="text-dark" style={{ textDecoration: 'none' }}>
-            <BsCart4 size={20} />
+            <BsCart4 size={20}/>
+            <span className='cart-item-count'>0</span>
           </Link>
         </section>
       </div>

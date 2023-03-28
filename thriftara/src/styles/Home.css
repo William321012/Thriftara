@@ -4,7 +4,7 @@
     text-align: left;
 }
 
-h3 {
+.home-container h3 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -72,6 +72,7 @@ h3 {
 
 .add-cart-btn {
     border: none;
+    border-radius: 15px;
 	outline: none;
     opacity: 0;
     transition: opacity 0.5s;
@@ -85,7 +86,8 @@ h3 {
 }
 
 .add-cart-btn:hover {
-    background-color:cadetblue;
+    background-color:thistle;
+    color: white;
 }
 
 .rec-container {
