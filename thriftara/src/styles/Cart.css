@@ -1,3 +1,27 @@
 .cart-page-container {
     padding: 2rem 0;
 }
+
+.cart-empty {
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+.cart-items-mapping {
+    padding-bottom: 3rem;
+}
+
+.cart-item-img {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+}
+
+.checkout-summary {
+    padding: 2rem 0;
+    display: block;
+    margin-left: 25rem;
+    margin-right: 25rem;
+    text-align: left;
+    border-top: solid;
+}

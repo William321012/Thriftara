@@ -1,11 +1,13 @@
-// <<<<<<< HEAD
 import React from 'react'
 import './Navbar.css'
 import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
 import { BsCart4, BsSearch } from 'react-icons/bs'
 
-function Navbar() {
+function Navbar( props ) {
+
+  const {cartItemsCount} = props; 
+
   return (
     <>
       <div className="navbar-top">
@@ -30,7 +32,11 @@ function Navbar() {
           </Link>
           <Link to="/cart" class="text-dark" style={{ textDecoration: 'none' }}>
             <BsCart4 size={20}/>
-            <span className='cart-item-count'>0</span>
+            {cartItemsCount? (
+              <span className='cart-item-count'>{cartItemsCount}</span>
+            ) : (
+              <span className='cart-item-count'>0</span> 
+            )}
           </Link>
         </section>
       </div>
