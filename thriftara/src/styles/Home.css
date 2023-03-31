@@ -4,32 +4,75 @@
     text-align: left;
 }
 
+.home-container h3 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .home-brands {
     padding: 2rem 0;
 }
 
+.brand-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.1rem;
+    padding: 2rem 0;
+    border-bottom: solid;
+}
+
+.brand-cards img {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
+.brand-cards img:hover {
+    cursor: pointer;
+    scale: 1.3;
+}
+
+.mens {
+    padding: 2rem 0;
+}
+
+.mens img {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.womens {
+    padding: 2rem 0;
+}
+
+.womens img {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.products-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom: solid;
+}
+
 .product-items:hover {
     cursor: pointer;
+    scale: 1.1;
 }
 
 .product-items:hover .add-cart-btn {
 	opacity: 1;
 }
 
-.mens .products {
-    display: flex;
-    gap: 10px;
-    padding: 2rem 0;
-}
-
-.womens .products {
-    display: flex;
-    gap: 10px;
-    padding: 2rem 0;
-}
-
 .add-cart-btn {
     border: none;
+    border-radius: 15px;
 	outline: none;
     opacity: 0;
     transition: opacity 0.5s;
@@ -43,7 +86,8 @@
 }
 
 .add-cart-btn:hover {
-    background-color:cadetblue;
+    background-color:thistle;
+    color: white;
 }
 
 .rec-container {

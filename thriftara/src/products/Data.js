@@ -3,8 +3,8 @@ import MPant2 from '../images/menpants2.webp'
 import MTop1 from '../images/mentop1.webp'
 import MTop2 from '../images/mentop2.webp'
 
-const MProducts = {
-    mproducts: [
+const data = {
+    products: [
         {
             id: 1,
             title: "Men's Jeans Black",
@@ -32,4 +32,4 @@ const MProducts = {
     ]
 }
 
-export default MProducts;
+export default data;
