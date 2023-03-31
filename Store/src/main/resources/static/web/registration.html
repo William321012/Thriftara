@@ -8,6 +8,7 @@
 <body>
 
 <form id="reg">
+    email: <input type="text" name="email" id="email"><br>
     username: <input type="text" name="username" id="username"><br>
     password: <input type="password" name="password" id="password"><br>
     confirm: <input type="password" name="confirm" id="confirm"><br>
@@ -21,10 +22,11 @@
     $("#registration").click(function () {
         var username = $("#username").val();
         var password = $("#password").val();
+        var email = $("#email").val();
         $.ajax({
             url:"/customers/reg",
             type:"post",
-            data:"username="+username+"&password="+password,
+            data:"username="+username+"&password="+password+"&email="+email,
             dataType:"json",
             success:function (json) {
                 if(json.state == 200){

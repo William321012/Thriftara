@@ -54,6 +54,6 @@ public class ProductMapperTest {
         String[] conditions= {};
         Integer[] gender= {};
 
-        List<Product> tops = productMapper.getProductByFilter("Tops", brands, null, conditions, gender);
+        List<Product> tops = productMapper.getProductByFilter("Tops", brands, null, conditions, gender,1);
     }
 }

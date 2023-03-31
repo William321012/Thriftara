@@ -4,6 +4,7 @@ import com.example.store.Interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -39,6 +40,23 @@ public class MyConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**").excludePathPatterns(exclude);
     }
+
+        public void addCorsMappings(CorsRegistry registry) {
+
+            registry.addMapping("/**")
+
+                    .allowedOriginPatterns("*")
+
+                    .allowCredentials(true)
+
+                    .allowedMethods("GET", "POST", "DELETE", "PUT")
+
+                    .allowedHeaders("*")
+
+                    .maxAge(3600);
+        }
+
+
 
 
     @Override

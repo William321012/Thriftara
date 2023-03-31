@@ -15,6 +15,6 @@ public interface IProductService {
 
     List<Product> getProductByCategory(String category);
 
-    List<Product >getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders);
+    List<Product >getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder);
 
 }

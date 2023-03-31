@@ -92,6 +92,16 @@
             </foreach>
         </if>
 
+        <if test="priceOrder==0">
+            order by price desc
+        </if>
+
+        <if test="priceOrder==1">
+            order by price asc
+        </if>
+
+
+
     </select>
 
 

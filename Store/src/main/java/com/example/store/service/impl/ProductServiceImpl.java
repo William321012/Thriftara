@@ -70,8 +70,9 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<Product> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders) {
-        List<Product> productByFilter = productMapper.getProductByFilter(category, brands, sizes, conditions, genders);
+    public List<Product> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder) {
+
+        List<Product> productByFilter = productMapper.getProductByFilter(category, brands, sizes, conditions, genders,priceOrder);
         return productByFilter;
 
     }
