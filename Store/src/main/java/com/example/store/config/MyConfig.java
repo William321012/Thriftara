@@ -41,20 +41,20 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**").excludePathPatterns(exclude);
     }
 
-        public void addCorsMappings(CorsRegistry registry) {
-
-            registry.addMapping("/**")
-
-                    .allowedOriginPatterns("*")
-
-                    .allowCredentials(true)
-
-                    .allowedMethods("GET", "POST", "DELETE", "PUT")
-
-                    .allowedHeaders("*")
-
-                    .maxAge(3600);
-        }
+//        public void addCorsMappings(CorsRegistry registry) {
+//
+//            registry.addMapping("/**")
+//
+//                    .allowedOriginPatterns("*")
+//
+//                    .allowCredentials(true)
+//
+//                    .allowedMethods("GET", "POST", "DELETE", "PUT")
+//
+//                    .allowedHeaders("*")
+//
+//                    .maxAge(3600);
+//        }
 
 
 
