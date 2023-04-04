@@ -12,19 +12,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
-// import data from './products/Data'
-import MProducts from './products/MensProducts'
-import WProducts from "./products/WomensProducts";
+import data from './products/Data'
 import { useState } from "react";
 
 function App() {
 
-  //mens products data
-  // const { products } = data;
-  const { mproducts } = MProducts;
-  //womens products data
-  const { wproducts } = WProducts;
-
+  //products data
+  const { mproducts, wproducts } = data;
   //shopping cart states
   const [cartItems, setCartItems] = useState([]);
 
@@ -55,6 +49,15 @@ function App() {
       ));
     }
   }
+  //remove item from cart
+  const removeItemFromCart = (product) => {
+    //search for cart item with specific product id
+    const exist = cartItems.find((x) => x.id === product.id)
+    if (exist) {
+      //if product does exist in cart remove from cart otherwise return true
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    }
+  }
 
   return (
     <div className="App">
@@ -67,7 +70,7 @@ function App() {
           <Route path="/brands" element={<Brands />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} addToCart={addToCart}
-            removeFromCart={removeFromCart} />} />
+            removeFromCart={removeFromCart} removeItemFromCart={removeItemFromCart} />} />
           <Route path="/pages/About" element={<About />} />
           <Route path="/pages/Contacts" element={<Contacts />} />
           <Route path="/pages/Login" element={<Login />} />
