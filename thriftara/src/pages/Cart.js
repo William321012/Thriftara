@@ -48,11 +48,8 @@ function Cart(props) {
                 <h5><b>Items in Cart</b></h5>
                 {cartItems.map((item) => (
                   <div key={item.id} >
-                    <div className='checkout-item'><strong>{item.title}</strong></div>
+                    <div className='checkout-item'><strong>{item.title}</strong>{' '}x{item.qty}</div>
                     <div className='checkout-quantity'>
-                      Quantity:{' '}
-                      {item.qty}
-                      <br></br>
                       Price:{' '}
                       ${(item.qty * item.unitPrice).toFixed(2)}
                     </div>
