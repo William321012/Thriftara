@@ -69,7 +69,7 @@ function Home(props) {
 
       <div className='home-container'>
         <section className='home-brands'>
-          <Link to='/brands' class="text-dark" style={{ textDecoration: 'none' }}><h3>Brands</h3></Link>
+          <Link to='/brands' className="text-dark" style={{ textDecoration: 'none' }}><h3>Brands</h3></Link>
           <div className='brand-cards'>
             <img src={Nike} alt='nike logo' />
             <img src={Addidas} alt='addidas logo' />
@@ -80,7 +80,7 @@ function Home(props) {
         </section>
         
         <section className='mens'>
-          <Link to='/mens' class="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
+          <Link to='/mens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
           <section className='products-section'>
             {mproducts.map((product) => (
               <div className='product-items' key={product.id}>
@@ -94,7 +94,7 @@ function Home(props) {
         </section>
 
         <section className='womens'>
-          <Link to='/womens' class="text-dark" style={{ textDecoration: 'none' }}><h3>Womenswear</h3></Link>
+          <Link to='/womens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Womenswear</h3></Link>
           <section className='products-section'>
             {wproducts.map((product) => (
               <div className='product-items' key={product.id}>
@@ -108,7 +108,7 @@ function Home(props) {
         </section>
 
         <section className='recommendations'>
-          <Link to='/' class="text-dark" style={{ textDecoration: 'none' }}><h3>Our Recommendations</h3></Link>
+          <Link to='/' className="text-dark" style={{ textDecoration: 'none' }}><h3>Our Recommendations</h3></Link>
           <div className='rec-container'>
             <div className='rec-card'></div>
             <div className='rec-card'></div>
