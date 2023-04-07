@@ -12,7 +12,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
-import data from './products/Data'
+import Search from "./pages/Search";
+import data from './products/Data';
 import { useState } from "react";
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
           <Route path="/pages/Signup" element={<Signup />} />
           <Route path="/pages/Sell" element={<Sell />} />
           <Route path="/pages/ForgotPassword" element={<ForgotPassword />} />
+          <Route path="/pages/Search" element={<Search />} />
         </Routes>
         <Footer />
       </Router>
