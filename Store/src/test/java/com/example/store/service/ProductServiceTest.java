@@ -12,6 +12,6 @@ public class ProductServiceTest {
 
     @Test
     public void getProductByFilter(){
-        productService.getProductByFilter("Tops",new String[]{"Nike"}, new String[]{"2"},new String[]{"1"}, new Integer[]{1},0);
+        productService.getProductByFilter("Tops",new String[]{"Nike"}, new String[]{"2"},new String[]{"1"}, new Integer[]{1},0, 6);
     }
 }

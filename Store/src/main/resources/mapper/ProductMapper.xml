@@ -92,6 +92,22 @@
             </foreach>
         </if>
 
+
+
+        <if test="priceRange==1">and price &lt; 100</if>
+        <if test="priceRange==2">and price &gt; 100 and price &lt; 200</if>
+        <if test="priceRange==3">and price &gt; 200 and price &lt; 300</if>
+        <if test="priceRange==4">and price &gt; 300 and price &lt; 400</if>
+        <if test="priceRange==5">and price &gt; 400 and price &lt; 500</if>
+        <if test="priceRange==6">and price <![CDATA[ >= ]]> 501</if>
+
+
+
+
+
+
+
+
         <if test="priceOrder==0">
             order by price desc
         </if>

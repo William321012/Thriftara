@@ -63,6 +63,16 @@
         Female:<input type="checkbox" id="Female" onclick="updateFilter()"><br>
     </div>
 
+    <div>
+        price range:<br>
+        less than 100:<input type="radio" name="priceRange" id="l100" value="1" onclick="updateFilter()"><br>
+        100-200:<input type="radio" name="priceRange" id="100t200" value="2" onclick="updateFilter()"><br>
+        200-300:<input type="radio" name="priceRange" id="200t300" value="3" onclick="updateFilter()"><br>
+        300-400:<input type="radio" name="priceRange" id="300t400" value="4" onclick="updateFilter()"><br>
+        400-500:<input type="radio" name="priceRange" id="400t500" value="5" onclick="updateFilter()"><br>
+        greater than 500:<input type="radio" name="priceRange" id="g500" value="6" onclick="updateFilter()"><br>
+    </div>
+
 </div>
 
 <div>
@@ -169,6 +179,52 @@
             gender.push("2");
         }
 
+        // <div>
+        //     price range:<br>
+        //     less than 100:<input type="checkbox" id="l100" onClick="updateFilter()"><br>
+        //     100-200:<input type="checkbox" id="100t200" onClick="updateFilter()"><br>
+        //     200-300:<input type="checkbox" id="200t300" onClick="updateFilter()"><br>
+        //     300-400:<input type="checkbox" id="300t400" onClick="updateFilter()"><br>
+        //     400-500:<input type="checkbox" id="400t500" onClick="updateFilter()"><br>
+        //     greater than 500:<input type="checkbox" id="g500" onClick="updateFilter()"><br>
+        // </div>
+
+        var priceRange;
+        var val1=$('input:radio[id="l100"]:checked').val();
+        if (val1!=null) {
+            priceRange=1;
+        }
+
+        var val2=$('input:radio[id="100t200"]:checked').val();
+        if (val2!=null) {
+            priceRange=2;
+        }
+
+        var val3=$('input:radio[id="200t300"]:checked').val();
+        if (val3!=null) {
+            priceRange=3;
+        }
+
+
+        var val4=$('input:radio[id="300t400"]:checked').val();
+        if (val4!=null) {
+            priceRange=4;
+        }
+
+
+        var val5=$('input:radio[id="400t500"]:checked').val();
+        if (val5!=null) {
+            priceRange=5;
+        }
+
+
+        var val6=$('input:radio[id="g500"]:checked').val();
+        if (val6!=null) {
+            priceRange=6;
+        }
+
+
+
         var price;
         var selectedIndex = document.getElementById("priceOrder").selectedIndex;
         price=selectedIndex;
@@ -182,7 +238,7 @@
         $("#content").empty();
         $.ajax({
             url: "/products/getProductByFilter",
-            data: "category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender+"&priceOrder="+price,
+            data: "category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender+"&priceOrder="+price+"&priceRange="+priceRange,
             type: "post",
             dataType: "json",
 

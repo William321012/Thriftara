@@ -218,7 +218,7 @@ public class ProductController extends BaseController{
 
 //    category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender,
     @RequestMapping("/getProductByFilter")
-    public JsonResult<List<Product>> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder){
+    public JsonResult<List<Product>> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder, Integer priceRange){
         JsonResult<List<Product>> result = new JsonResult<>();
         String pcategory = category;
         String[] pbrands = brands;
@@ -227,8 +227,9 @@ public class ProductController extends BaseController{
         Integer[] pgenders=genders;
 
         Integer order = priceOrder;
+        Integer ppriceRange=priceRange;
 
-        List<Product> productByFilter = productService.getProductByFilter(pcategory, pbrands, psizes, pconditions, pgenders,priceOrder);
+        List<Product> productByFilter = productService.getProductByFilter(pcategory, pbrands, psizes, pconditions, pgenders, priceOrder, ppriceRange);
 
         result.setState(200);
         result.setMessage("success");
