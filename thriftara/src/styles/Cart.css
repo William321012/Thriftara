@@ -68,3 +68,19 @@
 .cart-sum-title {
     margin-top: 2rem;
 }
+
+.checkout-btn {
+    border: none;
+    border-radius: 15px;
+	outline: none;
+	cursor: pointer;
+	width: 100%;
+    font-weight: bold;
+    padding: 10px 0;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+.checkout-btn:hover {
+    background-color: yellowgreen;
+}

@@ -55,7 +55,7 @@ function Cart(props) {
                     </div>
                   </div>
                 ))}
-                <div className='cart-sum-title'><h3>Cart Summary</h3></div>
+                <div className='cart-sum-title'><h4>Cart Summary</h4></div>
                 <div className='subtotal'><strong>Subtotal: </strong>${subtotal.toFixed(2)}</div>
                 <div className='tax'><strong>Tax: </strong>${tax.toFixed(2)}</div>
                 <div className='shipping'><strong>Shipping: </strong>${shipping.toFixed(2)}</div>

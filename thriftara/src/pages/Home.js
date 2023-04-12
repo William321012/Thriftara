@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
 import Nike from '../logo/nikelogo.jpeg'
@@ -7,57 +7,11 @@ import Addidas from '../logo/addidaslogo.png'
 import Gucci from '../logo/Gucci.jpeg'
 import Prada from '../logo/pradalogo.jpeg'
 import Supreme from '../logo/Supreme_Logo.png'
-// import { MProducts } from '../products/MensProducts'
-// import { WProducts } from '../products/WomensProducts'
 import { BsCartPlus } from 'react-icons/bs'
 import Carousel from '../components/Carousel/Carousel'
+import Products from '../products/Products'
 
 function Home(props) {
-  // const loadUsers = () => {
-  //   const result = axios.post("http://localhost:8080/customers/reg" , [{
-  //     email: "email@gmail.com",
-  //     username: "megtest",
-  //     password: "megtestpass"
-  //   }]);
-  //   console.log(result.data);
-  // }
-
-  // useEffect(() => {
-  //   loadUsers();
-  // });
-
-  // const [user, setUser] = useState()
-
-  // const baseurl = "https://localhost:8080/";
-  
-  //   useEffect(() => {
-  //       axios.get(`${baseurl}customers`).then((response) => {
-  //           setUser(response.data);
-  //       });
-  //   }, []);
-
-  // const getmethod = () => {
-  //   const res = axios.post("http://localhost:8080/customers/reg", {
-  //     email: "email@meg.com",
-  //     username: "megmeg",
-  //     password: "megmeg"
-  //   })
-  //   console.log(res.message)
-  // }
-
-  // useEffect(() => {
-  //   getmethod();
-  // })
-  // const [users, setUsers] = useState([])
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:8080/test/test')
-  //   .then(res => {
-  //     setUsers(res.message)
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
-  // }, [])
 
   const { mproducts, wproducts, addToCart } = props
 
@@ -78,7 +32,21 @@ function Home(props) {
             <img src={Supreme} alt='supreme logo' />
           </div>
         </section>
-        
+
+        {/* <section>
+          <h1>testing</h1>
+          <section className='products-section'>
+              <div className='product-items' key={products.id}>
+              <img src={products.image} alt={products.title} />
+              <h5>{products.title}</h5>
+              <h6>Price: ${products.price}</h6>
+              <button className='add-cart-btn' onClick={() => addToCart(products)}>Add To Cart <BsCartPlus size={20} /></button>
+            </div>
+          </section>
+        </section> */}
+
+        <Products />
+
         <section className='mens'>
           <Link to='/mens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
           <section className='products-section'>
