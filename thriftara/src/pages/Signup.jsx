@@ -63,6 +63,8 @@ class Signup extends React.Component {
   handleSubmit(e) {
     if (this.password.current.value !== this.cnfrmpassword.current.value) {
       e.preventDefault();
+    } else {
+      alert("Account Successfully Created");
     }
   }
 
