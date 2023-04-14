@@ -1,6 +1,5 @@
 package com.example.store.controller;
 
-
 import com.example.store.controller.exception.*;
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Customer;
@@ -30,7 +29,6 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
-
 
     @RequestMapping("/reg")
 
@@ -98,7 +96,7 @@ public class UserController extends BaseController {
     public JsonResult<Void> updateInfo(Customer customer, HttpServletRequest request) {
         JsonResult<Void> result = new JsonResult<>();
 
-//        Integer cid = getIdFromSession(request.getSession());
+        // Integer cid = getIdFromSession(request.getSession());
         Integer cid = (Integer) request.getSession().getAttribute("cid");
         customer.setCid(cid);
         System.out.println(customer);
@@ -140,41 +138,44 @@ public class UserController extends BaseController {
             throw new FileTypeException("the type of file does not meet the requirement");
         }
 
-        //Specifies that uploaded files must be under this directory ../upload/xxx.jpg
-        //create the directory for storing the avatar first ../upload
-//        String upload =  request.getSession().getServletContext().getRealPath("/upload");
-//        System.out.println(upload);
+        // Specifies that uploaded files must be under this directory ../upload/xxx.jpg
+        // create the directory for storing the avatar first ../upload
+        // String upload =
+        // request.getSession().getServletContext().getRealPath("/upload");
+        // System.out.println(upload);
         String upload = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
 
         System.out.println(upload);
 
         File dir = new File(upload);
 
-        //create this directory if it does not exist
+        // create this directory if it does not exist
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        //get the name of the file first, then using UUID to create a new name for this file
-        //xxx.jpg
+        // get the name of the file first, then using UUID to create a new name for this
+        // file
+        // xxx.jpg
         String originalFilename = file.getOriginalFilename();
         System.out.println(originalFilename);
 
-        //storing the suffix of the file
+        // storing the suffix of the file
         int index = originalFilename.lastIndexOf(".");
         String suffix = originalFilename.substring(index);
         System.out.println(suffix);
 
-        //encrypt this filename
+        // encrypt this filename
         String newFileName = UUID.randomUUID().toString().toUpperCase();
 
-        //complete whole file name with encryption filename + suffix  ex: xxx +.jpg
+        // complete whole file name with encryption filename + suffix ex: xxx +.jpg
         String newFile = newFileName + suffix;
 
-        //create a empty file that is under the "dir" directory(/upload) with the file name "newFile"
+        // create a empty file that is under the "dir" directory(/upload) with the file
+        // name "newFile"
         File dest = new File(dir, newFile);
 
-        //transfer the data from the input file to that empty file "dest"
+        // transfer the data from the input file to that empty file "dest"
         try {
             file.transferTo(dest);
         } catch (FileStateException e) {
@@ -183,14 +184,13 @@ public class UserController extends BaseController {
             throw new FileIOException("IO Exception");
         }
 
-
         Integer cid = (Integer) request.getSession().getAttribute("cid");
         String username = (String) request.getSession().getAttribute("username");
 
-        //return the path of the file for displaying
-        //storing the path of the avatar to the db
+        // return the path of the file for displaying
+        // storing the path of the avatar to the db
 
-//        String avatar="/upload/"+newFile;
+        // String avatar="/upload/"+newFile;
         String avatar = "/images/" + newFile;
         userService.updateAvatar(cid, avatar, username);
 
@@ -198,13 +198,12 @@ public class UserController extends BaseController {
         result.setMessage("success");
         result.setData(avatar);
 
-        //return the path of avatar to front end
+        // return the path of avatar to front end
         return result;
     }
 
-//    @Resource
-//    private CustomerMapper customerMapper;
-
+    // @Resource
+    // private CustomerMapper customerMapper;
 
     @RequestMapping("/getAvatarInfo")
     public JsonResult<String> getAvatar(HttpServletRequest request) {
@@ -215,14 +214,10 @@ public class UserController extends BaseController {
 
         String avatar = userService.getAvatar(cid);
 
-
         result.setState(200);
         result.setMessage("success");
         result.setData(avatar);
         return result;
     }
-
-
-
 
 }

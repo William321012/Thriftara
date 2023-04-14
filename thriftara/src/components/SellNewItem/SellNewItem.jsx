@@ -1,8 +1,92 @@
 import React from "react";
 import styles from "../../styles/SellNewItem.module.css";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 class SellNewItem extends React.Component {
+  check(names, dat) {
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      if (document.getElementById(name).value.trim() != "") {
+        dat.append(name, document.getElementById(name).value);
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  uploadItem = async () => {
+    var dat = new FormData();
+    var files = document.getElementById("file").files;
+
+    if (files.length > 5) {
+      alert("you at most can upload 5 pictures");
+      return;
+    } else if (files.length == 0) {
+      alert("you must at least upload 1 pictures");
+      return;
+    }
+    for (var i = 0; i < files.length; i++) {
+      dat.append("file", files[i]);
+    }
+
+    if (
+      !this.check(
+        [
+          "title",
+          "description",
+          "price",
+          "category",
+          "number",
+          "status",
+          "brand",
+          "size",
+          "color",
+        ],
+        dat
+      )
+    ) {
+      alert("you must fill in all the information before submitting");
+      return;
+    }
+
+    if (document.getElementById("female").checked == true) {
+      dat.append("gender", "2");
+    } else if (document.getElementById("male").checked == true) {
+      dat.append("gender", "1");
+    } else {
+      dat.append("gender", "unselected");
+    }
+
+    axios
+      .post("http://localhost:8080/products/uploadProduct", dat, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(function (response) {
+        // successful response
+        if (response.data.state == 5001) {
+          alert("File Submission Format Incorrect");
+        } else if (response.data.state == 200) {
+          alert("Item Successfully Created");
+        }
+      })
+      .catch(function (error) {
+        // error response
+        alert("Failed");
+      });
+
+    alert("uploading product");
+  };
+
+  //Prevents Form Submission
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <section>
@@ -15,7 +99,10 @@ class SellNewItem extends React.Component {
                     <h2>List A Item</h2>
                     <span className={styles.fadeline}></span>
 
-                    <form className="d-flex flex-column">
+                    <form
+                      onSubmit={this.handleSubmit.bind(this)}
+                      className="d-flex flex-column justify-content-md-center"
+                    >
                       <input
                         type="file"
                         name="file"
@@ -24,6 +111,9 @@ class SellNewItem extends React.Component {
                         className="py-3 px-3"
                         multiple
                       />
+                      <h6 className="d-flex text-align-left px-3">
+                        Shift-Click To Select Multiple Pictures To Upload
+                      </h6>
 
                       <div className="d-flex flex-row py-2">
                         <h4 className="px-3">Title</h4>
@@ -48,6 +138,7 @@ class SellNewItem extends React.Component {
                           type="number"
                           id="price"
                           name="price"
+                          placeholder="$"
                           min="0"
                           max="1000000"
                         />
@@ -87,17 +178,28 @@ class SellNewItem extends React.Component {
 
                       <div className="d-flex flex-row py-2">
                         <h5 className="px-3">Brand</h5>
-                        <input type="text" name="brand" id="brand" />
+                        <select name="brand" id="brand">
+                          <option value="Nike">Nike</option>
+                          <option value="Supreme">Supreme</option>
+                          <option value="Prada">Prada</option>
+                          <option value="Gucci">Gucci</option>
+                        </select>
                       </div>
 
                       <div className="d-flex flex-row py-2">
                         <h5 className="px-3">Color</h5>
-                        <input type="text" name="color" id="color" />
+                        <input type="text" id="color" name="color" />
                       </div>
 
                       <div className="d-flex flex-row py-2">
                         <h5 className="px-3">Quantity</h5>
-                        <input type="quantity" name="quantity" id="quantity" />
+                        <input
+                          type="number"
+                          name="number"
+                          id="number"
+                          min="0"
+                          max="1000000"
+                        />
                       </div>
 
                       <div className="d-flex flex-row py-2">
@@ -122,6 +224,7 @@ class SellNewItem extends React.Component {
                       <button
                         type="submit"
                         className="btn btn-primary fw-bold form-control mb-2"
+                        onClick={this.uploadItem}
                       >
                         Submit
                       </button>

@@ -2,18 +2,49 @@ import React from "react";
 import styles from "../styles/Signup.module.css";
 import logo from "../images/logo.png";
 import Signuppic from "../images/signuppic.jpg";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 class Signup extends React.Component {
+  //Variable can be referenced with this.password.current.value
   password = React.createRef();
   cnfrmpassword = React.createRef();
+  username = React.createRef();
+  email = React.createRef();
 
+  //Variable can be reference with this.state.username)
   constructor(props) {
     super(props);
     this.state = {
       notification: "Repeat Password",
     };
   }
+
+  SignupUser = async () => {
+    // Get Request
+    // const result = await axios.get("http://localhost:8080/test");
+    // console.log(result.data);
+    // console.log(result.data.message);
+
+    // Post Request
+    axios
+      .post(
+        "http://localhost:8080/customers/reg",
+        {
+          username: this.username.current.value,
+          password: this.password.current.value,
+          email: this.email.current.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
 
   //Tells the user the password doesn't match
   checkPassword() {
@@ -56,6 +87,7 @@ class Signup extends React.Component {
                           Email Address
                         </label>
                         <input
+                          ref={this.email}
                           type="email"
                           className="form-control"
                           placeholder="Enter Email Address"
@@ -68,6 +100,7 @@ class Signup extends React.Component {
                           Username
                         </label>
                         <input
+                          ref={this.username}
                           type="text"
                           className="form-control"
                           placeholder="Enter Username"
@@ -102,7 +135,10 @@ class Signup extends React.Component {
                         />
                       </div>
 
-                      <button className="btn btn-primary fw-bold form-control mb-2">
+                      <button
+                        className="btn btn-primary fw-bold form-control mb-2"
+                        onClick={this.SignupUser}
+                      >
                         Sign Up Now
                       </button>
 
