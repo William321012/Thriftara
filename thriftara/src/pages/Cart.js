@@ -7,7 +7,7 @@ function Cart(props) {
   //data and functions
   const { cartItems, addToCart, removeFromCart, removeItemFromCart } = props;
   //price calculations a(accumulator) c(current item)
-  const subtotal = cartItems.reduce((a, c) => a + c.unitPrice * c.qty, 0)
+  const subtotal = cartItems.reduce((a, c) => a + c.price * c.qty, 0)
   const tax = subtotal * .0852;
   //free shipping for orders over $75 else $10
   const shipping = subtotal > 75 ? 0 : 10;
@@ -33,7 +33,7 @@ function Cart(props) {
                 <button onClick={() => addToCart(item)} className='add-qty'>+</button>
                 <br></br>
                 Price:{' '}
-                {item.qty} x ${item.unitPrice.toFixed(2)}
+                {item.qty} x ${item.price.toFixed(2)}
               </div>
               <div className='remove-cart-btn'>
                 <BsTrash size={20} onClick={() => removeItemFromCart(item)} />
@@ -51,7 +51,7 @@ function Cart(props) {
                     <div className='checkout-item'><strong>{item.title}</strong>{' '}x{item.qty}</div>
                     <div className='checkout-quantity'>
                       Price:{' '}
-                      ${(item.qty * item.unitPrice).toFixed(2)}
+                      ${(item.qty * item.price).toFixed(2)}
                     </div>
                   </div>
                 ))}

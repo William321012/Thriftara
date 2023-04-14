@@ -12,9 +12,6 @@ function HomeCarousel() {
                     return (
                         <Carousel.Item key={images.id}>
                             <img src={images.img} alt={images.title} className="carousel-img"/>
-                            {/* <Carousel.Caption>
-                                <h3>{images.title}</h3>
-                            </Carousel.Caption> */}
                         </Carousel.Item>
                     )
                 })

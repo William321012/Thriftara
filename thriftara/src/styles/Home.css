@@ -31,6 +31,17 @@
     scale: 1.3;
 }
 
+.porducts {
+    padding: 2rem 0;
+}
+
+.product-items img {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
 .mens {
     padding: 2rem 0;
 }

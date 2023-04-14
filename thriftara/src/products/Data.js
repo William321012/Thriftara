@@ -14,25 +14,25 @@ const data = {
             id: 1,
             title: "Men's Jeans Black",
             image: MPant1,
-            unitPrice: 25.00
+            price: 25.00
         },
         {
             id: 2,
             title: "Men's Green Jogger",
             image: MPant2,
-            unitPrice: 25.00
+            price: 25.00
         },
         {
             id: 3,
             title: "Collard Shirt",
             image: MTop1,
-            unitPrice: 15.00
+            price: 15.00
         },
         {
             id: 4,
             title: "Men's Stripped Shirt",
             image: MTop2,
-            unitPrice: 15.00
+            price: 15.00
         }
     ],
 
@@ -41,31 +41,31 @@ const data = {
             id: 6,
             title: "Women's Jeans Black",
             image: WPant1,
-            unitPrice: 25.00
+            price: 25.00
         },
         {
             id: 7,
             title: "Green Cargos",
             image: WPant2,
-            unitPrice: 25.00
+            price: 25.00
         },
         {
             id: 8,
             title: "Red Stripped Shirt",
             image: WTop1,
-            unitPrice: 15.00
+            price: 15.00
         },
         // {
         //     id: 9,
         //     title: "White Cropped Sweatshirt",
         //     image: WTop2,
-        //     unitPrice: 15.00
+        //     price: 15.00
         // },
         {
             id: 10,
             title: "Corduroy Beige Jacket",
             image: WTop3,
-            unitPrice: 15.00
+            price: 15.00
         }
     ]
 }

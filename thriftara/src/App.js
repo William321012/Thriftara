@@ -14,12 +14,10 @@ import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
 import Search from "./pages/Search";
 import data from './products/Data';
-import Products from "./products/Products";
 import { useState } from "react";
 
 function App() {
 
-  const { ProductData } = Products;
   //products data
   const { mproducts, wproducts } = data;
   //shopping cart states
@@ -67,7 +65,7 @@ function App() {
         <Navbar cartItemsCount={cartItems.length} />
         <Routes>
           <Route path="/" element={<Home mproducts={mproducts} wproducts={wproducts}
-            addToCart={addToCart} ProductData={ProductData} />} />
+            addToCart={addToCart}  />} />
           <Route path="/brands" element={<Brands />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} addToCart={addToCart}

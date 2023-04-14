@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
 import Nike from '../logo/nikelogo.jpeg'
@@ -8,17 +8,27 @@ import Gucci from '../logo/Gucci.jpeg'
 import Prada from '../logo/pradalogo.jpeg'
 import Supreme from '../logo/Supreme_Logo.png'
 import { BsCartPlus } from 'react-icons/bs'
-import Carousel from '../components/Carousel/Carousel'
-import Products from '../products/Products'
+import Hero from '../components/Carousel/Carousel'
 
 function Home(props) {
 
   const { mproducts, wproducts, addToCart } = props
 
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    loadProducts();
+  }, [])
+
+  const loadProducts = async () => {
+    const res = await axios.get("http://localhost:8080/products/getAllProduct")
+    console.log(res.data.data)
+    setProducts(res.data.data)
+  }
+
   return (
     <>
       <section className='product-carousel'>
-        <Carousel />
+        <Hero />
       </section>
 
       <div className='home-container'>
@@ -33,19 +43,20 @@ function Home(props) {
           </div>
         </section>
 
-        {/* <section>
-          <h1>testing</h1>
+        <section className='products'>
+          <h3>Products (work in progress)</h3>
           <section className='products-section'>
-              <div className='product-items' key={products.id}>
-              <img src={products.image} alt={products.title} />
-              <h5>{products.title}</h5>
-              <h6>Price: ${products.price}</h6>
-              <button className='add-cart-btn' onClick={() => addToCart(products)}>Add To Cart <BsCartPlus size={20} /></button>
-            </div>
-          </section>
-        </section> */}
+              {products.map((product) => (
+                <div className='product-items' key={product.id}>
+                  <img src={product.image} alt={product.title} />
+                  <h5>{product.title}</h5>
+                  <h6>Price: ${product.price}</h6>
+                  <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+                </div>
 
-        <Products />
+              ))}
+          </section>
+        </section>
 
         <section className='mens'>
           <Link to='/mens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
@@ -54,7 +65,7 @@ function Home(props) {
               <div className='product-items' key={product.id}>
                 <img src={product.image} alt={product.title} />
                 <h5>{product.title}</h5>
-                <h6>Price: ${product.unitPrice}</h6>
+                <h6>Price: ${product.price}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
@@ -68,7 +79,7 @@ function Home(props) {
               <div className='product-items' key={product.id}>
                 <img src={product.image} alt={product.title} />
                 <h5>{product.title}</h5>
-                <h6>Price: ${product.unitPrice}</h6>
+                <h6>Price: ${product.price}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
