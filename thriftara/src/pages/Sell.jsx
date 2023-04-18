@@ -2,6 +2,7 @@ import React from "react";
 // import styles from "../styles/Sell.module.css";
 // import { Link } from "react-router-dom";
 import SellNewItem from "../components/SellNewItem/SellNewItem";
+import ForSale from "../components/ForSale/ForSale";
 
 class Sell extends React.Component {
   constructor(props) {
@@ -117,7 +118,7 @@ class Sell extends React.Component {
               <div className="col-10">
                 <div className="card">
                   <div className="card-body">
-                    {this.state.option1 ? <h1>Option 1</h1> : null}
+                    {this.state.option1 ? <ForSale /> : null}
                     {this.state.option2 ? <h1>Option 2</h1> : null}
                     {this.state.option3 ? <SellNewItem /> : null}
                   </div>
