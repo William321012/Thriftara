@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 public class BaseController {
-
     @ExceptionHandler({ServiceException.class, FileUploadException.class})
     public JsonResult<Void> handlerException(Exception e){
         JsonResult<Void> result = new JsonResult<>();
