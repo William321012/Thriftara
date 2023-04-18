@@ -1,0 +1,69 @@
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: localhost    Database: store
+-- ------------------------------------------------------
+-- Server version	8.0.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `t_product`
+--
+
+DROP TABLE IF EXISTS `t_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `t_product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int DEFAULT NULL,
+  `item_type` varchar(255) DEFAULT NULL,
+  `item_description` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `image` varchar(500) DEFAULT NULL,
+  `item_status` int DEFAULT '1',
+  `priority` int DEFAULT NULL,
+  `brand` varchar(255) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `item_condition` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `gender` int DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `modified_time` datetime DEFAULT NULL,
+  `created_user` varchar(255) DEFAULT NULL,
+  `modified_user` varchar(255) DEFAULT NULL,
+  `price` bigint DEFAULT NULL,
+  `cid` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_product`
+--
+
+LOCK TABLES `t_product` WRITE;
+/*!40000 ALTER TABLE `t_product` DISABLE KEYS */;
+INSERT INTO `t_product` VALUES (12,NULL,'skirt','555','555',5550,'/images/878CA7E2-BDD3-47E2-B614-3390ACB5DC0F',1,8,'555','555','2','555',1,NULL,'2023-03-17 12:15:21',NULL,'sb2',5,4),(15,NULL,'skirt','666','666',665,'/images/4834A1CF-43A7-47DE-B807-5B266B83B17B',1,8,'666','666','1','666',1,NULL,'2023-03-17 21:10:46',NULL,'sb2',500,4),(16,NULL,'skirt','test888','888',887,'/images/943EE98E-3954-4018-97A0-EC4A980E51B7',1,8,'888','888','1','888',1,NULL,'2023-03-17 21:10:46',NULL,'sb2',888,4),(19,NULL,'Tops','6666','666666',66666,'/images/29335658-1789-48AB-8259-AD4C98386869',1,8,'Nike','4','1','66666',1,'2023-03-21 18:09:19','2023-03-21 18:09:19','sb2','sb2',6666,4),(20,NULL,'Tops','888','888',886,'/images/839CA23D-0BD7-4A59-96EE-50CF0085D6BD',1,8,'Gucci','1','1','888',2,'2023-03-21 18:26:11','2023-03-21 21:02:14','sb2','sb2',888,4),(21,NULL,'Accessories','999','9999',9999,'/images/20B3A9BC-BE43-470B-9971-102268805356',1,8,'Supreme','1','1','99999',2,'2023-03-21 20:43:44','2023-03-21 20:43:44','sb2','sb2',999,4),(22,NULL,'Tops','111144','1111144',555,'/images/E9E6BCC6-F19F-4AA6-918A-62B7B2F05F8F',1,8,'Gucci','1','1','5555',2,'2023-03-22 16:04:06','2023-03-22 16:04:06','sb2','sb2',666,4),(23,NULL,'Tops','5555','555555',5555,'/images/CC025554-3B96-4537-B541-E081953B9575',1,8,'Supreme','2','1','55555',1,'2023-03-22 16:05:54','2023-03-22 16:05:54','sb2','sb2',555,4),(24,NULL,'Tops','sd546a5d4a','sd546a5d4a',54654,'/images/16AE6D72-213E-4FF0-84F7-6AF6F832438D',1,8,'Prada','4','1','sdadad',2,'2023-03-22 16:06:22','2023-03-22 16:06:22','sb2','sb2',54654,4),(25,NULL,'Tops','asdjkadjkladj','asdjkadjkladj',54631231,'/images/F3C8351C-4AF7-4A42-B8B2-C39EFD9C1F2B',1,8,'Prada','3','1','sdadada',1,'2023-03-22 16:06:43','2023-03-22 16:06:43','sb2','sb2',999999,4),(26,NULL,'Tops','9999887','9999887',54631231,'/images/FAC17AF8-DA78-4E3F-9981-A6380251F3A4',1,8,'Nike','1','1','sdadadad',1,'2023-03-22 16:07:15','2023-03-22 16:07:15','sb2','sb2',999999,4),(27,NULL,'Tops','4165132165','4165132165',54631231,'/images/C53C674D-790B-4A90-830B-9466BAC62A4B',1,8,'Gucci','3','1','sdadadad',1,'2023-03-22 16:07:29','2023-03-22 16:07:29','sb2','sb2',4165132165,4),(28,NULL,'Tops','555','555',44444,'/images/C8527706-A5F2-4161-94B7-DEEA7F171F21',1,8,'Superme','2','5','44444',1,'2023-03-22 19:12:45','2023-03-22 19:12:45','sb2','sb2',55,4),(29,NULL,'Tops','9999999','99999999',99999,'/images/67C119E4-30D1-42D5-A32C-72B6988D54A7',1,8,'Nike','4','4','99999',2,'2023-03-25 15:32:47','2023-03-25 15:32:47','sb2','sb2',999,4),(30,NULL,'Tops','545454','554545',500,'/images/D6BD7E9E-60FA-4B6A-8D54-D2360B504B8C',1,8,'Nike','3','1','sdad',1,'2023-04-08 20:37:11','2023-04-08 20:37:11','sb2','sb2',299,4);
+/*!40000 ALTER TABLE `t_product` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-04-17 22:52:56
