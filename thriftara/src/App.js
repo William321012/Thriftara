@@ -15,6 +15,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Search from "./pages/Search";
 import data from './products/Data';
 import { useState } from "react";
+// import axios from "axios";
 
 function App() {
 
@@ -58,11 +59,13 @@ function App() {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
     }
   }
+  //total number in cart, minimum amount is 0
+  const itemscount = cartItems.reduce((amount, current) => amount + current.qty, 0)
 
   return (
     <div className="App">
       <Router>
-        <Navbar cartItemsCount={cartItems.length} />
+        <Navbar cartItemsCount={itemscount} />
         <Routes>
           <Route path="/" element={<Home mproducts={mproducts} wproducts={wproducts}
             addToCart={addToCart}  />} />

@@ -14,7 +14,9 @@ function Home(props) {
 
   const { mproducts, wproducts, addToCart } = props
 
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([
+  ])
+
   useEffect(() => {
     loadProducts();
   }, [])
@@ -23,7 +25,29 @@ function Home(props) {
     const res = await axios.get("http://localhost:8080/products/getAllProduct")
     console.log(res.data.data)
     setProducts(res.data.data)
+    // setPost(res.data.data)
   }
+
+  // const [post, setPost] = useState({
+  //   cid: "",
+  //   pid: "",
+  //   price: "",
+  //   num: "",
+  //   created_user: "",
+  // })
+
+  // const { {cid=13}, {pid=101}, {created_user="meggie"}, {num=1}} = post
+  // setCart({...cart, [e.target.field]: e.target.value})
+  // const cartInput = (e) => {
+  //   setPost({...post, [e.target.name]: e.target.value})
+  // }
+
+  //post to database
+  // const addCart = async() => {
+  //   const res = await axios.post("http://localhost:8080/carts/insertToCart",
+  //     {products})
+  //   console.log(res.data)
+  // }
 
   return (
     <>
@@ -46,15 +70,14 @@ function Home(props) {
         <section className='products'>
           <h3>Products (work in progress)</h3>
           <section className='products-section'>
-              {products.map((product) => (
-                <div className='product-items' key={product.id}>
-                  <img src={product.image} alt={product.title} />
-                  <h5>{product.title}</h5>
-                  <h6>Price: ${product.price}</h6>
-                  <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
-                </div>
-
-              ))}
+            {products.map((product) => (
+              <div className='product-items' key={product.id}>
+                <img src={product.image} alt={product.title} />
+                <h5>{product.title}</h5>
+                <h6>Price: ${product.price}</h6>
+                <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+              </div>
+            ))}
           </section>
         </section>
 
