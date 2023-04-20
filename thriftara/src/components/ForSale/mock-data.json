@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "image": "Blank",
+    "itemName": "Wheel",
+    "itemDescription": "OffRoad",
+    "purchasePrice": "$50",
+    "quantity": "5"
+  },
+  {
+    "id": 2,
+    "image": "Blank",
+    "itemName": "Tire",
+    "itemDescription": "Road",
+    "purchasePrice": "$40",
+    "quantity": "7"
+  },
+  {
+    "id": 3,
+    "image": "Blank",
+    "itemName": "Inner Tube",
+    "itemDescription": "8.5 Inch",
+    "purchasePrice": "$10",
+    "quantity": "12"
+  },
+  {
+    "id": 4,
+    "image": "Blank",
+    "itemName": "Pump",
+    "itemDescription": "Air",
+    "purchasePrice": "$20",
+    "quantity": "9"
+  },
+  {
+    "id": 5,
+    "image": "Blank",
+    "itemName": "Grip",
+    "itemDescription": "Rubber",
+    "purchasePrice": "$8",
+    "quantity": "2"
+  }
+]

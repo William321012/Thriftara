@@ -10,7 +10,7 @@ class Login extends React.Component {
   password = React.createRef();
 
   connectUser = async () => {
-    // Post Request
+    // Post request sends username information to backend to log in.
     axios
       .post(
         "http://localhost:8080/customers/log",
@@ -22,6 +22,9 @@ class Login extends React.Component {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
+        },
+        {
+          withCredentials: true,
         }
       )
       .then(function (response) {
@@ -96,6 +99,7 @@ class Login extends React.Component {
                         </button>
                       </Link> */}
 
+                      {/* Connects to backend when submit is clicked */}
                       <button
                         type="submit"
                         className="btn btn-primary fw-bold form-control mb-2"

@@ -16,16 +16,16 @@ import java.util.List;
 @RestController
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("/orders")
-public class OrderController extends BaseController{
+public class OrderController extends BaseController {
 
     @Resource
     private IOrderService orderService;
 
     @RequestMapping("/createOrder")
-    public JsonResult<Order> createOrder(Integer aid, HttpServletRequest request, Integer[] checkId){
+    public JsonResult<Order> createOrder(Integer aid, HttpServletRequest request, Integer[] checkId) {
         JsonResult<Order> jsonResult = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
 
         Order order = orderService.createOrder(aid, username, cid, checkId);
 
@@ -38,9 +38,9 @@ public class OrderController extends BaseController{
     }
 
     @RequestMapping("/getOrderByOid")
-    public JsonResult<Order> getOrderByOid(HttpServletRequest request, Integer oid){
+    public JsonResult<Order> getOrderByOid(HttpServletRequest request, Integer oid) {
         JsonResult<Order> jsonResult = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
         Order order = orderService.getOrder(oid, cid);
         jsonResult.setState(200);
         jsonResult.setMessage("success");
@@ -51,12 +51,12 @@ public class OrderController extends BaseController{
     }
 
     @RequestMapping("/updateOrderStatus")
-    public JsonResult<Void> updateOrderStatus(HttpServletRequest request, Integer oid){
+    public JsonResult<Void> updateOrderStatus(HttpServletRequest request, Integer oid) {
         JsonResult<Void> jsonResult = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
 
-        orderService.updateOrder(cid,oid,username);
+        orderService.updateOrder(cid, oid, username);
         jsonResult.setState(200);
         jsonResult.setMessage("success");
 
@@ -64,12 +64,12 @@ public class OrderController extends BaseController{
     }
 
     @RequestMapping("/getOrderItemByOid")
-    public JsonResult<List<OrderItem>> getOrderItemByOid(HttpServletRequest request, Integer oid){
+    public JsonResult<List<OrderItem>> getOrderItemByOid(HttpServletRequest request, Integer oid) {
         JsonResult<List<OrderItem>> jsonResult = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
         List<OrderItem> orderItemByOid1 = orderService.getOrderItemByOid(oid, cid, username);
-        for(OrderItem o:orderItemByOid1){
+        for (OrderItem o : orderItemByOid1) {
             System.out.println(o);
         }
         jsonResult.setState(200);
@@ -80,13 +80,11 @@ public class OrderController extends BaseController{
 
     }
 
-
     @RequestMapping("/displayAllOrder")
-    public JsonResult<List<Order>> displayAllOrder(HttpServletRequest request){
+    public JsonResult<List<Order>> displayAllOrder(HttpServletRequest request) {
         JsonResult<List<Order>> jsonResult = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
         List<Order> orders = orderService.displayAllOrdersByCid(cid);
-
 
         jsonResult.setState(200);
         jsonResult.setMessage("success");

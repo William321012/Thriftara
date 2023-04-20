@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "image": "Blank",
+    "itemName": "Wheel",
+    "purchasePrice": "$50",
+    "quantity": "5",
+    "totalPrice": "50",
+    "Recipient": "Tom",
+    "Address": "6666-New York-NY-11204",
+    "Date": "3/30/2023"
+  },
+  {
+    "id": 2,
+    "image": "Blank",
+    "itemName": "Tire",
+    "purchasePrice": "$40",
+    "quantity": "2",
+    "totalPrice": "80",
+    "Recipient": "Meggie",
+    "Address": "6666-New York-NY-11204",
+    "Date": "4/19/2023"
+  },
+  {
+    "id": 3,
+    "image": "Blank",
+    "itemName": "Inner Tube",
+    "purchasePrice": "$10",
+    "quantity": "4",
+    "totalPrice": "40",
+    "Recipient": "Michael",
+    "Address": "77777-Cedar Rapids-IA-11204",
+    "Date": "4/15/2023"
+  },
+  {
+    "id": 4,
+    "image": "Blank",
+    "itemName": "Pump",
+    "purchasePrice": "$20",
+    "quantity": "3",
+    "totalPrice": "60",
+    "Recipient": "William",
+    "Address": "77777-Cedar Rapids-IA-11204",
+    "Date": "4/10/2023"
+  },
+  {
+    "id": 5,
+    "image": "Blank",
+    "itemName": "Grip",
+    "purchasePrice": "$8",
+    "quantity": "1",
+    "totalPrice": "8",
+    "Recipient": "Jack",
+    "Address": "5555555-New York-NY-11204",
+    "Date": "4/5/2023"
+  }
+]

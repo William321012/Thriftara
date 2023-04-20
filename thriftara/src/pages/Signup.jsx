@@ -21,12 +21,7 @@ class Signup extends React.Component {
   }
 
   SignupUser = async () => {
-    // Get Request
-    // const result = await axios.get("http://localhost:8080/test");
-    // console.log(result.data);
-    // console.log(result.data.message);
-
-    // Post Request
+    // Post Request, which sends the username password and email submitted by the frontend to the backend.
     axios
       .post(
         "http://localhost:8080/customers/reg",
@@ -46,7 +41,7 @@ class Signup extends React.Component {
       });
   };
 
-  //Tells the user the password doesn't match
+  //Changes UI element based on if the password matches or not.
   checkPassword() {
     if (this.password.current.value !== this.cnfrmpassword.current.value) {
       this.setState({
@@ -59,7 +54,7 @@ class Signup extends React.Component {
     }
   }
 
-  //Prevents Submission of form if password doesn't match - Doesn't work right now
+  //Prevents Submission of form if password doesn't match
   handleSubmit(e) {
     if (this.password.current.value !== this.cnfrmpassword.current.value) {
       e.preventDefault();

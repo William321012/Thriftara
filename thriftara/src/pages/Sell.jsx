@@ -3,6 +3,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import SellNewItem from "../components/SellNewItem/SellNewItem";
 import ForSale from "../components/ForSale/ForSale";
+import Sold from "../components/Sold/Sold";
 
 class Sell extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Sell extends React.Component {
             <div className="row align-items-center">
               <div className="col-2 align-middle">
                 <button
+                  //Changes button formation(position) based on option selected
                   onClick={this.changeOption.bind(this, 1)}
                   className="form-control"
                   style={{
@@ -118,8 +120,9 @@ class Sell extends React.Component {
               <div className="col-10">
                 <div className="card">
                   <div className="card-body">
+                    {/* Calls different components based on button selected */}
                     {this.state.option1 ? <ForSale /> : null}
-                    {this.state.option2 ? <h1>Option 2</h1> : null}
+                    {this.state.option2 ? <Sold /> : null}
                     {this.state.option3 ? <SellNewItem /> : null}
                   </div>
                 </div>
