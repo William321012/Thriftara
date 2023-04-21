@@ -108,7 +108,7 @@ class Login extends React.Component {
                         Login
                       </button>
 
-                      <Link to="/pages/Login">
+                      <Link to="/pages/ForgotPassword">
                         <br />
                         Forgot password?
                       </Link>
