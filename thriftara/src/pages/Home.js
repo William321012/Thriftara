@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
 import '../styles/Home.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Nike from '../logo/nikelogo.jpeg'
 import Addidas from '../logo/addidaslogo.png'
 import Gucci from '../logo/Gucci.jpeg'
@@ -12,18 +11,30 @@ import Hero from '../components/Carousel/Carousel'
 
 function Home(props) {
 
-  const { mproducts, wproducts, addToCart } = props
+  const { mproducts, wproducts, addToCart, products } = props
 
-  const [products, setProducts] = useState([])
-  useEffect(() => {
-    loadProducts();
-  }, [])
+  const navigate = useNavigate()
 
-  const loadProducts = async () => {
-    const res = await axios.get("http://localhost:8080/products/getAllProduct")
-    console.log(res.data.data)
-    setProducts(res.data.data)
-  }
+  // const [post, setPost] = useState({
+  //   cid: "",
+  //   pid: "",
+  //   price: "",
+  //   num: "",
+  //   created_user: "",
+  // })
+
+  // const { {cid=13}, {pid=101}, {created_user="meggie"}, {num=1}} = post
+  // setCart({...cart, [e.target.field]: e.target.value})
+  // const cartInput = (e) => {
+  //   setPost({...post, [e.target.name]: e.target.value})
+  // }
+
+  //post to database
+  // const addCart = async() => {
+  //   const res = await axios.post("http://localhost:8080/carts/insertToCart",
+  //     {products})
+  //   console.log(res.data)
+  // }
 
   return (
     <>
@@ -35,26 +46,25 @@ function Home(props) {
         <section className='home-brands'>
           <Link to='/brands' className="text-dark" style={{ textDecoration: 'none' }}><h3>Brands</h3></Link>
           <div className='brand-cards'>
-            <img src={Nike} alt='nike logo' />
-            <img src={Addidas} alt='addidas logo' />
-            <img src={Gucci} alt='gucci logo' />
-            <img src={Prada} alt='prada logo' />
-            <img src={Supreme} alt='supreme logo' />
+            <Link to='https://www.nike.com'><img src={Nike} alt='nike logo' /></Link>
+            <Link to='https://www.adidas.com/us'><img src={Addidas} alt='addidas logo' /></Link>
+            <Link to='https://www.gucci.com/us/en/'><img src={Gucci} alt='gucci logo' /></Link>
+            <Link to='https://www.prada.com/us/en.html'><img src={Prada} alt='prada logo' /></Link>
+            <Link to='https://us.supreme.com'><img src={Supreme} alt='supreme logo' /></Link>
           </div>
         </section>
 
         <section className='products'>
           <h3>Products (work in progress)</h3>
           <section className='products-section'>
-              {products.map((product) => (
-                <div className='product-items' key={product.id}>
-                  <img src={product.image} alt={product.title} />
-                  <h5>{product.title}</h5>
-                  <h6>Price: ${product.price}</h6>
-                  <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
-                </div>
-
-              ))}
+            {products.map((product) => (
+              <div className='product-items' key={product.id}>
+                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)}/>
+                <h5>{product.title}</h5>
+                <h6>Price: ${product.price}</h6>
+                <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+              </div>
+            ))}
           </section>
         </section>
 
@@ -63,7 +73,7 @@ function Home(props) {
           <section className='products-section'>
             {mproducts.map((product) => (
               <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title} />
+                <img src={product.image} alt={product.title}  onClick={() => navigate(`/product/${product.title}`)}/>
                 <h5>{product.title}</h5>
                 <h6>Price: ${product.price}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
@@ -77,7 +87,7 @@ function Home(props) {
           <section className='products-section'>
             {wproducts.map((product) => (
               <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title} />
+                <img src={product.image} alt={product.title}  onClick={() => navigate(`/product/${product.title}`)}/>
                 <h5>{product.title}</h5>
                 <h6>Price: ${product.price}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>

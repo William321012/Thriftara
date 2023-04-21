@@ -33,6 +33,7 @@ public class MyConfig implements WebMvcConfigurer {
         exclude.add("/customers/reg");
         exclude.add("/customers/log");
         exclude.add("/products/**");
+        exclude.add("/carts/**");
         exclude.add("/web/allProduct.html");
         exclude.add("/web/productCategory.html");
 

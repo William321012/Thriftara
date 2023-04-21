@@ -14,12 +14,27 @@ import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
 import Search from "./pages/Search";
 import data from './products/Data';
-import { useState } from "react";
+import ProductDetails from "./products/ProductDetails";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
 
   //products data
   const { mproducts, wproducts } = data;
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    loadProducts();
+  }, [])
+
+  const loadProducts = async() => {
+    const res = await axios.get("http://localhost:8080/products/getAllProduct")
+    setProducts(res.data.data)
+    console.log(res.data.data)
+    // setPost(res.data.data)
+  }
+
   //shopping cart states
   const [cartItems, setCartItems] = useState([]);
 
@@ -58,13 +73,15 @@ function App() {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
     }
   }
+  //total number in cart, minimum amount is 0
+  const itemscount = cartItems.reduce((amount, current) => amount + current.qty, 0)
 
   return (
     <div className="App">
       <Router>
-        <Navbar cartItemsCount={cartItems.length} />
+        <Navbar cartItemsCount={itemscount} />
         <Routes>
-          <Route path="/" element={<Home mproducts={mproducts} wproducts={wproducts}
+          <Route path="/" element={<Home mproducts={mproducts} wproducts={wproducts} products={products}
             addToCart={addToCart}  />} />
           <Route path="/brands" element={<Brands />} />
           <Route path="/faq" element={<FAQ />} />
@@ -77,6 +94,8 @@ function App() {
           <Route path="/pages/Sell" element={<Sell />} />
           <Route path="/pages/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/pages/Search" element={<Search />} />
+          <Route path="/product/:title" element={<ProductDetails mproducts={mproducts} wproducts={wproducts}
+            products={products} addToCart={addToCart} />} />
         </Routes>
         <Footer />
       </Router>
