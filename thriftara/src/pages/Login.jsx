@@ -89,8 +89,7 @@ class Login extends React.Component {
 
                       {/* Connects to backend when submit is clicked, and moves them to the home page. */}
                       <Link
-                        // ***************** change this back later
-                        // to="/"
+                        to="/"
                         type="submit"
                         className="btn btn-primary fw-bold form-control mb-2"
                         onClick={this.connectUser}
