@@ -4,6 +4,7 @@ import logo from "../images/logo.png";
 import loginpic from "../images/loginpic.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 class Login extends React.Component {
   username = React.createRef();
@@ -22,12 +23,10 @@ class Login extends React.Component {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        },
-        {
-          withCredentials: true,
         }
       )
       .then(function (response) {
+        // console.log(response.data.data.cid);
         // successful response
         if (response.data.state == 5001) {
           alert("Incorrect Username or password");
@@ -88,25 +87,16 @@ class Login extends React.Component {
                         />
                       </div>
 
-                      {/* Test Navigation */}
-                      {/* <Link to="/pages/Signup">
-                        <button
-                          type="submit"
-                          className="btn btn-primary fw-bold form-control mb-2"
-                          onClick={this.connectUser}
-                        >
-                          Login
-                        </button>
-                      </Link> */}
-
-                      {/* Connects to backend when submit is clicked */}
-                      <button
+                      {/* Connects to backend when submit is clicked, and moves them to the home page. */}
+                      <Link
+                        // ***************** change this back later
+                        // to="/"
                         type="submit"
                         className="btn btn-primary fw-bold form-control mb-2"
                         onClick={this.connectUser}
                       >
                         Login
-                      </button>
+                      </Link>
 
                       <Link to="/pages/ForgotPassword">
                         <br />

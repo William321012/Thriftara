@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
 @RequestMapping("/carts")
-public class CartController extends BaseController{
+public class CartController extends BaseController {
 
     @Resource
     private ICartService cartService;
 
     @RequestMapping("/insertToCart")
-    public JsonResult<Void> insertToCart(HttpServletRequest request, Integer pid, Integer amount){
+    public JsonResult<Void> insertToCart(HttpServletRequest request, Integer pid, Integer amount) {
         JsonResult<Void> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
-        cartService.insertProductToTheCart(cid,pid,username,amount);
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
+        cartService.insertProductToTheCart(cid, pid, username, amount);
 
         result.setState(200);
         result.setMessage("success");
@@ -33,9 +32,9 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("/display")
-    public JsonResult<List<CartVO>> display(HttpServletRequest request){
+    public JsonResult<List<CartVO>> display(HttpServletRequest request) {
         JsonResult<List<CartVO>> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
 
         List<CartVO> cartVO = cartService.displayAllProductInTheCart(cid);
 
@@ -47,10 +46,10 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("/addNumFromTheCart")
-    public JsonResult<Integer> addNumFromTheCart(HttpServletRequest request, Integer id){
+    public JsonResult<Integer> addNumFromTheCart(HttpServletRequest request, Integer id) {
         JsonResult<Integer> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
 
         Integer data = cartService.addNumFromTheCart(id, cid, username);
 
@@ -62,10 +61,10 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("/minusNumFromTheCart")
-    public JsonResult<Integer> minNumFromTheCart(HttpServletRequest request, Integer id){
+    public JsonResult<Integer> minNumFromTheCart(HttpServletRequest request, Integer id) {
         JsonResult<Integer> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
-        String username = (String)request.getSession().getAttribute("username");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
+        String username = (String) request.getSession().getAttribute("username");
 
         Integer data = cartService.minusNumFromTheCart(id, cid, username);
 
@@ -77,9 +76,9 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("/list")
-    public JsonResult<List<CartVO>> list(HttpServletRequest request, Integer[] checkId){
+    public JsonResult<List<CartVO>> list(HttpServletRequest request, Integer[] checkId) {
         JsonResult<List<CartVO>> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
 
         List<CartVO> cartVOS = cartService.displayAllChosenInTheOrder(checkId, cid);
 
@@ -91,9 +90,9 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("/delete")
-    public JsonResult<Void> delete(HttpServletRequest request, Integer id){
+    public JsonResult<Void> delete(HttpServletRequest request, Integer id) {
         JsonResult<Void> result = new JsonResult<>();
-        Integer cid = (Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
 
         cartService.deleteProductFromTheCartById(id, cid);
 

@@ -21,9 +21,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
 @RequestMapping("/products")
-public class ProductController extends BaseController{
+public class ProductController extends BaseController {
 
     @Resource
     IProductService productService;
@@ -39,7 +38,7 @@ public class ProductController extends BaseController{
     }
 
     @RequestMapping("/toplist")
-    public JsonResult<List<Product>> topList(){
+    public JsonResult<List<Product>> topList() {
         JsonResult<List<Product>> result = new JsonResult<>();
 
         List<Product> topList = productService.getTopList();
@@ -51,8 +50,8 @@ public class ProductController extends BaseController{
     }
 
     @RequestMapping("/getProduct")
-    public JsonResult<Product> getProduct(Integer id){
-        JsonResult <Product> result = new JsonResult<>();
+    public JsonResult<Product> getProduct(Integer id) {
+        JsonResult<Product> result = new JsonResult<>();
 
         Product product = productService.getProductById(id);
 
@@ -63,7 +62,7 @@ public class ProductController extends BaseController{
     }
 
     @RequestMapping("/getAllProduct")
-    public JsonResult<List<Product>> getAllProduct(){
+    public JsonResult<List<Product>> getAllProduct() {
         JsonResult<List<Product>> result = new JsonResult<>();
 
         List<Product> products = productService.getAllProduct();
@@ -74,17 +73,18 @@ public class ProductController extends BaseController{
         return result;
     }
 
-
     @RequestMapping("/uploadProduct")
-    public JsonResult<Void> uploadProduct(@RequestParam("file") MultipartFile[] files, String title, String description, String price, String category,
-                                          String number, String status, String brand, String size, String color, String gender, HttpServletRequest request) {
+    public JsonResult<Void> uploadProduct(@RequestParam("file") MultipartFile[] files, String title, String description,
+            String price, String category,
+            String number, String status, String brand, String size, String color, String gender,
+            HttpServletRequest request) {
         JsonResult<Void> result = new JsonResult<>();
-//        List<String> images = new ArrayList<>();
-        int count=1;
+        // List<String> images = new ArrayList<>();
+        int count = 1;
 
         System.out.println(price);
 
-        Integer cid=(Integer)request.getSession().getAttribute("cid");
+        Integer cid = (Integer) request.getSession().getAttribute("cid");
 
         String newFileName = UUID.randomUUID().toString().toUpperCase();
 
@@ -109,32 +109,34 @@ public class ProductController extends BaseController{
 
             File dir = new File(upload);
 
-            //create this directory if it does not exist
+            // create this directory if it does not exist
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            //get the name of the file first, then using UUID to create a new name for this file
-            //xxx.jpg
+            // get the name of the file first, then using UUID to create a new name for this
+            // file
+            // xxx.jpg
             String originalFilename = f.getOriginalFilename();
             System.out.println(originalFilename);
 
-            //storing the suffix of the file
+            // storing the suffix of the file
             int index = originalFilename.lastIndexOf(".");
             String suffix = originalFilename.substring(index);
-            //get the suffix
+            // get the suffix
             System.out.println(suffix);
 
-            //encrypt this filename
-//            String newFileName = UUID.randomUUID().toString().toUpperCase();
+            // encrypt this filename
+            // String newFileName = UUID.randomUUID().toString().toUpperCase();
 
-            //complete whole file name with encryption filename + suffix  ex: xxx +.jpg
-            String newFile = newFileName +"_"+count+ suffix;
+            // complete whole file name with encryption filename + suffix ex: xxx +.jpg
+            String newFile = newFileName + "_" + count + suffix;
 
-            //create a empty file that is under the "dir" directory(/upload) with the file name "newFile"
+            // create a empty file that is under the "dir" directory(/upload) with the file
+            // name "newFile"
             File dest = new File(dir, newFile);
 
-            //transfer the data from the input file to that empty file "dest"
+            // transfer the data from the input file to that empty file "dest"
             try {
                 f.transferTo(dest);
             } catch (FileStateException e) {
@@ -143,8 +145,8 @@ public class ProductController extends BaseController{
                 throw new FileIOException("IO Exception");
             }
 
-            //return the path of the file for displaying
-            //storing the path of the avatar to the db
+            // return the path of the file for displaying
+            // storing the path of the avatar to the db
             count++;
         }
         String productImg = "/images/" + newFileName;
@@ -187,7 +189,7 @@ public class ProductController extends BaseController{
         product.setColor(color);
         product.setGender(Integer.parseInt(gender));
 
-        String username=(String)request.getSession().getAttribute("username");
+        String username = (String) request.getSession().getAttribute("username");
         product.setCreatedUser(username);
         product.setCreateTime(new Date());
         product.setModifiedUser(username);
@@ -197,14 +199,13 @@ public class ProductController extends BaseController{
 
         productService.uploadProduct(product);
 
-
         result.setState(200);
         result.setMessage("success");
         return result;
     }
 
     @RequestMapping("/getProductByCategory")
-    public JsonResult<List<Product>> getProductByCategory(String category){
+    public JsonResult<List<Product>> getProductByCategory(String category) {
         JsonResult<List<Product>> result = new JsonResult<>();
 
         List<Product> productByCategory = productService.getProductByCategory(category);
@@ -212,24 +213,25 @@ public class ProductController extends BaseController{
         result.setMessage("success");
         result.setData(productByCategory);
 
-
         return result;
     }
 
-//    category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender,
+    // category="+id+"&brands="+brand+"&sizes="+size+"&conditions="+condition+"&genders="+gender,
     @RequestMapping("/getProductByFilter")
-    public JsonResult<List<Product>> getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder, Integer priceRange){
+    public JsonResult<List<Product>> getProductByFilter(String category, String[] brands, String[] sizes,
+            String[] conditions, Integer[] genders, Integer priceOrder, Integer priceRange) {
         JsonResult<List<Product>> result = new JsonResult<>();
         String pcategory = category;
         String[] pbrands = brands;
         String[] psizes = sizes;
         String[] pconditions = conditions;
-        Integer[] pgenders=genders;
+        Integer[] pgenders = genders;
 
         Integer order = priceOrder;
-        Integer ppriceRange=priceRange;
+        Integer ppriceRange = priceRange;
 
-        List<Product> productByFilter = productService.getProductByFilter(pcategory, pbrands, psizes, pconditions, pgenders, priceOrder, ppriceRange);
+        List<Product> productByFilter = productService.getProductByFilter(pcategory, pbrands, psizes, pconditions,
+                pgenders, priceOrder, ppriceRange);
 
         result.setState(200);
         result.setMessage("success");
@@ -237,8 +239,5 @@ public class ProductController extends BaseController{
 
         return result;
     }
-
-
-
 
 }

@@ -3,17 +3,17 @@ import axios from "axios";
 import data from "./mock-data.json";
 
 class ForSale extends React.Component {
-  // displayAllPurchases = () => {
-  //   axios
-  //     .get("http://localhost:8080/orders/displayAllOrder")
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       // error response
-  //       alert("failed");
-  //     });
-  // };
+  displayAllPurchases = () => {
+    axios
+      .get("http://localhost:8080/orders/displayAllOrder")
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        // error response
+        alert("failed");
+      });
+  };
 
   // const [items, setItems] = useState();
 
@@ -50,10 +50,10 @@ class ForSale extends React.Component {
               <td>{info.quantity}</td>
             </tr>
           ))}
-          {console.log(this.state.information.length)}
+          {/* {console.log(this.state.information.length)} */}
         </table>
         {/* Gets information about the seller from the backend. */}
-        {/* {this.displayAllPurchases()} */}
+        {this.displayAllPurchases()}
       </section>
     );
   }

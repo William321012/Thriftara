@@ -41,7 +41,6 @@ class Sold extends React.Component {
               <td>{info.Date}</td>
             </tr>
           ))}
-          {console.log(this.state.information.length)}
         </table>
         {/* Gets information about the seller from the backend. */}
         {/* {this.displayAllPurchases()} */}

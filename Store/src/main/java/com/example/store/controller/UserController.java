@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
 @RequestMapping("/customers")
 public class UserController extends BaseController {
 
@@ -48,6 +47,7 @@ public class UserController extends BaseController {
         JsonResult<Customer> result = new JsonResult<>();
         Customer customer1 = userService.login(customer);
 
+        System.out.println(httpSession);
         httpSession.setAttribute("customer", customer1);
         httpSession.setAttribute("cid", customer1.getCid());
         httpSession.setAttribute("username", customer1.getUsername());
