@@ -5,9 +5,7 @@
 }
 
 .cart-empty {
-    padding: 3rem 0;
-    position: absolute;
-    top: 13rem;
+    padding: 10rem 0;
 }
 
 .cart-items-mapping {
