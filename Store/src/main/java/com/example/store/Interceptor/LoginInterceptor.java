@@ -9,13 +9,13 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("http://localhost:3000"));
-        response.setHeader("Access-Control-Allow-Headers",
-                "Authorization,Origin, X-Requested-With, Content-Type, Accept,Access-Token");// Origin,
-                                                                                             // X-Requested-With,
-                                                                                             // Content-Type,
-                                                                                             // Accept,Access-Token
+//
+//        response.setHeader("Access-Control-Allow-Origin", request.getHeader("http://localhost:3000"));
+//        response.setHeader("Access-Control-Allow-Headers",
+//                "Authorization,Origin, X-Requested-With, Content-Type, Accept,Access-Token");// Origin,
+//                                                                                             // X-Requested-With,
+//                                                                                             // Content-Type,
+//                                                                                             // Accept,Access-Token
 
         Object cid = request.getSession().getAttribute("cid");
         if (cid == null) {

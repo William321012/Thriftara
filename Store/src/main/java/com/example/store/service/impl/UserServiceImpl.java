@@ -2,6 +2,7 @@ package com.example.store.service.impl;
 
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.pojo.Customer;
+import com.example.store.pojo.Product;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.*;
 import jakarta.annotation.Resource;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -165,6 +167,17 @@ public class UserServiceImpl implements IUserService {
 
         String avatar = customer.getAvatar();
         return avatar;
+
+    }
+
+    @Override
+    public List<Product> displayAllUserProduct(Integer cid) {
+        Customer customer = customerMapper.checkCustomerById(cid);
+        if(customer.getIsDelete()==1 || customer==null){
+            throw new UserNotExistException("user does not exists");
+        }
+        List<Product> products = customerMapper.displayAllUserProduct(cid);
+        return products;
 
     }
 

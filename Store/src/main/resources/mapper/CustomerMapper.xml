@@ -14,6 +14,29 @@
         <result property="modifiedTime" column="modified_time"></result>
     </resultMap>
 
+    <resultMap id="resultMapProduct" type="com.example.store.pojo.Product">
+        <id property="id" column="id"></id>
+        <result property="categoryId" column="category_id"></result>
+        <result property="itemType" column="item_type"></result>
+        <result property="itemDescription" column="item_description"></result>
+        <result property="title" column="title"></result>
+        <result property="num" column="num"></result>
+        <result property="image" column="image"></result>
+        <result property="itemStatus" column="item_status"></result>
+        <result property="priority" column="priority"></result>
+        <result property="brand" column="brand"></result>
+        <result property="size" column="size"></result>
+        <result property="itemCondition" column="item_condition"></result>
+        <result property="color" column="color"></result>
+        <result property="gender" column="gender"></result>
+
+
+        <result property="createdUser" column="created_user"></result>
+        <result property="createdTime" column="created_time"></result>
+        <result property="modifiedUser" column="modified_user"></result>
+        <result property="modifiedTime" column="modified_time"></result>
+    </resultMap>
+
     <select id="checkCustomerByUserName" resultMap="resultMapCustomer">
         select * from t_customer where username = #{username}
     </select>
@@ -38,5 +61,9 @@
     <update id="updateAvatar">
         update t_customer set avatar = #{avatar}, modified_user=#{modifiedUser},  modified_time=#{modifiedTime} where c_id  = #{cid}
     </update>
+
+    <select id="displayAllUserProduct" resultMap="resultMapProduct">
+        select * from t_product where cid=#{cid}
+    </select>
 
 </mapper>

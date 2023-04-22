@@ -43,7 +43,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/log")
-    public JsonResult<Customer> log(Customer customer, HttpSession httpSession) {
+    public JsonResult<Customer> login(Customer customer, HttpSession httpSession) {
         JsonResult<Customer> result = new JsonResult<>();
         Customer customer1 = userService.login(customer);
 
@@ -219,6 +219,38 @@ public class UserController extends BaseController {
         result.setMessage("success");
         result.setData(avatar);
         return result;
+    }
+
+    @RequestMapping("/displayUserProduct")
+    public JsonResult<List<Product>> displayUserProduct(HttpServletRequest request) {
+        JsonResult<List<Product>> result = new JsonResult<>();
+
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
+        Integer cid = customer.getCid();
+
+        List<Product> products = userService.displayAllUserProduct(cid);
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(products);
+        return result;
+    }
+
+    @RequestMapping("/logout")
+    //httpSession.setAttribute("customer", customer1);
+    //        httpSession.setAttribute("cid", customer1.getCid());
+    //        httpSession.setAttribute("username", customer1.getUsername());
+    public String logout (HttpSession session){
+        JsonResult<String> result = new JsonResult<>();
+        session.removeAttribute("customer");
+        session.removeAttribute("cid");
+        session.removeAttribute("username");
+        result.setState(200);
+        result.setMessage("success");
+        result.setData("logout successfully");
+
+        return"redirect:http://localhost:8080/login.html";
+
     }
 
 }

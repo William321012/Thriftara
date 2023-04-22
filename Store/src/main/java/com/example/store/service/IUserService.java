@@ -1,9 +1,11 @@
 package com.example.store.service;
 
 import com.example.store.pojo.Customer;
+import com.example.store.pojo.Product;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IUserService {
 
@@ -20,6 +22,8 @@ public interface IUserService {
     void updateAvatar(Integer cid, String avatar, String username);
 
     String getAvatar(Integer cid);
+
+    List<Product> displayAllUserProduct(Integer cid);
 
 
 }

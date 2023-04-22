@@ -1,11 +1,14 @@
 package com.example.store.mapper;
 
 import com.example.store.pojo.Customer;
+import com.example.store.pojo.Product;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 
@@ -39,6 +42,11 @@ public class UserMapperTests {
         customer.setUsername("aaa");
         customer.setCid(4);
         customerMapper.updateCustomerInfo(customer);
+    }
+
+    @Test
+    public void displayAllUserProduct(){
+        customerMapper.displayAllUserProduct(4);
     }
 }
 
