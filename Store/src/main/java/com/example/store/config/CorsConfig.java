@@ -14,7 +14,7 @@ public class CorsConfig {
 //        corsConfiguration.addAllowedMethod("*");
 //        return corsConfiguration;
 //    }
-//
+
 //    @Bean
 //    public CorsFilter corsFilter() {
 //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

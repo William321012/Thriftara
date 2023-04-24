@@ -23,16 +23,26 @@ function App() {
   //products data
   const { mproducts, wproducts } = data;
   const [products, setProducts] = useState([])
+  const [cartDisplay, setCartDisplay] = useState([])
 
   useEffect(() => {
     loadProducts();
+    loadCart();
   }, [])
 
+  //all products
   const loadProducts = async() => {
     const res = await axios.get("http://localhost:8080/products/getAllProduct")
     setProducts(res.data.data)
     console.log(res.data.data)
     // setPost(res.data.data)
+  }
+
+  //all items in shopping cart
+  const loadCart = async() => {
+    const res = await axios.get("http://localhost:8080/carts/display")
+    console.log(res.data.data)
+    setCartDisplay(res.data.data)
   }
 
   //shopping cart states
@@ -74,7 +84,8 @@ function App() {
     }
   }
   //total number in cart, minimum amount is 0
-  const itemscount = cartItems.reduce((amount, current) => amount + current.qty, 0)
+  // const itemscount = cartItems.reduce((amount, current) => amount + current.qty, 0)
+  const itemscount = cartDisplay.reduce((amount, current) => amount + current.num, 0)
 
   return (
     <div className="App">

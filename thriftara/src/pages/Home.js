@@ -8,6 +8,7 @@ import Prada from '../logo/pradalogo.jpeg'
 import Supreme from '../logo/Supreme_Logo.png'
 import { BsCartPlus } from 'react-icons/bs'
 import Hero from '../components/Carousel/Carousel'
+import axios from 'axios'
 
 function Home(props) {
 
@@ -59,9 +60,9 @@ function Home(props) {
           <section className='products-section'>
             {products.map((product) => (
               <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)}/>
+                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                 <h5>{product.title}</h5>
-                <h6>Price: ${product.price}</h6>
+                <h6>Price: ${product.price.toFixed(2)}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
@@ -73,9 +74,9 @@ function Home(props) {
           <section className='products-section'>
             {mproducts.map((product) => (
               <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title}  onClick={() => navigate(`/product/${product.title}`)}/>
+                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                 <h5>{product.title}</h5>
-                <h6>Price: ${product.price}</h6>
+                <h6>Price: ${product.price.toFixed(2)}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
@@ -87,9 +88,9 @@ function Home(props) {
           <section className='products-section'>
             {wproducts.map((product) => (
               <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title}  onClick={() => navigate(`/product/${product.title}`)}/>
+                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                 <h5>{product.title}</h5>
-                <h6>Price: ${product.price}</h6>
+                <h6>Price: ${product.price.toFixed(2)}</h6>
                 <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
@@ -99,11 +100,30 @@ function Home(props) {
         <section className='recommendations'>
           <Link to='/' className="text-dark" style={{ textDecoration: 'none' }}><h3>Our Recommendations</h3></Link>
           <div className='rec-container'>
+            {/* <div className='rec-card'></div>
             <div className='rec-card'></div>
             <div className='rec-card'></div>
             <div className='rec-card'></div>
-            <div className='rec-card'></div>
-            <div className='rec-card'></div>
+            <div className='rec-card'></div> */}
+            {/* {products.map(product => (
+              <div className='rec-card' key={product.id}>
+                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
+                <h5>{product.title}</h5>
+                <h6>Price: ${product.price}</h6>
+                <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+              </div>
+            ))} */}
+            {products.filter(product => product.id > 25)
+              .map((product) => (
+                <div key={product.id} className='rec-card'>
+                  <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
+                  <h5>{product.title}</h5>
+                  <h6>price: ${product.price.toFixed(2)}</h6>
+                  <h6>filter: {product.id}</h6>
+                  <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+                </div>
+              ))
+            }
           </div>
         </section>
       </div>
