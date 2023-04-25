@@ -36,6 +36,9 @@ function Home(props) {
   //     {products})
   //   console.log(res.data)
   // }
+  const addCart = async(id, num) => {
+    await axios.post(`http://localhost:8080/carts/insertToCart?pid=${id}&amount=${num}`)
+  }
 
   return (
     <>
@@ -63,7 +66,7 @@ function Home(props) {
                 <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                 <h5>{product.title}</h5>
                 <h6>Price: ${product.price.toFixed(2)}</h6>
-                <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+                <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
               </div>
             ))}
           </section>
@@ -100,19 +103,6 @@ function Home(props) {
         <section className='recommendations'>
           <Link to='/' className="text-dark" style={{ textDecoration: 'none' }}><h3>Our Recommendations</h3></Link>
           <div className='rec-container'>
-            {/* <div className='rec-card'></div>
-            <div className='rec-card'></div>
-            <div className='rec-card'></div>
-            <div className='rec-card'></div>
-            <div className='rec-card'></div> */}
-            {/* {products.map(product => (
-              <div className='rec-card' key={product.id}>
-                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
-                <h5>{product.title}</h5>
-                <h6>Price: ${product.price}</h6>
-                <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
-              </div>
-            ))} */}
             {products.filter(product => product.id > 25)
               .map((product) => (
                 <div key={product.id} className='rec-card'>
@@ -120,7 +110,7 @@ function Home(props) {
                   <h5>{product.title}</h5>
                   <h6>price: ${product.price.toFixed(2)}</h6>
                   <h6>filter: {product.id}</h6>
-                  <button className='add-cart-btn' onClick={() => addToCart(product)}>Add To Cart <BsCartPlus size={20} /></button>
+                  <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
                 </div>
               ))
             }
