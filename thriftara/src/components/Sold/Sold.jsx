@@ -14,6 +14,10 @@ class Sold extends React.Component {
       <section>
         <table id="order" className="table table-striped">
           <thead className="table-dark">
+            <h1>
+              This page as temporary data for now as the backend hasn't been
+              implemented yet.
+            </h1>
             <tr>
               <th className="col-1">Order#</th>
               <th className="col-2">Image</th>
