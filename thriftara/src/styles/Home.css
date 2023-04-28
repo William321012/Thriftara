@@ -106,17 +106,34 @@
     padding: 2rem 0;
 }
 
-.rec-card {
+/* .rec-card {
     border-radius: 20px;
     margin-right: 10px;
     height: 200px;
-    background-color: aquamarine;
     flex: 1; 
     transition: .3s all ease;
+} */
+
+.rec-card {
+    padding: 1rem 1rem;
+}
+
+.rec-card img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .rec-card:hover {
-    flex: 2;
-    background-color: blueviolet;
+    /* flex: 5; */
+    background-color:darkseagreen;
     cursor: pointer;
+    border-radius: 20px;
+}
+
+.rec-card:hover .add-cart-btn {
+	opacity: 1;
 }
