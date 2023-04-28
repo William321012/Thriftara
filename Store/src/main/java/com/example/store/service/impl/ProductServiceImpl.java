@@ -45,7 +45,6 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> getAllProduct() {
         List<Product> products = productMapper.selectAllProduct();
         for(Product p:products){
-            p.setPriority(null);
             p.setCreatedUser(null);
             p.setCreateTime(null);
             p.setModifiedTime(null);
