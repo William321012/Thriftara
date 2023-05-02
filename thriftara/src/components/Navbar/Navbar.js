@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import Logo from '../../logo/logo.png'
 import { Link } from 'react-router-dom'
 import { BsCart4, BsSearch } from 'react-icons/bs'
+import axios from 'axios'
 
-function Navbar( props ) {
+function Navbar() {
 
-  const {cartItemsCount} = props; 
+  const [cartDisplay, setCartDisplay] = useState([])
+
+  useEffect(() => {
+    loadCart();
+  }, [])
+
+  //all items in shopping cart
+  const loadCart = async() => {
+    const res = await axios.get("http://localhost:8080/carts/display")
+    console.log(res.data.data)
+    setCartDisplay(res.data.data)
+  }
+
+  //total number in cart, minimum amount is 0
+  const itemscount = cartDisplay.reduce((amount, current) => amount + current.num, 0)
 
   return (
     <>
@@ -32,8 +47,8 @@ function Navbar( props ) {
           </Link>
           <Link to="/cart" className="text-dark" style={{ textDecoration: 'none' }}>
             <BsCart4 size={20}/>
-            {cartItemsCount? (
-              <span className='cart-item-count'>{cartItemsCount}</span>
+            {itemscount? (
+              <span className='cart-item-count'>{itemscount}</span>
             ) : (
               <span className='cart-item-count'>0</span> 
             )}
