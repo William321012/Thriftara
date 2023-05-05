@@ -21,6 +21,7 @@
         <result property="itemCondition" column="item_condition"></result>
         <result property="color" column="color"></result>
         <result property="gender" column="gender"></result>
+        <result property="sale" column="sale"></result>
 
 
         <result property="createdUser" column="created_user"></result>
@@ -38,7 +39,7 @@
     </select>
 
     <update id="updateItemNum">
-        update t_product set num = #{num}, modified_user=#{modifiedUser},modified_time=#{modifiedTime}  where id =#{pid}
+        update t_product set num = #{num}, sale=#{newSale}, modified_user=#{modifiedUser},modified_time=#{modifiedTime}  where id =#{pid}
     </update>
 
     <select id="selectAllProduct" resultMap="resultMapProduct">
@@ -52,6 +53,10 @@
         values(#{cid},#{itemType},#{itemDescription},#{title},#{num},#{image},#{itemStatus},#{priority},#{brand},
                #{size},#{itemCondition},#{color},#{gender},#{createdTime},#{createdUser},#{modifiedUser},#{modifiedTime},#{price})
     </insert>
+
+    <delete id="deleteProduct">
+        delete from t_product where pid = #{pid} and cid =#{cid}
+    </delete>
 
     <select id="getProductByCategory" resultMap="resultMapProduct">
         select * from t_product where item_type =#{category}
@@ -100,12 +105,6 @@
         <if test="priceRange==4">and price &gt; 300 and price &lt; 400</if>
         <if test="priceRange==5">and price &gt; 400 and price &lt; 500</if>
         <if test="priceRange==6">and price <![CDATA[ >= ]]> 501</if>
-
-
-
-
-
-
 
 
         <if test="priceOrder==0">

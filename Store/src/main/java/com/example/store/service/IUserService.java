@@ -2,6 +2,7 @@ package com.example.store.service;
 
 import com.example.store.pojo.Customer;
 import com.example.store.pojo.Product;
+import com.example.store.vo.DeliverVO;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Date;
@@ -24,6 +25,8 @@ public interface IUserService {
     String getAvatar(Integer cid);
 
     List<Product> displayAllUserProduct(Integer cid);
+
+    List<DeliverVO> selectAllDeliverOfOneUser(Integer cid);
 
 
 }

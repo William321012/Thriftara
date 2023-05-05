@@ -30,6 +30,9 @@ public class OrderServiceImpl implements IOrderService {
     @Resource
     private CartServiceImpl cartService;
 
+    @Resource
+    private DeliveryMapper deliveryMapper;
+
 
 
     /**
@@ -164,13 +167,15 @@ public class OrderServiceImpl implements IOrderService {
 
             Integer num = o.getNum();
             product.setNum(product.getNum()-num);
+            product.setSale(product.getSale()+num);
 
             Integer newNum= product.getNum();
+            Integer newSale=product.getSale();
             if(newNum<0){
                 throw new ProductInsufficientException("insufficient product");
             }
 
-            Integer integer = productMapper.updateItemNum(pid, username, new Date(), newNum);
+            Integer integer = productMapper.updateItemNum(pid, username, new Date(), newNum,newSale);
             if(integer!=1){
                 throw new UpdateInforException("update failed");
             }
@@ -178,6 +183,15 @@ public class OrderServiceImpl implements IOrderService {
             Integer integer1 = cartMapper.deleteProductByPidAndCid(cid, pid);
             if(integer1 !=1){
                 throw new DeleteException("deletion failed");
+            }
+
+//            Integer createDeliver(int pid, int cid, int oid, String address, String city, String state, int zip, String name, double total, String image, int num, double unit, int statue);
+
+            Integer deliver = deliveryMapper.createDeliver(pid, product.getCid(), orderId, orderByOid.getReceiverAddress(), orderByOid.getReceiverCity(), orderByOid.getReceiverState(),
+                    orderByOid.getReceiverZip(), orderByOid.getReceiverName(), orderByOid.getTotalPrice(), o.getImage(), o.getNum(), o.getUnitPrice(), 0,orderByOid.getOrderTime());
+
+            if(deliver!=1){
+                throw new InsertException("insertion failed");
             }
 
         }

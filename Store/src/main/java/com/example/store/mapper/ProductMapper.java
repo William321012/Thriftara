@@ -13,11 +13,14 @@ public interface ProductMapper {
 
     Product getProductById(Integer id);
 
-    Integer updateItemNum(Integer pid, String modifiedUser, Date modifiedTime, Integer num);
+    Integer updateItemNum(Integer pid, String modifiedUser, Date modifiedTime, Integer num, Integer newSale);
 
     List<Product> selectAllProduct();
 
     Integer uploadProduct(Product product);
+
+    Integer deleteProduct(Integer pid, Integer cid);
+
 
     List<Product> getProductByCategory(String category);
 

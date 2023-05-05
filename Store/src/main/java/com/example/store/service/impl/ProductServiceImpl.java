@@ -3,6 +3,7 @@ package com.example.store.service.impl;
 import com.example.store.mapper.ProductMapper;
 import com.example.store.pojo.Product;
 import com.example.store.service.IProductService;
+import com.example.store.service.exception.DeleteException;
 import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.ProductIsNullException;
 import jakarta.annotation.Resource;
@@ -59,6 +60,19 @@ public class ProductServiceImpl implements IProductService {
         Integer integer = productMapper.uploadProduct(product);
         if(integer!=1){
             throw new InsertException("insertion failed");
+        }
+    }
+
+    @Override
+    public void deleteProduct(Integer cid, Integer pid) {
+        Product productById = productMapper.getProductById(pid);
+        if(productById.getCid()!=cid){
+            throw new ProductIsNullException("illegal product");
+        }
+
+        Integer integer = productMapper.deleteProduct(cid, pid);
+        if(integer!=1){
+            throw new DeleteException("deletion failed");
         }
     }
 
