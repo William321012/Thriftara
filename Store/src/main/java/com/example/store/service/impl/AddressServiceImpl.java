@@ -72,6 +72,9 @@ public class AddressServiceImpl implements IAddressService {
     public List<Address> selectAllAddressByCid(Integer cid) {
 
         List<Address> addresses = addressMapper.selectAllAddress(cid);
+        if(addresses.size()==0){
+            throw new AddressNotFoundException("address can not be found");
+        }
         return addresses;
     }
 
