@@ -41,7 +41,7 @@ function Home(props) {
         <section className='mens'>
           <Link to='/mens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
           <section className='products-section'>
-            {products.filter(product => product.gender === 2)
+            {products.filter(product => product.gender === 1)
             .map((product) => (
               <div className='product-items' key={product.id}>
                 <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
@@ -56,7 +56,7 @@ function Home(props) {
         <section className='womens'>
           <Link to='/womens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Womenswear</h3></Link>
           <section className='products-section'>
-            {products.filter(product => product.gender === 1)
+            {products.filter(product => product.gender === 2)
             .map((product) => (
               <div className='product-items' key={product.id}>
                 <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
@@ -71,7 +71,7 @@ function Home(props) {
         <section className='recommendations'>
           <Link to='/' className="text-dark" style={{ textDecoration: 'none' }}><h3>Our Recommendations</h3></Link>
           <div className='rec-container'>
-            {products.filter(product => product.priority > 5)
+            {products.filter(product => product.priority < 5)
               .map((product) => (
                 <div key={product.id} className='rec-card'>
                   <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />

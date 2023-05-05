@@ -66,10 +66,19 @@
 
 .products-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: safe;
     padding: 2rem 0;
     text-align: center;
     border-bottom: solid;
+    flex-wrap: wrap;
+}
+
+.product-items {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    /* flex: 1 0 25%; */
+    margin-bottom: 1.5rem;
 }
 
 .product-items:hover {
@@ -104,6 +113,9 @@
 .rec-container {
     display: flex;
     padding: 2rem 0;
+    justify-content: safe;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 /* .rec-card {
@@ -116,6 +128,10 @@
 
 .rec-card {
     padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    /* flex-basis: 25%; */
+    flex: 1 1 25%;
 }
 
 .rec-card img {

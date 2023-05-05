@@ -35,6 +35,7 @@ public class ProductController extends BaseController {
         AVATAR_TYPE.add("image/png");
         AVATAR_TYPE.add("image/jpeg");
         AVATAR_TYPE.add("image/gif");
+        AVATAR_TYPE.add("image/webp");
     }
 
     @RequestMapping("/toplist")

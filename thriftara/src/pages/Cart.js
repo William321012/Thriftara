@@ -15,23 +15,23 @@ function Cart() {
     loadCart();
   }, [])
 
-  const loadCart = async() => {
+  const loadCart = async () => {
     const res = await axios.get("http://localhost:8080/carts/display")
     console.log(res.data.data)
     setCartDisplay(res.data.data)
   }
 
-  const addnum = async(id) => {
+  const addnum = async (id) => {
     await axios.put(`http://localhost:8080/carts/addNumFromTheCart?id=${id}`)
     loadCart()
   }
 
-  const minusnum = async(id) => {
+  const minusnum = async (id) => {
     await axios.put(`http://localhost:8080/carts/minusNumFromTheCart?id=${id}`)
     loadCart()
   }
 
-  const deleteItem = async(id) => {
+  const deleteItem = async (id) => {
     await axios.delete(`http://localhost:8080/carts/delete?id=${id}`)
     loadCart()
   }
@@ -83,8 +83,7 @@ function Cart() {
                 <div className='shipping'><strong>Shipping: </strong>${cartshipping.toFixed(2)}</div>
                 <div className='total'><strong>Total: </strong>${carttotal.toFixed(2)}</div>
                 <div className='checkout'>
-                  <button className='checkout-btn'
-                    onClick={() => alert("items checked out")}>Checkout</button>
+                  <button className='checkout-btn'onClick={() => alert("items checked out")}>Checkout</button>
                 </div>
               </div>
             </>
