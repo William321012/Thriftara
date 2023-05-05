@@ -1,8 +1,11 @@
 import React from "react";
 import axios from "axios";
+import styles from "./ForSale.module.css";
 // import data from "./mock-data.json";
 
 class ForSale extends React.Component {
+  ImgURL = React.createRef();
+
   displayAllPurchases = () => {
     axios
       .get("http://localhost:8080/customers/displayUserProduct")
@@ -10,7 +13,6 @@ class ForSale extends React.Component {
         this.setState({
           purchases: response.data.data,
         });
-        console.log(this.state.purchases);
       })
       .catch((error) => {
         // error response
@@ -29,14 +31,13 @@ class ForSale extends React.Component {
     this.displayAllPurchases();
   }
 
+  createImgURL = (url) => {
+    this.ImgURL = "http://localhost:8080" + url + "_1.png";
+  };
+
   render() {
     return (
       <section>
-        {/* Testing Images
-        <img
-          src={require("../../../../Store/src/main/resources/static/images/3E7FD581-EC20-4AD1-8289-9B84F47D9B50_1")}
-          alt="logo"
-        /> */}
         <table id="order" className="table table-striped">
           <thead className="table-dark">
             <tr>
@@ -53,7 +54,10 @@ class ForSale extends React.Component {
           {this.state.purchases.map((info) => (
             <tr>
               <td>{info.id}</td>
-              <td>{info.image}</td>
+              {this.createImgURL(info.image)}
+              <td>
+                <img src={this.ImgURL} class={styles.imgSize}></img>
+              </td>
               <td>{info.title}</td>
               <td>{info.itemDescription}</td>
               <td>{info.price}</td>

@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Purchases from "./pages/Purchases";
 import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
 import Search from "./pages/Search";
@@ -18,19 +19,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     loadProducts();
-  }, [])
+  }, []);
 
   //all products
-  const loadProducts = async() => {
-    const res = await axios.get("http://localhost:8080/products/getAllProduct")
-    setProducts(res.data.data)
-    console.log(res.data.data)
-  }
+  const loadProducts = async () => {
+    const res = await axios.get("http://localhost:8080/products/getAllProduct");
+    setProducts(res.data.data);
+    console.log(res.data.data);
+  };
 
   return (
     <div className="App">
@@ -45,10 +45,14 @@ function App() {
           <Route path="/pages/Contacts" element={<Contacts />} />
           <Route path="/pages/Login" element={<Login />} />
           <Route path="/pages/Signup" element={<Signup />} />
+          <Route path="/pages/Purchases" element={<Purchases />} />
           <Route path="/pages/Sell" element={<Sell />} />
           <Route path="/pages/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/pages/Search" element={<Search />} />
-          <Route path="/product/:title" element={<ProductDetails products={products} />} />
+          <Route
+            path="/product/:title"
+            element={<ProductDetails products={products} />}
+          />
         </Routes>
         <Footer />
       </Router>
