@@ -1,28 +1,39 @@
-import React, { userState } from "react";
+import React from "react";
 import axios from "axios";
-import data from "./mock-data.json";
+import styles from "./ForSale.module.css";
+// import data from "./mock-data.json";
 
 class ForSale extends React.Component {
+  ImgURL = React.createRef();
+
   displayAllPurchases = () => {
     axios
-      .get("http://localhost:8080/orders/displayAllOrder")
-      .then(function (response) {
-        console.log(response.data);
+      .get("http://localhost:8080/customers/displayUserProduct")
+      .then((response) => {
+        this.setState({
+          purchases: response.data.data,
+        });
       })
-      .catch(function (error) {
+      .catch((error) => {
         // error response
         alert("failed");
       });
   };
 
-  // const [items, setItems] = useState();
-
   constructor(props) {
     super(props);
     this.state = {
-      information: data,
+      purchases: [],
     };
   }
+
+  componentDidMount() {
+    this.displayAllPurchases();
+  }
+
+  createImgURL = (url) => {
+    this.ImgURL = "http://localhost:8080" + url + "_1.png";
+  };
 
   render() {
     return (
@@ -40,20 +51,20 @@ class ForSale extends React.Component {
           </thead>
           <tbody id="orderBody"></tbody>
           {/* Temporary data will be used below: */}
-          {this.state.information.map((info, i) => (
+          {this.state.purchases.map((info) => (
             <tr>
               <td>{info.id}</td>
-              <td>{info.image}</td>
-              <td>{info.itemName}</td>
+              {this.createImgURL(info.image)}
+              <td>
+                <img src={this.ImgURL} class={styles.imgSize}></img>
+              </td>
+              <td>{info.title}</td>
               <td>{info.itemDescription}</td>
-              <td>{info.purchasePrice}</td>
-              <td>{info.quantity}</td>
+              <td>{info.price}</td>
+              <td>{info.num}</td>
             </tr>
           ))}
-          {/* {console.log(this.state.information.length)} */}
         </table>
-        {/* Gets information about the seller from the backend. */}
-        {this.displayAllPurchases()}
       </section>
     );
   }
