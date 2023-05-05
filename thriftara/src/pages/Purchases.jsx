@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import styles from "../styles/Purchases.module.css";
 
 class Purchases extends React.Component {
   constructor(props) {
@@ -61,7 +62,16 @@ class Purchases extends React.Component {
       // Returns the table data based on the information we're looking for 1 = Image, 2 = Item Name, 3 = Purchase Price, 4 = Purchase Quantity, 5 = Total Price
       if (value == this.state.test[i].oid) {
         if (type == 1) {
-          return <td>{this.state.test[i].image}</td>;
+          return (
+            <td>
+              <img
+                class={styles.imgSize}
+                src={
+                  "http://localhost:8080" + this.state.test[i].image + "_1.png"
+                }
+              ></img>
+            </td>
+          );
         } else if (type == 2) {
           return <td>{this.state.test[i].title}</td>;
         } else if (type == 3) {
