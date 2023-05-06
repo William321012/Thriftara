@@ -66,4 +66,5 @@
         select * from t_product where cid=#{cid}
     </select>
 
+
 </mapper>

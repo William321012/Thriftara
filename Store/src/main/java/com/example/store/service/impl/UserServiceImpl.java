@@ -1,10 +1,12 @@
 package com.example.store.service.impl;
 
 import com.example.store.mapper.CustomerMapper;
+import com.example.store.mapper.DeliveryMapper;
 import com.example.store.pojo.Customer;
 import com.example.store.pojo.Product;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.*;
+import com.example.store.vo.DeliverVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,6 +23,9 @@ public class UserServiceImpl implements IUserService {
     
     @Resource
     private CustomerMapper customerMapper;
+
+    @Resource
+    private DeliveryMapper deliveryMapper;
     
     @Override
     @Transactional
@@ -179,6 +184,12 @@ public class UserServiceImpl implements IUserService {
         List<Product> products = customerMapper.displayAllUserProduct(cid);
         return products;
 
+    }
+
+    @Override
+    public List<DeliverVO> selectAllDeliverOfOneUser(Integer cid) {
+        List<DeliverVO> deliverVOS = deliveryMapper.selectAllDeliverOfOneUser(cid);
+        return deliverVOS;
     }
 
 

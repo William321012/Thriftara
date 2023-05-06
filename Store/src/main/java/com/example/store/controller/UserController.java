@@ -2,12 +2,16 @@ package com.example.store.controller;
 
 import com.example.store.controller.exception.*;
 import com.example.store.mapper.CustomerMapper;
+import com.example.store.mapper.DeliveryMapper;
 import com.example.store.pojo.Customer;
 import com.example.store.pojo.Product;
+import com.example.store.service.IOrderService;
+import com.example.store.service.IProductService;
 import com.example.store.service.IUserService;
 import com.example.store.service.exception.InsertException;
 import com.example.store.service.exception.UsernameDuplicatedException;
 import com.example.store.util.JsonResult;
+import com.example.store.vo.DeliverVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +33,12 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IOrderService orderService;
+
+    @Autowired
+    private IProductService productService;
 
     @RequestMapping("/reg")
 
@@ -233,6 +243,40 @@ public class UserController extends BaseController {
         result.setState(200);
         result.setMessage("success");
         result.setData(products);
+        return result;
+    }
+
+    @RequestMapping("/deleteUploadedProduct")
+    public JsonResult<Void> deleteUploadedProduct(HttpServletRequest request, Integer pid) {
+        JsonResult<Void> result = new JsonResult<>();
+
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
+        Integer cid = customer.getCid();
+
+        productService.deleteProduct(cid,pid);
+
+        result.setState(200);
+        result.setMessage("success");
+
+        return result;
+    }
+
+
+
+    @RequestMapping("/ItemDeliver")
+    public JsonResult<List<DeliverVO>> ItemDeliver(HttpServletRequest request) {
+        JsonResult<List<DeliverVO>> result = new JsonResult<>();
+
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
+        Integer cid = customer.getCid();
+
+        List<DeliverVO> deliverVOS = userService.selectAllDeliverOfOneUser(cid);
+
+
+        result.setState(200);
+        result.setMessage("success");
+        result.setData(deliverVOS);
+
         return result;
     }
 

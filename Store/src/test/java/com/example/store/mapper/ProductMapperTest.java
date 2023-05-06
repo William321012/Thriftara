@@ -22,7 +22,7 @@ public class ProductMapperTest {
 
     @Test
     public void updateItemNum(){
-        productMapper.updateItemNum(3,"admin",new Date(),8888);
+        productMapper.updateItemNum(19,"admin",new Date(),8888,5);
     }
     
     @Test
@@ -57,4 +57,9 @@ public class ProductMapperTest {
 
         List<Product> tops = productMapper.getProductByFilter("Tops", brands, null, conditions, gender,1,1);
     }
+
+//    @Test
+//    public void getAllSalesInfo(){
+//        List<Product> allSalesInfo = productMapper.getAllSalesInfo(4);
+//    }
 }

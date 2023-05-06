@@ -146,6 +146,9 @@
                         $("#order_address").append(option);
                     }
 
+                }else if(json.state==7002){
+                    alert("please go to set up your address before ordering")
+                    window.location.href="http://localhost:8080/web/addAddress.html"
                 }
             }
         })

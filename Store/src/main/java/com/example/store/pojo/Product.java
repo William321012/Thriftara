@@ -22,6 +22,16 @@ public class Product extends BaseEntity implements Serializable {
     private String color;
     private Integer gender;
 
+    private Integer sale;
+
+    public Integer getSale() {
+        return sale;
+    }
+
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -151,56 +161,6 @@ public class Product extends BaseEntity implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Product product = (Product) o;
-
-        if (!Objects.equals(id, product.id)) return false;
-        if (!Objects.equals(cid, product.cid)) return false;
-        if (!Objects.equals(categoryId, product.categoryId)) return false;
-        if (!Objects.equals(itemType, product.itemType)) return false;
-        if (!Objects.equals(itemDescription, product.itemDescription))
-            return false;
-        if (!Objects.equals(title, product.title)) return false;
-        if (!Objects.equals(price, product.price)) return false;
-        if (!Objects.equals(num, product.num)) return false;
-        if (!Objects.equals(image, product.image)) return false;
-        if (!Objects.equals(itemStatus, product.itemStatus)) return false;
-        if (!Objects.equals(priority, product.priority)) return false;
-        if (!Objects.equals(brand, product.brand)) return false;
-        if (!Objects.equals(size, product.size)) return false;
-        if (!Objects.equals(itemCondition, product.itemCondition))
-            return false;
-        if (!Objects.equals(color, product.color)) return false;
-        return Objects.equals(gender, product.gender);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (cid != null ? cid.hashCode() : 0);
-        result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
-        result = 31 * result + (itemType != null ? itemType.hashCode() : 0);
-        result = 31 * result + (itemDescription != null ? itemDescription.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (num != null ? num.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (itemStatus != null ? itemStatus.hashCode() : 0);
-        result = 31 * result + (priority != null ? priority.hashCode() : 0);
-        result = 31 * result + (brand != null ? brand.hashCode() : 0);
-        result = 31 * result + (size != null ? size.hashCode() : 0);
-        result = 31 * result + (itemCondition != null ? itemCondition.hashCode() : 0);
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
@@ -219,6 +179,7 @@ public class Product extends BaseEntity implements Serializable {
                 ", itemCondition='" + itemCondition + '\'' +
                 ", color='" + color + '\'' +
                 ", gender=" + gender +
+                ", sale=" + sale +
                 '}';
     }
 }

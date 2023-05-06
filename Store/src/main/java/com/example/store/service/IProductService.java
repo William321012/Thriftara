@@ -13,6 +13,8 @@ public interface IProductService {
 
     void uploadProduct(Product product);
 
+    void deleteProduct(Integer cid, Integer pid);
+
     List<Product> getProductByCategory(String category);
 
     List<Product >getProductByFilter(String category, String[] brands, String[] sizes, String[] conditions, Integer[] genders, Integer priceOrder, Integer priceRange);
