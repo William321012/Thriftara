@@ -106,6 +106,9 @@ public class ProductController extends BaseController {
 
             String upload = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
 
+            //for macOS
+            // String upload = System.getProperty("user.dir") + "/src/main/resources/static/images";
+
             System.out.println(upload);
 
             File dir = new File(upload);
@@ -150,7 +153,11 @@ public class ProductController extends BaseController {
             // storing the path of the avatar to the db
             count++;
         }
+        //for macOs
+        // String productImg = "//images//" + newFileName;
+        
         String productImg = "/images/" + newFileName;
+        
         System.out.println(productImg);
         Product product = new Product();
         switch (category) {

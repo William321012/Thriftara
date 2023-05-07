@@ -10,6 +10,12 @@ function ProductDetails(props) {
 
     const { title } = useParams()
 
+    let ImgURL = React.createRef();
+
+    const createImgURL = (url) => {
+        ImgURL = "http://localhost:8080" + url + "_1.png";
+    };
+
     const addCart = async (id, num) => {
         await axios.post(`http://localhost:8080/carts/insertToCart?pid=${id}&amount=${num}`)
     }
@@ -20,17 +26,16 @@ function ProductDetails(props) {
             {products.filter(item => item.title === title)
                 .map((item) => (
                     <div key={item.id} className='product-details'>
-                        <img src={item.image} alt={item.title} />
+                        {createImgURL(item.image)}
+                        <img src={ImgURL} alt={item.title} />
                         <div className='details'>
                             <strong>{item.title}</strong>
                             <br></br>
-                            Price: ${item.price}
+                            ${item.price}
                             <br></br>
                             Description: {item.itemDescription}
                             <br></br>
                             Condition: {item.itemCondition}
-                            <br></br>
-                            Id: {item.id}
                             <br></br>
                             num: {item.num}
                             <br></br>
@@ -44,7 +49,7 @@ function ProductDetails(props) {
                     </div>
                 ))
             }
-            
+
         </div>
     )
 }

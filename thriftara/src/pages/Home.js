@@ -16,6 +16,12 @@ function Home(props) {
 
   const navigate = useNavigate()
 
+  let ImgURL = React.createRef();
+
+  var createImgURL = (url) => {
+    ImgURL = "http://localhost:8080" + url + "_1.png";
+  };
+
   const addCart = async (id, num) => {
     await axios.post(`http://localhost:8080/carts/insertToCart?pid=${id}&amount=${num}`)
   }
@@ -42,14 +48,15 @@ function Home(props) {
           <Link to='/mens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Menswear</h3></Link>
           <section className='products-section'>
             {products.filter(product => product.gender === 1)
-            .map((product) => (
-              <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
-                <h5>{product.title}</h5>
-                <h6>Price: ${product.price.toFixed(2)}</h6>
-                <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
-              </div>
-            ))}
+              .map((product) => (
+                <div className='product-items' key={product.id}>
+                  {createImgURL(product.image)}
+                  <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
+                  <h5>{product.title}</h5>
+                  <h6>Price: ${product.price.toFixed(2)}</h6>
+                  <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
+                </div>
+              ))}
           </section>
         </section>
 
@@ -57,14 +64,15 @@ function Home(props) {
           <Link to='/womens' className="text-dark" style={{ textDecoration: 'none' }}><h3>Womenswear</h3></Link>
           <section className='products-section'>
             {products.filter(product => product.gender === 2)
-            .map((product) => (
-              <div className='product-items' key={product.id}>
-                <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
-                <h5>{product.title}</h5>
-                <h6>Price: ${product.price.toFixed(2)}</h6>
-                <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
-              </div>
-            ))}
+              .map((product) => (
+                <div className='product-items' key={product.id}>
+                  {createImgURL(product.image)}
+                  <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
+                  <h5>{product.title}</h5>
+                  <h6>Price: ${product.price.toFixed(2)}</h6>
+                  <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>
+                </div>
+              ))}
           </section>
         </section>
 
@@ -74,7 +82,8 @@ function Home(props) {
             {products.filter(product => product.priority < 5)
               .map((product) => (
                 <div key={product.id} className='rec-card'>
-                  <img src={product.image} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
+                  {createImgURL(product.image)}
+                  <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                   <h5>{product.title}</h5>
                   <h6>price: ${product.price.toFixed(2)}</h6>
                   <button className='add-cart-btn' onClick={() => addCart(product.id, 1)}>Add To Cart <BsCartPlus size={20} /></button>

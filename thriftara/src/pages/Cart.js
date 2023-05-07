@@ -11,6 +11,35 @@ function Cart() {
   const cartshipping = cartsubtotal > 75 ? 0 : 10;
   const carttotal = cartsubtotal + carttax + cartshipping;
 
+  let ImgURL = React.createRef();
+
+  var createImgURL = (url) => {
+    ImgURL = "http://localhost:8080" + url + "_1.png";
+  };
+  // const veri = (isChecked) => {
+  //   if(isChecked === true) {
+  //     console.log("checked")
+  //   }
+  //   if(isChecked===false){
+  //     alert("must select an item to checkout")
+  //   }
+  // }
+
+  const [isChecked, setIsChecked] = useState([])
+
+  function handleCheck(e) {
+    const { value, checked } = e.target
+
+    if (checked) {
+      setIsChecked(checkout => [...checkout, value])
+    } else {
+      setIsChecked(checkout => {
+        return [...checkout.filter(citems => citems !== value)]
+      })
+    }
+  }
+  console.log(isChecked)
+
   useEffect(() => {
     loadCart();
   }, [])
@@ -45,23 +74,35 @@ function Cart() {
         </div>
 
         <div className='cart-items-mapping'>
-          {cartDisplay.map((item) => (
-            <div key={item.id} className='cart-items'>
-              <img src={item.image} alt={item.title} className='cart-item-img' />
-              <div><h5>{item.title}</h5></div>
-              <div className='cart-quantity'>
-                Quantity:{' '}
-                <button onClick={() => minusnum(item.id)} className='minus-qty'>-</button>
-                {item.num}
-                <button onClick={() => addnum(item.id)} className='add-qty'>+</button>
-                <br></br>
-                Price: ${item.unitPrice.toFixed(2)}
+          <form>
+            {cartDisplay.map((item, index) => (
+              <div key={index} className='cart-items'>
+                {/* <Form>
+                <Form.Check 
+                type='checkbox'
+                id='default-checkbox'
+                onChange={handleCheck}
+                />
+              </Form> */}
+                {/* <input type="checkbox" value={item.title} checked={isChecked[index]} onChange={()=>handleCheck(index)}></input> */}
+                <input type='checkbox' value={item.title} onChange={handleCheck} /> {item.title}
+                {createImgURL(item.image)}
+                <img src={ImgURL} alt={item.title} className='cart-item-img' />
+                <div><h5>{item.title}</h5></div>
+                <div className='cart-quantity'>
+                  Quantity:{' '}
+                  <button onClick={() => minusnum(item.id)} className='minus-qty'>-</button>
+                  {item.num}
+                  <button onClick={() => addnum(item.id)} className='add-qty'>+</button>
+                  <br></br>
+                  Price: ${item.unitPrice.toFixed(2)}
+                </div>
+                <div className='remove-cart-btn'>
+                  <BsTrash size={20} onClick={() => deleteItem(item.id)} />
+                </div>
               </div>
-              <div className='remove-cart-btn'>
-                <BsTrash size={20} onClick={() => deleteItem(item.id)} />
-              </div>
-            </div>
-          ))}
+            ))}
+          </form>
         </div>
 
         <div className='cart-checkout-summary'>
@@ -83,7 +124,9 @@ function Cart() {
                 <div className='shipping'><strong>Shipping: </strong>${cartshipping.toFixed(2)}</div>
                 <div className='total'><strong>Total: </strong>${carttotal.toFixed(2)}</div>
                 <div className='checkout'>
-                  <button className='checkout-btn'onClick={() => alert("items checked out")}>Checkout</button>
+                  <button className='checkout-btn' onClick={() => alert("items checked out")}>Checkout</button>
+                  {/* <button className='checkout-btn'
+                  onClick={()=>veri(isChecked)}>Checkout</button> */}
                 </div>
               </div>
             </>
