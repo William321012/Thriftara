@@ -15,29 +15,16 @@ import Sell from "./pages/Sell";
 import ForgotPassword from "./pages/ForgotPassword";
 import Search from "./pages/Search";
 import ProductDetails from "./products/ProductDetails";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import Checkout from "./pages/Checkout";
 
 function App() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
-  //all products
-  const loadProducts = async () => {
-    const res = await axios.get("http://localhost:8080/products/getAllProduct");
-    setProducts(res.data.data);
-    console.log(res.data.data);
-  };
 
   return (
     <div className="App">
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home products={products} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/brands" element={<Brands />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/cart" element={<Cart />} />
@@ -51,8 +38,9 @@ function App() {
           <Route path="/pages/Search" element={<Search />} />
           <Route
             path="/product/:title"
-            element={<ProductDetails products={products} />}
+            element={<ProductDetails />}
           />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </Router>

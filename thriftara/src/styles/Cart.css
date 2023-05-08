@@ -55,6 +55,9 @@
 .remove-cart-btn {
     cursor: pointer;
     margin-left: 2rem;
+    border: none;
+    border-radius: 20px;
+    background-color: transparent;
 }
 
 .checkout-summary {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/Home.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Nike from '../logo/nikelogo.jpeg'
@@ -10,9 +10,20 @@ import { BsCartPlus } from 'react-icons/bs'
 import Hero from '../components/Carousel/Carousel'
 import axios from 'axios'
 
-function Home(props) {
+function Home() {
 
-  const { products } = props
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  //all products
+  const loadProducts = async () => {
+    const res = await axios.get("http://localhost:8080/products/getAllProduct");
+    setProducts(res.data.data);
+    console.log(res.data.data);
+  };
 
   const navigate = useNavigate()
 
