@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/Cart.css'
 import { BsTrash } from 'react-icons/bs'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
 
@@ -16,14 +17,6 @@ function Cart() {
   var createImgURL = (url) => {
     ImgURL = "http://localhost:8080" + url + "_1.png";
   };
-  // const veri = (isChecked) => {
-  //   if(isChecked === true) {
-  //     console.log("checked")
-  //   }
-  //   if(isChecked===false){
-  //     alert("must select an item to checkout")
-  //   }
-  // }
 
   const [isChecked, setIsChecked] = useState([])
 
@@ -39,6 +32,16 @@ function Cart() {
     }
   }
   console.log(isChecked)
+
+  const navigate = useNavigate()
+
+  function veri() {
+    if(isChecked.length > 0) {
+      navigate(`/checkout`)
+    } else {
+      alert("You Must Select Items to Checkout")
+    }
+  }
 
   useEffect(() => {
     loadCart();
@@ -77,15 +80,7 @@ function Cart() {
           <form>
             {cartDisplay.map((item, index) => (
               <div key={index} className='cart-items'>
-                {/* <Form>
-                <Form.Check 
-                type='checkbox'
-                id='default-checkbox'
-                onChange={handleCheck}
-                />
-              </Form> */}
-                {/* <input type="checkbox" value={item.title} checked={isChecked[index]} onChange={()=>handleCheck(index)}></input> */}
-                <input type='checkbox' value={item.title} onChange={handleCheck} /> {item.title}
+                <input type='checkbox' value={item.title} onChange={handleCheck} />
                 {createImgURL(item.image)}
                 <img src={ImgURL} alt={item.title} className='cart-item-img' />
                 <div><h5>{item.title}</h5></div>
@@ -98,7 +93,7 @@ function Cart() {
                   Price: ${item.unitPrice.toFixed(2)}
                 </div>
                 <div className='remove-cart-btn'>
-                  <BsTrash size={20} onClick={() => deleteItem(item.id)} />
+                  <button className='remove-cart-btn'><BsTrash size={20} onClick={() => deleteItem(item.id)} /></button>
                 </div>
               </div>
             ))}
@@ -124,7 +119,7 @@ function Cart() {
                 <div className='shipping'><strong>Shipping: </strong>${cartshipping.toFixed(2)}</div>
                 <div className='total'><strong>Total: </strong>${carttotal.toFixed(2)}</div>
                 <div className='checkout'>
-                  <button className='checkout-btn' onClick={() => alert("items checked out")}>Checkout</button>
+                  <button className='checkout-btn' onClick={veri}>Checkout</button>
                   {/* <button className='checkout-btn'
                   onClick={()=>veri(isChecked)}>Checkout</button> */}
                 </div>

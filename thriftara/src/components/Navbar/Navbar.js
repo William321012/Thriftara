@@ -26,7 +26,7 @@ function Navbar() {
   );
 
   return (
-    <>
+    <div>
       <div className="navbar-top">
         <Link to="/" className="nav-logo">
           <img src={Logo} alt="logo" />
@@ -227,7 +227,7 @@ function Navbar() {
           </section>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

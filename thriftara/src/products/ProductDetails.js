@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BsCartPlus } from 'react-icons/bs'
 import '../styles/ProductDetails.css'
 import axios from 'axios'
 
-function ProductDetails(props) {
-
-    const { products } = props
+function ProductDetails() {
 
     const { title } = useParams()
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        loadProducts();
+    }, []); 
+
+    //all products
+    const loadProducts = async () => {
+        const res = await axios.get("http://localhost:8080/products/getAllProduct");
+        setProducts(res.data.data);
+        console.log(res.data.data);
+    };
 
     let ImgURL = React.createRef();
 
