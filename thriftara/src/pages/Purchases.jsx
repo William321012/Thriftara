@@ -12,16 +12,14 @@ class Purchases extends React.Component {
   }
 
   displayPurchaseInfo = async () => {
-    let random = await axios
+    await axios
       .get("http://localhost:8080/orders/displayAllOrder")
       .then((response) => {
-        //Sets the userInfo and also temporary assigned it again (this is because set state is asynchronously and can't be accessed)
-        //to send and grab more information about the order.
+        //Sets the userInfo and sends it to another functions
         this.setState({
           userInfo: response.data.data,
         });
-        this.state.userInfo = response.data.data;
-        this.displayAllPurchases(this.state.userInfo);
+        this.displayAllPurchases(response.data.data);
       })
       .catch((error) => {
         // error response
@@ -31,7 +29,7 @@ class Purchases extends React.Component {
 
   displayAllPurchases = async (value) => {
     //Take all the oid values send by displayPurchaseInfo() and records all the json into one.
-    this.state.userInfo.map((info) =>
+    value.map((info) =>
       axios
         .get(
           "http://localhost:8080/orders/getOrderItemByOid",
@@ -60,25 +58,26 @@ class Purchases extends React.Component {
   displayUserInfo = (value, type) => {
     for (let i = 0; i < this.state.test.length; i++) {
       // Returns the table data based on the information we're looking for 1 = Image, 2 = Item Name, 3 = Purchase Price, 4 = Purchase Quantity, 5 = Total Price
-      if (value == this.state.test[i].oid) {
-        if (type == 1) {
+      if (value === this.state.test[i].oid) {
+        if (type === 1) {
           return (
             <td>
               <img
                 class={styles.imgSize}
+                alt="img"
                 src={
                   "http://localhost:8080" + this.state.test[i].image + "_1.png"
                 }
               ></img>
             </td>
           );
-        } else if (type == 2) {
+        } else if (type === 2) {
           return <td>{this.state.test[i].title}</td>;
-        } else if (type == 3) {
+        } else if (type === 3) {
           return <td>{this.state.test[i].unitPrice}</td>;
-        } else if (type == 4) {
+        } else if (type === 4) {
           return <td>{this.state.test[i].num}</td>;
-        } else if (type == 5) {
+        } else if (type === 5) {
           return (
             <td>{this.state.test[i].unitPrice * this.state.test[i].num}</td>
           );

@@ -1,12 +1,33 @@
 import React from "react";
-import data2 from "./mock-data.json";
+import axios from "axios";
+// import data2 from "./mock-data.json";
 
 class Sold extends React.Component {
+  ImgURL = React.createRef();
+
   constructor(props) {
     super(props);
     this.state = {
-      information: data2,
+      sales: [],
     };
+  }
+
+  displayAllSales = () => {
+    axios
+      .get("http://localhost:8080/customers/displayUserProduct")
+      .then((response) => {
+        this.setState({
+          purchases: response.data.data,
+        });
+      })
+      .catch((error) => {
+        // error response
+        alert("failed");
+      });
+  };
+
+  componentDidMount() {
+    // this.displayAllSales();
   }
 
   render() {
@@ -32,7 +53,7 @@ class Sold extends React.Component {
           </thead>
           <tbody id="orderBody"></tbody>
           {/* Temporary data will be used below: */}
-          {this.state.information.map((info, i) => (
+          {/* {this.state.information.map((info, i) => (
             <tr>
               <td>{info.id}</td>
               <td>{info.image}</td>
@@ -44,10 +65,10 @@ class Sold extends React.Component {
               <td>{info.Address}</td>
               <td>{info.Date}</td>
             </tr>
-          ))}
+          ))} */}
         </table>
         {/* Gets information about the seller from the backend. */}
-        {/* {this.displayAllPurchases()} */}
+        {/* {this.displayAllSales()} */}
       </section>
     );
   }
