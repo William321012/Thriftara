@@ -1,0 +1,90 @@
+.containerSearch {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 67.6vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: red;
+}
+.sidebar{
+    background-color: aqua;
+}
+li{
+    list-style-type: none;
+}
+.min-content{
+    width: min-content;
+}
+.max-content{
+    width: max-content;
+}
+.box{
+    border: 5px solid black;
+    box-sizing: border-box;
+}
+.heading-filter {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.heading-listings {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.listings-body {
+    grid-column: 2 / 3;
+    grid-row: 2 / 6;
+    background-color: white;
+}
+.department {
+   grid-column: 1 / 2;
+   grid-row: 2 / 3;
+}
+.price-range {
+   grid-column: 1 / 2;
+   grid-row: 3 / 4;
+   display: flex;
+   text-align: left;
+   align-items: center;
+}
+.size{
+   grid-column: 1 / 2;
+   grid-row: 4 / 5;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   align-items: start;
+
+}
+ul .size{
+    padding: 0px;
+}
+.brands{
+   grid-column: 1 / 2;
+   grid-row: 5 / 6;
+}
+.price-label{
+
+}
+#price-button{
+    float: center;
+    background-color: green;
+}
+.links{
+    color: black;
+}
+.checkbox{
+    
+}
+a:link { text-decoration: none; 
+        color: black;}
+a:visited { text-decoration: none; }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; }

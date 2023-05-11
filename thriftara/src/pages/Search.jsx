@@ -1,119 +1,106 @@
+import '../styles/Search.css';
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
-import styles from "../styles/About.module.css";
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from 'react-router-dom';
 
-
- 
+import MultiLevelDropdown from '../components/Search/MultiLevelDropdown';
+import {menswear, womenswear} from '../components/Search/dropdowns_search.js';
 
 function Search () {
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
+    console.log(menswear);
+    console.log(womenswear);
     return ( 
-        <div className ="search-body">
+        <div className ="containerSearch box">
             {/*left side*/}
-            <div className ="search-filters">
-                <section className ="search-department">
-                        {/*drop down menu, bunch of options*/}
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Tops</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Bottoms action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Outerwear</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Footwear</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Accesories</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                   {/*drop down menu, bunch of options*/}
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Tops</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Bottoms action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Outerwear</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Footwear</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Accesories</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                </section>
-                <section className ="search-price-range">
-                    {/*two text boxes with paras, only nums accepted*/}
-                    <form action="">
-                        <label htmlFor="minPrice">Min price</label><br/>
-                        <input 
-                            type="number" 
-                            id="minPrice" 
-                            pattern="/[0-9]*/"
-                            value={minPrice}
-                            onChange={(e) =>
-                                setMinPrice((v) => (e.target.validity.valid ? e.target.value : v))
-                            }
-                        /><br/>
-                        <label htmlFor="maxPrice">Max price</label><br/>
-                        <input 
-                            type="number" 
-                            id="maxPrice"
-                            pattern="/[0-9]*/"
-                            value={maxPrice}
-                            onChange={(e) =>
-                                setMaxPrice((v) => (e.target.validity.valid ? e.target.value : v))
-                            }
-                        />
-                    </form>
-                </section>
-                <section className ="search-size">
-                    {/*4 checkboxes for sizes from small to xlarge*/}
-                    <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1">Tops</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Bottoms</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Outerwear</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Footwear</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Accesories</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown.Menu>
-                    </Dropdown>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="size-s"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="size-m"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="size-l"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="size-xl"></label>
-                </section>
-                <section className = "search-brands">
-                    {/*4 checkboxes*/}
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="brand 1"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="brand 2"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="brand 3"></label>
-                    <input type="checkbox" className ="search-checkbox"/>
-                    <label htmlFor="brand 4"></label>
-                </section>
-            </div>
+            <header className="heading-filter box">
+              <h1>Filters</h1>
+            </header>
+            <section className ="department sidebar box">
+                {/*drop down menu, bunch of options*/}
+                  
+                {/*drop down menu, bunch of options*/}
+                    
+            </section>
+            <section className ="price-range sidebar box">
+                {/*two text boxes with paras, only nums accepted*/}
+                <form action="">
+                    <label htmlFor="minPrice" className="price-label box">Min price</label><br/>
+                    <input 
+                        type="number" 
+                        id="minPrice" 
+                        pattern="/[0-9]*/"
+                        value={minPrice}
+                        onChange={(e) =>
+                            setMinPrice((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    /><br/>
+                    <label htmlFor="maxPrice" className="price-label box">Max price</label><br/>
+                    <input 
+                        type="number" 
+                        id="maxPrice"
+                        pattern="/[0-9]*/"
+                        value={maxPrice}
+                        onChange={(e) =>
+                            setMaxPrice((v) => (e.target.validity.valid ? e.target.value : v))
+                        }
+                    /><br/>
+                    <button id="price-button" type="button" onClick="alert">Go!</button>
+                </form>
+            </section>
+            <section className ="size sidebar box">
+                {/*womens dropdown with dropdowns for womens clothes whith dropdowns for sizes each*/}
+                <MultiLevelDropdown items={womenswear} />
+                {/*mens dropdown with dropdowns for mens clothes whith dropdowns for sizes each*/}
+                <MultiLevelDropdown items={menswear} />
+            </section>
+            <section className = "brands sidebar box">
+                {/*4 checkboxes*/}
+                <button>Brands</button>
+            </section>
              {/*right side*/}
-            <div className ="search-results">
-
+            <div className="heading-listings box">
+                <h1>Listings</h1>
+            </div>
+            <div className="listings-body box">
+                <h1>Listings body</h1>
             </div>
         </div>
-     );
+    );
 }
+
+
+const NestedDropdown = ({ trigger, menu }) => {
+    const [open, setOpen] = React.useState(false);
+  
+    const handleOpen = () => {
+      setOpen(!open);
+    };
+  
+    return (
+      <div className="dropdown">
+        {React.cloneElement(trigger, {
+          onClick: handleOpen,
+        })}
+        {open ? (
+          <ul className="menu">
+            {menu.map((menuItem, index) => (
+              <li key={index} className="menu-item">
+                {React.cloneElement(menuItem, {
+                  onClick: () => {
+                    menuItem.props.onClick();
+                    setOpen(false);
+                  },
+                })}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+    );
+  };
+
 
  
 export default Search;
