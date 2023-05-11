@@ -77,12 +77,13 @@ function Navbar() {
             className="text-dark"
             style={{ textDecoration: "none" }}
           >
-            <BsCart4 size={20} />
+            <button className="cart-notif"><BsCart4 size={20} />
             {itemscount ? (
               <span className="cart-item-count">{itemscount}</span>
             ) : (
               <span className="cart-item-count">0</span>
             )}
+            </button>
           </Link>
         </section>
       </div>

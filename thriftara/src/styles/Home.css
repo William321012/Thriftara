@@ -110,6 +110,10 @@
     color: white;
 }
 
+.toast-notif {
+    margin-left: 50vw;
+}
+
 .rec-container {
     display: flex;
     padding: 2rem 0;
