@@ -1,0 +1,63 @@
+.checkout-container {
+    padding: 0 4rem;
+    padding-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.shipping-address {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.proceed-payment {
+    width: 15vw;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: large;
+    padding: 7px 7px;
+    background-color: transparent;
+    border: solid 1px;
+}
+
+.proceed-payment:hover {
+    cursor: pointer;
+    background-color:lavender;
+}
+
+.checkout-info {
+    padding-right: 2rem;
+}
+
+.add-new-address-btn {
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    margin-left: 31.5vw;
+}
+
+.add-new-address-btn:hover {
+    background-color: lightseagreen;
+    color: white;
+}
+
+.close-modal {
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+}
+
+.close-modal:hover {
+    background-color: lightcoral;
+    color: white;
+}

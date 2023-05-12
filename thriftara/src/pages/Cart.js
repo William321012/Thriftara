@@ -22,7 +22,6 @@ function Cart() {
 
   function handleCheck(e) {
     const { value, checked } = e.target
-
     if (checked) {
       setIsChecked(checkout => [...checkout, value])
     } else {
@@ -120,8 +119,6 @@ function Cart() {
                 <div className='total'><strong>Total: </strong>${carttotal.toFixed(2)}</div>
                 <div className='checkout'>
                   <button className='checkout-btn' onClick={veri}>Checkout</button>
-                  {/* <button className='checkout-btn'
-                  onClick={()=>veri(isChecked)}>Checkout</button> */}
                 </div>
               </div>
             </>

@@ -69,6 +69,10 @@ a {
   color: slateblue;
 }
 
+.cart-notif {
+  background-color: transparent;
+}
+
 .navbar-btm {
   background-color: darkseagreen;
   display: flex;
