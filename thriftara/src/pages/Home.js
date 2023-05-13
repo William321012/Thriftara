@@ -37,8 +37,8 @@ function Home() {
   let ImgURL = React.createRef();
 
   var createImgURL = (url) => {
-    ImgURL = "http://localhost:8080" + url + "_1.png";
-    // ImgURL = "http://localhost:8080" + url + "_1.webp";
+    // ImgURL = "http://localhost:8080" + url + "_1.png";
+    ImgURL = "http://localhost:8080" + url + "_1.webp";
   };
 
   const addCart = async (id, num) => {
@@ -80,8 +80,8 @@ function Home() {
                   {createImgURL(product.image)}
                   <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                   <h5>{product.title}</h5>
-                  {/* <h6>Price: ${product.price.toFixed(2)}</h6> */}
-                  <h6>Price: ${product.price}.00</h6>
+                  <h6>Price: ${product.price.toFixed(2)}</h6>
+                  {/* <h6>Price: ${product.price}.00</h6> */}
                   <button className='add-cart-btn' onClick={() => addCart(product.id, 1) && setShowM(true)}>Add To Cart <BsCartPlus size={20} /></button>
                 </div>
               ))}
@@ -105,8 +105,8 @@ function Home() {
                   {createImgURL(product.image)}
                   <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                   <h5>{product.title}</h5>
-                  {/* <h6>Price: ${product.price.toFixed(2)}</h6> */}
-                  <h6>Price: ${product.price}.00</h6>
+                  <h6>Price: ${product.price.toFixed(2)}</h6>
+                  {/* <h6>Price: ${product.price}.00</h6> */}
                   <button className='add-cart-btn' onClick={() => addCart(product.id, 1) && setShowW(true)}>Add To Cart <BsCartPlus size={20} /></button>
                 </div>
               ))}
@@ -130,8 +130,8 @@ function Home() {
                   {createImgURL(product.image)}
                   <img src={ImgURL} alt={product.title} onClick={() => navigate(`/product/${product.title}`)} />
                   <h5>{product.title}</h5>
-                  {/* <h6>price: ${product.price.toFixed(2)}</h6> */}
-                  <h6>price: ${product.price}.00</h6>
+                  <h6>price: ${product.price.toFixed(2)}</h6>
+                  {/* <h6>price: ${product.price}.00</h6> */}
                   <button className='add-cart-btn' onClick={() => addCart(product.id, 1) && setShowR(true)}>Add To Cart <BsCartPlus size={20} /></button>
                 </div>
               ))

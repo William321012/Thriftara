@@ -104,10 +104,10 @@ public class ProductController extends BaseController {
                 throw new FileTypeException("the type of file does not meet the requirement");
             }
 
-            String upload = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
+            // String upload = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
 
             //for macOS
-            // String upload = System.getProperty("user.dir") + "/src/main/resources/static/images";
+            String upload = System.getProperty("user.dir") + "/src/main/resources/static/images";
 
             System.out.println(upload);
 
@@ -154,9 +154,9 @@ public class ProductController extends BaseController {
             count++;
         }
         //for macOs
-        // String productImg = "//images//" + newFileName;
+        String productImg = "//images//" + newFileName;
         
-        String productImg = "/images/" + newFileName;
+        // String productImg = "/images/" + newFileName;
         
         System.out.println(productImg);
         Product product = new Product();

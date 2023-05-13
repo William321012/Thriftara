@@ -90,8 +90,8 @@ function Cart() {
                   {item.num}
                   <button onClick={() => addnum(item.id)} className='add-qty'>+</button>
                   <br></br>
-                  {/* Price: ${item.unitPrice.toFixed(2)} */}
-                  Price: ${item.unitPrice}
+                  Price: ${item.unitPrice.toFixed(2)}
+                  {/* Price: ${item.unitPrice} */}
                 </div>
                 <div className='remove-cart-btn'>
                   <button className='remove-cart-btn'><BsTrash size={20} onClick={() => deleteItem(item.id)} /></button>
@@ -110,8 +110,8 @@ function Cart() {
                   <div key={item.id} >
                     <div className='checkout-item'><strong>{item.title}</strong>{' '}x{item.num}</div>
                     <div className='checkout-quantity'>
-                      {/* Price: {item.num} x ${item.unitPrice.toFixed(2)} */}
-                      Price: {item.num} x ${item.unitPrice}
+                      Price: {item.num} x ${item.unitPrice.toFixed(2)}
+                      {/* Price: {item.num} x ${item.unitPrice} */}
                     </div>
                   </div>
                 ))}
