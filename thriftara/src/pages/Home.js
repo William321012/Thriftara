@@ -37,8 +37,8 @@ function Home() {
   let ImgURL = React.createRef();
 
   var createImgURL = (url) => {
-    // ImgURL = "http://localhost:8080" + url + "_1.png";
-    ImgURL = "http://localhost:8080" + url + "_1.webp";
+    ImgURL = "http://localhost:8080" + url + "_1.png";
+    // ImgURL = "http://localhost:8080" + url + "_1.webp";
   };
 
   const addCart = async (id, num) => {
