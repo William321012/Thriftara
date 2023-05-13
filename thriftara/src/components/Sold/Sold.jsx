@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import data2 from "./mock-data.json";
+import data2 from "./mock-data.json";
 
 class Sold extends React.Component {
   ImgURL = React.createRef();
@@ -9,15 +9,20 @@ class Sold extends React.Component {
     super(props);
     this.state = {
       sales: [],
+      infromation: [],
     };
   }
 
   displayAllSales = () => {
+    this.setState({
+      infromation: data2,
+    });
+
     axios
-      .get("http://localhost:8080/customers/displayUserProduct")
+      .get("http://localhost:8080/customers/ItemDeliver")
       .then((response) => {
         this.setState({
-          purchases: response.data.data,
+          sales: response.data.data,
         });
       })
       .catch((error) => {
@@ -27,22 +32,23 @@ class Sold extends React.Component {
   };
 
   componentDidMount() {
-    // this.displayAllSales();
+    this.displayAllSales();
   }
+
+  createImgURL = (url) => {
+    this.ImgURL = "http://localhost:8080" + url + "_1.png";
+  };
 
   render() {
     return (
       <section>
         <table id="order" className="table table-striped">
           <thead className="table-dark">
-            <h1>
-              This page as temporary data for now as the backend hasn't been
-              implemented yet.
-            </h1>
             <tr>
               <th className="col-1">Order#</th>
               <th className="col-2">Image</th>
-              <th className="col-1">Item Name</th>
+              {/* Order name wasn't in database
+              <th className="col-1">Item Name</th> */}
               <th className="col-1">Purchase Price</th>
               <th className="col-1">Purchase Quantity</th>
               <th className="col-1">Total Price</th>
@@ -51,24 +57,32 @@ class Sold extends React.Component {
               <th className="col-3">Date</th>
             </tr>
           </thead>
-          <tbody id="orderBody"></tbody>
-          {/* Temporary data will be used below: */}
-          {/* {this.state.information.map((info, i) => (
-            <tr>
-              <td>{info.id}</td>
-              <td>{info.image}</td>
-              <td>{info.itemName}</td>
-              <td>{info.purchasePrice}</td>
-              <td>{info.quantity}</td>
-              <td>{info.totalPrice}</td>
-              <td>{info.Recipient}</td>
-              <td>{info.Address}</td>
-              <td>{info.Date}</td>
-            </tr>
-          ))} */}
+          <tbody id="orderBody">
+            {this.state.sales.map((info, i) => (
+              <tr>
+                <td>{info.pid}</td>
+                {this.createImgURL(info.image)}
+                <td>
+                  <img alt="img" src={this.ImgURL}></img>
+                </td>
+                <td>{info.unit}</td>
+                <td>{info.num}</td>
+                <td>{info.total}</td>
+                <td>{info.name}</td>
+                <td>
+                  {info.Address +
+                    " " +
+                    info.city +
+                    " " +
+                    info.state +
+                    " " +
+                    info.zip}
+                </td>
+                <td>{info.orderTime}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-        {/* Gets information about the seller from the backend. */}
-        {/* {this.displayAllSales()} */}
       </section>
     );
   }
