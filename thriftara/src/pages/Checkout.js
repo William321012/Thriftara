@@ -46,7 +46,8 @@ function Checkout() {
                         <tbody>
                             {cartDisplay.map(item => <tr>
                                 <td>{item.title}</td>
-                                <td>${item.unitPrice.toFixed(2)}</td>
+                                {/* <td>${item.unitPrice.toFixed(2)}</td> */}
+                                <td>${item.unitPrice}.00</td>
                                 <td>{item.num}</td>
                                 <td></td>
                             </tr>
@@ -55,25 +56,29 @@ function Checkout() {
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Subtotal: ${cartsubtotal.toFixed(2)}</td>
+                                {/* <td>Subtotal: ${cartsubtotal.toFixed(2)}</td> */}
+                                <td>Subtotal: ${cartsubtotal}.00</td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Tax: ${carttax.toFixed(2)}</td>
+                                {/* <td>Tax: ${carttax.toFixed(2)}</td> */}
+                                <td>Tax: ${carttax}.00</td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Shipping: ${cartshipping.toFixed(2)}</td>
+                                {/* <td>Shipping: ${cartshipping.toFixed(2)}</td> */}
+                                <td>Shipping: ${cartshipping}.00</td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><strong>Total:</strong> ${carttotal.toFixed(2)}</td>
+                                {/* <td><strong>Total:</strong> ${carttotal.toFixed(2)}</td> */}
+                                <td><strong>Total:</strong> ${carttotal}.00</td>
                             </tr>
                         </tbody>
                     </Table>
