@@ -28,10 +28,7 @@
     object-fit: cover;
     margin-right: 2rem;
     border-radius: 15px;
-}
-
-.cart-item-img:hover {
-    scale: 1.04;
+    padding: 10px;
 }
 
 .cart-quantity {
