@@ -24,7 +24,8 @@ function ProductDetails() {
     let ImgURL = React.createRef();
 
     const createImgURL = (url) => {
-        ImgURL = "http://localhost:8080" + url + "_1.png";
+        // ImgURL = "http://localhost:8080" + url + "_1.png";
+        ImgURL = "http://localhost:8080" + url + "_1.webp";
     };
 
     const addCart = async (id, num) => {

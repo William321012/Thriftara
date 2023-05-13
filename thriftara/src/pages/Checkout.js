@@ -33,8 +33,6 @@ function Checkout() {
                     <h4>Phone: </h4><input type='text'></input>
                 </div>
 
-                <Address />
-
                 <div className='checkout-info p-4'>
                     <Table>
                         <thead>
