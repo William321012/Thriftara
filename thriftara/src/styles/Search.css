@@ -1,16 +1,29 @@
+/*css to position the sections and contents mainly. I used css grid and css 
+flexbox in tandem since that was what seemed like best practice. 
+Essentially css grid can position items in 2d so you use it for the overall 
+framework of the page and then you use css flexbox which is 1d to position 
+items within the sections*/
 .containerSearch {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    width: 100vw;
-    height: 67.6vh;
+    width: fit-content;
+    height: fit-content;
     margin: 0px;
     padding: 0px;
-    background-color: red;
+    background-color: white;
+    overflow: scroll;
 }
 .sidebar{
-    background-color: aqua;
+    grid-column: 1 / 2;
+    grid-row: 2/4;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+div .sidebar{
+    min-height: 150px;
 }
 li{
     list-style-type: none;
@@ -30,30 +43,37 @@ li{
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+    background-color: cyan;
 }
 .heading-listings {
     grid-column: 2 / 3;
-    grid-row: 1 / 2;
+    grid-row: auto;
+    background-color: cyan;
+
 }
 .listings-body {
     grid-column: 2 / 3;
     grid-row: 2 / 6;
     background-color: white;
+    overflow-y:auto
 }
 .department {
-   grid-column: 1 / 2;
-   grid-row: 2 / 3;
+   /*grid-column: 1 / 2;
+   grid-row: 2 / 3;*/
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 .price-range {
-   grid-column: 1 / 2;
-   grid-row: 3 / 4;
+   /*grid-column: 1 / 2;
+   grid-row: 3 / 4;*/
    display: flex;
    text-align: left;
    align-items: center;
 }
 .size{
-   grid-column: 1 / 2;
-   grid-row: 4 / 5;
+   /*grid-column: 1 / 2;
+   grid-row: 4 / 5;*/
    display: flex;
    flex-direction: column;
    flex-wrap: wrap;
@@ -65,8 +85,8 @@ ul .size{
     padding: 0px;
 }
 .brands{
-   grid-column: 1 / 2;
-   grid-row: 5 / 6;
+   /*grid-column: 1 / 2;
+   grid-row: 5 / 6;*/
 }
 .price-label{
 
